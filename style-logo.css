@@ -1,0 +1,7 @@
+.logo{
+    stroke: rgb(0, 0, 0);
+    fill: white;
+}
+.logo:hover{
+    fill-opacity: 10%;
+}
