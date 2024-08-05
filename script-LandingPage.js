@@ -30,4 +30,20 @@ transformScale = 1.1;
       pathElement.setAttribute('fill', '#ffffff');
     });
   });
+
+  //Link Hoverstates
   
+  const links = document.querySelectorAll('.link');
+  const background = document.getElementById('background');
+  
+  links.forEach(link => {
+    link.addEventListener('mouseover', () => {
+      const image = link.getAttribute('data-bg');
+      background.style.backgroundImage = `url(${image})`;
+    });
+  
+    link.addEventListener('mouseout', () => {
+      background.style.backgroundImage = '';
+    });
+  });
+
