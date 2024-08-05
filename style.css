@@ -32,11 +32,8 @@ html {
   text-align: inherit;
 }
 
-.header_Elements:hover {
-  color: #bfff36;
-}
 
-.header_infoButton {
+.header_Button {
   background-color: transparent;
   border: none;
   margin: 0;
@@ -48,7 +45,7 @@ html {
   all: inherit;
   color: #ffffff;
 }
-.header_infoButton:hover {
+.header_Button:hover {
   color: #bfff36;
 }
 
