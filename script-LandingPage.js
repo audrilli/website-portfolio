@@ -1,6 +1,8 @@
 console.log("gugus");
 
   //Logo Animation final
+let transformScale;
+transformScale = 1.1;
 
   const petals = [
     { petal: 'logo_petal00', path: 'path00', transform: 'scale(1.1) translate(-2px, 4px)' },
@@ -18,7 +20,7 @@ console.log("gugus");
     const pathElement = document.querySelector(`.${path}`);
   
     petalElement.addEventListener('mouseover', () => {
-      pathElement.style.transition = 'all 0.5s';
+      pathElement.style.transition = 'all 0.8s';
       pathElement.style.transform = transform;
       pathElement.setAttribute('fill', '#bfff36');
     });

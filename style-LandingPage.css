@@ -49,6 +49,11 @@ html {
   color: #bfff36;
 }
 
+.logo{
+  stroke: rgb(0, 0, 0);
+  fill: white;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .content {
