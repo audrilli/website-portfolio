@@ -22,7 +22,8 @@ transformScale = 1.1;
     petalElement.addEventListener('mouseover', () => {
       pathElement.style.transition = 'all 0.8s';
       pathElement.style.transform = transform;
-      pathElement.setAttribute('fill', '#bfff36');
+      // pathElement.setAttribute('fill', '#bfff36');
+      pathElement.setAttribute('fill', '#ff00aa');
     });
   
     petalElement.addEventListener('mouseout', () => {
