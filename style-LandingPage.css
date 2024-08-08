@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Roboto", sans-serif;
+
+  font-size: 20px;
+  color: #ffffff;
+}
+#header_Container {
+  width: 100vw;
+  height: fit-content;
+  background-color: rgb(0, 0, 0);
+}
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 50px;
+  padding-right: 50px;
+  text-align: center;
+}
+
+.header_Elements {
+  text-align: inherit;
+}
+
+.header_Button {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-align: inherit;
+  font: inherit;
+  border-radius: 0;
+  appearance: none;
+  all: inherit;
+  color: #ffffff;
+}
+.header_Button:hover {
+  color: #ff00aa;
+}
+
+.logo {
+  stroke: rgb(0, 0, 0);
+  fill: white;
+}
+
+.container {
+  position: relative;
+
+  display: flex;
+  text-align: center;
+  max-height: 90vh;
+  min-height: 80vh;
+
+  max-width: 3000px;
+  min-width: 300px;
+
+  background-color: aqua;
+  z-index: initial;
+}
+
+.containerVisual{
+  background-color: beige;
+}
+
+.backgroundImage {
+  position: relative;
+  place-content: center;
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+
+  margin-left: calc(100dvh / 5);
+  margin-right: calc(100dvh / 5);
+  margin-top: calc(2 * (100dvh / 15));
+  margin-bottom: calc(100dvh / 15);
+
+  z-index: inherit;
+}
+
+.backgroundImage.visible {
+  position: relative;
+  opacity: 1;
+}
+
+.Links {
+  position: absolute;
+  max-height: 90vh;
+  min-height: 80vh;
+
+  width: 100vw;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+p {
+  margin: 0px;
+
+}
+
+a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 18px;
+}
+
+a:hover {
+  color: #0056b3;
+}
+
+.textBox {
+  background-color: #ff00aa;
+}
+
+.visual{
+  background-color: #96ee2a;
+  width: 300px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .content {
+    margin: 15px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    margin: 10px;
+    padding: 5px;
+  }
+}
