@@ -24,6 +24,10 @@ html {
   text-align: center;
 }
 
+canvas {
+  display: block;
+}
+
 .header_Elements {
   text-align: inherit;
 }
@@ -127,7 +131,6 @@ a:hover {
 
 .visual{
   background-color: #96ee2a;
-  width: 300px;
 }
 
 /* Responsive adjustments */
