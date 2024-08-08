@@ -9,18 +9,18 @@ html {
 
   font-size: 20px;
   color: #ffffff;
-  text-align: center;
+  
 
   
 
-  display: flex;
-  flex-direction: column;
+  
 }
 #header_Container {
   width: 100vw;
   height: fit-content;
   background-color: rgb(0, 0, 0);
-  
+ 
+ 
 }
 #header {
   display: flex;
@@ -29,7 +29,9 @@ html {
   padding-left: 50px;
   padding-right: 50px;
   text-align: center;
-  position:sticky
+
+ 
+
 }
 
 .header_Elements {
@@ -60,14 +62,18 @@ html {
 
 
 .container {
+position: relative;
 
 display: flex;
-
+text-align: center;
 max-height: 90vh;
 min-height: 80vh;
 
 max-width: 3000px;
 min-width: 300px;
+
+background-color: aqua;
+z-index: initial;
 
   
 
@@ -75,7 +81,7 @@ min-width: 300px;
 }
 
 .backgroundImage {
-  display: grid;
+  position:relative;
   place-content: center;
   width: 100%;
   height: auto;
@@ -89,33 +95,45 @@ min-width: 300px;
   margin-right: calc(100dvh/5);
   margin-top: calc(2*(100dvh/15));
   margin-bottom: calc(100dvh/15);
+ 
+z-index: inherit;
+  
 }
 
 .backgroundImage.visible {
+  position: relative;
   opacity: 1;
 }
 
 
 .Links {
-  position: fixed;
-  inset: 0px;
-  width: 12rem;
-  height: 5rem;
-  max-width: 80vw;
-  max-height: 80dvh;
-  margin: auto;
+
+
+position: absolute;
+max-height: 90vh;
+min-height: 80vh;
+
+width: 100vw;
+  
+
+  /* padding-top:calc(100vh/2); */
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
   
   
 
+
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
 
-li {
-  margin: 0, 0;
+
+p {
+  margin: 0px;
+  background-color: #0056b3;
+
 }
 
 a {
@@ -133,6 +151,17 @@ a:hover {
 
 
 
+
+
+.test{
+  height: 100vh;
+  background-color: #ff00aa;
+  padding-left: calc(100dvh/5);
+  padding-right: calc(100dvh/5);
+  padding-top: calc(100dvh/15);
+  padding-bottom: calc(100dvh/15);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .content {
@@ -146,13 +175,4 @@ a:hover {
     margin: 10px;
     padding: 5px;
   }
-}
-
-.test{
-  height: 100vh;
-  background-color: #ff00aa;
-  margin-left: calc(100dvh/5);
-  margin-right: calc(100dvh/5);
-  margin-top: calc(100dvh/15);
-  margin-bottom: calc(100dvh/15);
 }
