@@ -41,10 +41,12 @@ transformScale = 1.1;
     link.addEventListener('mouseover', () => {
       const image = link.getAttribute('data-bg');
       background.style.backgroundImage = `url(${image})`;
+      background.classList.add('visible');
     });
   
     link.addEventListener('mouseout', () => {
-      background.style.backgroundImage = '';
+      background.classList.remove('visible');
+      
     });
   });
 

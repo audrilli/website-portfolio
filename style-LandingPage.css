@@ -60,33 +60,49 @@ html {
 
 
 .container {
-width: 100vw;
-height: 100vh;
+
 display: flex;
+
+max-height: 90vh;
+min-height: 80vh;
+
+max-width: 3000px;
+min-width: 300px;
+
   
-padding: 5%;
 
 
 }
 
-.background {
-  
- width: 100%;
-  height: 800px;
+.backgroundImage {
+  display: grid;
+  place-content: center;
+  width: 100%;
+  height: auto;
   background-size: cover;
   background-repeat: no-repeat;
-  transition: background-image 0.5s ease-in-out;
-  
 
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  
+  margin-left: calc(100dvh/5);
+  margin-right: calc(100dvh/5);
+  margin-top: calc(2*(100dvh/15));
+  margin-bottom: calc(100dvh/15);
 }
 
-.content {
+.backgroundImage.visible {
+  opacity: 1;
+}
+
+
+.Links {
   position: fixed;
   inset: 0px;
   width: 12rem;
   height: 5rem;
-  max-width: 100vw;
-  max-height: 100dvh;
+  max-width: 80vw;
+  max-height: 80dvh;
   margin: auto;
   
   
@@ -130,4 +146,13 @@ a:hover {
     margin: 10px;
     padding: 5px;
   }
+}
+
+.test{
+  height: 100vh;
+  background-color: #ff00aa;
+  margin-left: calc(100dvh/5);
+  margin-right: calc(100dvh/5);
+  margin-top: calc(100dvh/15);
+  margin-bottom: calc(100dvh/15);
 }
