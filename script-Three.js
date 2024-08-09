@@ -14,6 +14,7 @@ console.log("threeisthere");
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xffffff); // Set background to white
+scene.background = null; // No background, transparent
 
 const loader1 = new THREE.TextureLoader();
 const texture1 = loader1.load("Material/kloppenheim_06_puresky_4k.jpg", () => {
@@ -53,7 +54,7 @@ const container = document.getElementById('credo');
 console.log(container)
 
 // Setup renderer and size it according to the credo div while maintaining aspect ratio
-const renderer = new THREE.WebGLRenderer({ antialias: true });
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 resizeRendererToDisplaySize();
 renderer.toneMapping = THREE.ACESFilmicToneMapping; // Better tone mapping for HDRI
 renderer.toneMappingExposure = 1;
@@ -101,11 +102,14 @@ loader.load(
                     roughness: 0,    // No roughness, fully smooth and shiny
                     envMap: scene.environment,  // Use the HDRI environment map for reflections
                     envMapIntensity: 1, // Control the reflection intensity
+
+                    
                 });
             }
         });
 
         scene.add(model);
+        console.log("modelBuilt")
     },
     undefined,
     function (error) {
