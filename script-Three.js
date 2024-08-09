@@ -44,7 +44,7 @@ const texture1 = loader1.load("Material/kloppenheim_06_puresky_4k.jpg", () => {
 const camera = new THREE.PerspectiveCamera(
   75,
   window.innerWidth / window.innerHeight,
-  0.1,
+  0.5,
   1000
 );
 camera.position.set(0, 0, 1);
@@ -52,9 +52,9 @@ camera.position.set(0, 0, 1);
 const container = document.getElementById('credo');
 console.log(container)
 
-// Setup renderer
+// Setup renderer and size it according to the credo div while maintaining aspect ratio
 const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(container.clientWidth, container.clientHeight);
+resizeRendererToDisplaySize();
 renderer.toneMapping = THREE.ACESFilmicToneMapping; // Better tone mapping for HDRI
 renderer.toneMappingExposure = 1;
 container.appendChild(renderer.domElement);
@@ -81,6 +81,9 @@ loader.load(
   function (gltf) {
     const model = gltf.scene;
     model.scale.set(6, 6, 6); // Double the size of the model
+     // Move the model to the right
+     model.position.x += 0.1; // Increase this value to move it further to the right
+
 
     // Apply shiny metallic material
     model.traverse((child) => {
@@ -103,12 +106,38 @@ loader.load(
   }
 );
 
-// Handle window resize
-window.addEventListener('resize', () => {
-    camera.aspect = container.clientWidth / container.clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(container.clientWidth, container.clientHeight);
-});
+// Resize function to fit renderer to container while maintaining aspect ratio
+function resizeRendererToDisplaySize() {
+    const canvas = renderer.domElement;
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+    const canvasPixelWidth = canvas.width / window.devicePixelRatio;
+    const canvasPixelHeight = canvas.height / window.devicePixelRatio;
+
+    if (canvasPixelWidth !== width || canvasPixelHeight !== height) {
+        renderer.setSize(width, height, false);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+    }
+}
+
+// Resize function to fit renderer to container while maintaining aspect ratio
+function resizeRendererToDisplaySize() {
+    const canvas = renderer.domElement;
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+    const canvasPixelWidth = canvas.width / window.devicePixelRatio;
+    const canvasPixelHeight = canvas.height / window.devicePixelRatio;
+
+    if (canvasPixelWidth !== width || canvasPixelHeight !== height) {
+        renderer.setSize(width, height, false);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+    }
+}
+
+// Handle window resize to adjust the renderer's size based on the credo div
+window.addEventListener('resize', resizeRendererToDisplaySize);
 
 // Mouse move effect
 document.addEventListener("mousemove", (event) => {
