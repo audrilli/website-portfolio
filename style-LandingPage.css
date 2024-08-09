@@ -134,12 +134,18 @@ a:hover {
   background-color: #96ee2a;
   max-height: inherit;
   min-height: inherit;
+  width: 100vw;
 }
 #credo{
-  width: 80vw;
+  width: 100vw;
   
 }
 
+.footer_Container{
+  background-color: black;
+  height: 100px;
+
+}
 
 
 /* Responsive adjustments */

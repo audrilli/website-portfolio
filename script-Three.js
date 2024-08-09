@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
-import { color } from "three/webgpu";
+
 
 console.log("threeisthere");
 
@@ -13,7 +13,7 @@ console.log("threeisthere");
 // Setup scene
 
 const scene = new THREE.Scene();
-// scene.background = new THREE.Color(0xffffff); // Set background to white
+scene.background = new THREE.Color(0xffffff); // Set background to white
 
 const loader1 = new THREE.TextureLoader();
 const texture1 = loader1.load("Material/kloppenheim_06_puresky_4k.jpg", () => {
