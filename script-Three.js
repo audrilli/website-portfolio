@@ -1,8 +1,8 @@
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-
-import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
+import * as THREE from "three";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
+import { color } from "three/webgpu";
 
 console.log("threeisthere");
 
@@ -11,28 +11,54 @@ console.log("threeisthere");
 // console.log(canvas);
 
 // Setup scene
+
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xffffff); // Set background to white
+// scene.background = new THREE.Color(0xffffff); // Set background to white
+
+const loader1 = new THREE.TextureLoader();
+const texture1 = loader1.load("Material/kloppenheim_06_puresky_4k.jpg", () => {
+  texture1.mapping = THREE.EquirectangularReflectionMapping;
+  texture1.colorSpace = THREE.SRGBColorSpace;
+
+  scene.environment = texture1;
+
+  console.log("texture1");
+});
+
+
 
 //Load HDRI
-new RGBELoader()
-    .setPath('/Material/quarry_01_1k.hdr') // Set the path to your HDRI file
-    .load('quarry_01_1k.hdr', function (texture) {
-        texture.mapping = THREE.EquirectangularReflectionMapping;
-        scene.environment = texture;
-        scene.background = texture; // Optional: if you want to use HDRI as the background
-        console.log("hdri Loadad")
-    });
+// new RGBELoader()
+//   .setDataType(THREE.UnsignedByteType)
+//   .setPath("Material/kloppenheim_06_puresky_4k.exr")
+//   .load("kloppenheim_06_puresky_4k.exr", function (texture) {
+//     texture.mapping = THREE.EquirectangularReflectionMapping;
 
+//     scene.background = texture;
+//     scene.environment = texture;
+
+//     console.log("hdri: Loadad");
+//   });
 
 // Setup camera
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
 camera.position.set(0, 0, 1);
+
+const container = document.getElementById('credo');
+console.log(container)
 
 // Setup renderer
 const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.getElementById('credo').appendChild(renderer.domElement);
+renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping; // Better tone mapping for HDRI
+renderer.toneMappingExposure = 1;
+container.appendChild(renderer.domElement);
+
 
 // Add ambient light
 const ambientLight = new THREE.AmbientLight(0x504040); // Soft white light
@@ -48,65 +74,60 @@ const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableRotate = false; // Disable auto-rotation
 controls.enableZoom = false; // Disable zoom
 
-
-
-
 // Load the model
 const loader = new GLTFLoader();
 loader.load(
-    'Flower.gltf', 
-    function (gltf) {
-        const model = gltf.scene;
-        model.scale.set(6, 6, 6); // Double the size of the model
+  "Flower.gltf",
+  function (gltf) {
+    const model = gltf.scene;
+    model.scale.set(6, 6, 6); // Double the size of the model
 
-        
-
-        // Apply shiny metallic material
-        model.traverse((child) => {
-            if (child.isMesh) {
-                child.material = new THREE.MeshStandardMaterial({
-                    color: 0xaaaaaa, // Base color (can be adjusted)
-                    metalness: 1,   // Full metallic look
-                    roughness: 0.0, // Low roughness for a shiny surface
-                    // envMapIntensity: 1, // Reflectiveness from environment map
-                });
-            }
+    // Apply shiny metallic material
+    model.traverse((child) => {
+      if (child.isMesh) {
+        child.material = new THREE.MeshStandardMaterial({
+          color: 0xcccccc, // Base color (can be adjusted)
+          metalness: 1, // Full metallic look
+          roughness: 0, // Low roughness for a shiny surface
+          envMap: scene.environment,
+          envMapIntensity: 1, // Reflectiveness from environment map
         });
-        
-                scene.add(model);
-    
-    },
-    undefined,
-    function (error) {
-        console.error('An error occurred loading the model', error);
-    }
+      }
+    });
+
+    scene.add(model);
+  },
+  undefined,
+  function (error) {
+    console.error("An error occurred loading the model", error);
+  }
 );
 
 // Handle window resize
 window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.aspect = container.clientWidth / container.clientHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(container.clientWidth, container.clientHeight);
 });
 
 // Mouse move effect
-document.addEventListener('mousemove', (event) => {
-    const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-    const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+document.addEventListener("mousemove", (event) => {
+  const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+  const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
 
-    const targetX = mouseX * 0.5;
-    const targetY = mouseY * 0.5;
+  const targetX = mouseX * 0.5;
+  const targetY = mouseY * 0.5;
 
-    camera.position.x = targetX;
-    camera.position.y = targetY;
-    camera.lookAt(scene.position);
+  camera.position.x = targetX;
+  camera.position.y = targetY;
+  camera.lookAt(scene.position);
 });
 
 // Animation loop
 function animate() {
-    requestAnimationFrame(animate);
-    controls.update();
-    renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+  controls.update();
+  renderer.render(scene, camera);
 }
 animate();
 

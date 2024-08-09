@@ -70,6 +70,7 @@ canvas {
 
 .containerVisual{
   background-color: beige;
+  
 }
 
 .backgroundImage {
@@ -131,7 +132,15 @@ a:hover {
 
 .visual{
   background-color: #96ee2a;
+  max-height: inherit;
+  min-height: inherit;
 }
+#credo{
+  width: 80vw;
+  
+}
+
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
