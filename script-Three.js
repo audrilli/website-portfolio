@@ -74,37 +74,46 @@ const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableRotate = false; // Disable auto-rotation
 controls.enableZoom = false; // Disable zoom
 
+//global Variables
+
+let model; // Define model globally so it can be accessed in other functions
+let baseRotationSpeed = 0.005; // Base rotation speed
+let scrollBoost = 100; // Additional speed boost on scroll
+
+
 // Load the model
 const loader = new GLTFLoader();
 loader.load(
-  "Flower.gltf",
-  function (gltf) {
-    const model = gltf.scene;
-    model.scale.set(6, 6, 6); // Double the size of the model
-     // Move the model to the right
-     model.position.x += 0.1; // Increase this value to move it further to the right
+    'Flower.gltf',  // Path to the custom model
+    function (gltf) {
+        model = gltf.scene;
+        model.scale.set(6, 6, 6); // Double the size of the model
 
+        // Move the model to the right
+        model.position.x += 0; // Increase this value to move it further to the right
 
-    // Apply shiny metallic material
-    model.traverse((child) => {
-      if (child.isMesh) {
-        child.material = new THREE.MeshStandardMaterial({
-          color: 0xcccccc, // Base color (can be adjusted)
-          metalness: 1, // Full metallic look
-          roughness: 0, // Low roughness for a shiny surface
-          envMap: scene.environment,
-          envMapIntensity: 1, // Reflectiveness from environment map
+        // Apply chrome-like material
+        model.traverse((child) => {
+            if (child.isMesh) {
+                child.material = new THREE.MeshStandardMaterial({
+                    color: 0xB1B1B1, // Chrome is typically reflective silver
+                    metalness: 1,    // Full metallic
+                    roughness: 0,    // No roughness, fully smooth and shiny
+                    envMap: scene.environment,  // Use the HDRI environment map for reflections
+                    envMapIntensity: 1, // Control the reflection intensity
+                });
+            }
         });
-      }
-    });
 
-    scene.add(model);
-  },
-  undefined,
-  function (error) {
-    console.error("An error occurred loading the model", error);
-  }
+        scene.add(model);
+    },
+    undefined,
+    function (error) {
+        console.error('An error occurred loading the model', error);
+    }
 );
+
+console.log(model);
 
 // Resize function to fit renderer to container while maintaining aspect ratio
 function resizeRendererToDisplaySize() {
@@ -140,23 +149,41 @@ function resizeRendererToDisplaySize() {
 window.addEventListener('resize', resizeRendererToDisplaySize);
 
 // Mouse move effect
-document.addEventListener("mousemove", (event) => {
-  const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-  const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+document.addEventListener('mousemove', (event) => {
+    if (!model) return; // Ensure model is loaded
 
-  const targetX = mouseX * 0.5;
-  const targetY = mouseY * 0.5;
+    const mouseX = (event.clientX / container.clientWidth) * 2 - 1;
+    const mouseY = -(event.clientY / container.clientHeight) * 2 + 1;
 
-  camera.position.x = targetX;
-  camera.position.y = targetY;
-  camera.lookAt(scene.position);
+    const targetX = model.position.x + mouseX * 0.5;
+    const targetY = model.position.y + mouseY * 0.5;
+
+    camera.position.x += (targetX - camera.position.x) * 0.05;
+    camera.position.y += (targetY - camera.position.y) * 0.05;
+
+    camera.lookAt(model.position);
+});
+
+// Scroll event to increase rotation speed temporarily
+document.addEventListener('scroll', () => {
+    scrollBoost = 0.01; // Increase rotation speed temporarily
 });
 
 // Animation loop
 function animate() {
-  requestAnimationFrame(animate);
-  controls.update();
-  renderer.render(scene, camera);
+    requestAnimationFrame(animate);
+    controls.update();
+    resizeRendererToDisplaySize(); // Ensure the renderer always fits within the div
+
+    // Apply rotation to the model
+    if (model) {
+        model.rotation.y += baseRotationSpeed + scrollBoost;
+
+        // Gradually reduce the scroll boost effect
+        scrollBoost = Math.max(0, scrollBoost - 0.0005);
+    }
+
+    renderer.render(scene, camera);
 }
 animate();
 
