@@ -1,6 +1,9 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+
+import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
+
 console.log("threeisthere");
 
 //Canvas
@@ -10,6 +13,16 @@ console.log("threeisthere");
 // Setup scene
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xffffff); // Set background to white
+
+//Load HDRI
+new RGBELoader()
+    .setPath('/Material/quarry_01_1k.hdr') // Set the path to your HDRI file
+    .load('quarry_01_1k.hdr', function (texture) {
+        texture.mapping = THREE.EquirectangularReflectionMapping;
+        scene.environment = texture;
+        scene.background = texture; // Optional: if you want to use HDRI as the background
+        console.log("hdri Loadad")
+    });
 
 
 // Setup camera
@@ -35,13 +48,7 @@ const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableRotate = false; // Disable auto-rotation
 controls.enableZoom = false; // Disable zoom
 
-// Load an environment texture for reflection
-const loaderCube = new THREE.CubeTextureLoader();
-const envMap = loaderCube.load([
-    'Material/quarry_01_1k.hdr', 'Material/quarry_01_1k.hdr',
-    
-]);
-scene.environment = envMap; // Set the environment for the scene
+
 
 
 // Load the model
@@ -52,6 +59,8 @@ loader.load(
         const model = gltf.scene;
         model.scale.set(6, 6, 6); // Double the size of the model
 
+        
+
         // Apply shiny metallic material
         model.traverse((child) => {
             if (child.isMesh) {
@@ -59,7 +68,7 @@ loader.load(
                     color: 0xaaaaaa, // Base color (can be adjusted)
                     metalness: 1,   // Full metallic look
                     roughness: 0.0, // Low roughness for a shiny surface
-                    envMapIntensity: 1, // Reflectiveness from environment map
+                    // envMapIntensity: 1, // Reflectiveness from environment map
                 });
             }
         });
