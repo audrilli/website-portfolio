@@ -69,14 +69,15 @@ canvas {
 
   display: flex;
   text-align: center;
-  max-height: 90vh;
+  height: 100vh;
   min-height: 80vh;
 
-  max-width: 3000px;
-  min-width: 300px;
+ 
 
   background-color: rgb(244, 244, 244);
   z-index: initial;
+
+  
 }
 
 .containerVisual {
@@ -85,19 +86,22 @@ canvas {
 
 .backgroundImage {
   position: relative;
-  place-content: center;
-  width: 100%;
+  
+  max-height: 100%;
   height: auto;
-  background-size: cover;
+  background-size:contain;
   background-repeat: no-repeat;
 
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
 
-  margin-left: calc(100dvh / 5);
-  margin-right: calc(100dvh / 5);
-  margin-top: calc(2 * (100dvh / 15));
-  margin-bottom: calc(100dvh / 15);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+   margin-top: 2rem;
+   margin-bottom: 2rem;
+
 
   z-index: inherit;
 }
@@ -126,7 +130,7 @@ canvas {
 
 p {
   margin: 0px;
-  font-size: 2em; 
+  font-size: 2em;
 }
 
 a {
@@ -180,8 +184,13 @@ a:hover {
   height: inherit;
 
   z-index: 2;
+  
 }
 #credo {
+  width: 100vw;
+  top: 50;
+}
+#front{
   width: 100vw;
   top: 50;
 }
@@ -189,6 +198,12 @@ a:hover {
 .footer_Container {
   background-color: black;
   height: 100px;
+}
+
+.headerSection {
+  display: flex;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 /* Responsive adjustments */
