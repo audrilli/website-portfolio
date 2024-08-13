@@ -1,14 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
 
 body,
 html {
   margin: 0;
   padding: 0;
   height: 100%;
-  color: #ffffff;
+  background-color: aqua;
+  font-family: "Jost", sans-serif;
 }
 
 .jost-copy {
@@ -30,6 +30,8 @@ html {
   padding-left: 50px;
   padding-right: 50px;
   text-align: center;
+
+  font-size: 30px;
 }
 
 canvas {
@@ -72,13 +74,12 @@ canvas {
   max-width: 3000px;
   min-width: 300px;
 
-  background-color: rgb(198, 198, 198);
+  background-color: rgb(244, 244, 244);
   z-index: initial;
 }
 
-.containerVisual{
+.containerVisual {
   background-color: beige;
-  
 }
 
 .backgroundImage {
@@ -110,89 +111,84 @@ canvas {
   max-height: 90vh;
   min-height: 80vh;
 
-  width: 100vw;
+  width: fit-content;
 
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   z-index: 2;
+  text-align: left;
+
+  margin: 50px;
 }
 
 p {
   margin: 0px;
-
+  font-size: 2em; 
 }
 
 a {
   text-decoration: none;
-  color: #007bff;
-  font-size: 18px;
+  color: #000000;
+  font-size: 2rem;
 }
 
+/* Span Define*/
+.LinkNumber {
+  font-weight: bold;
+}
+.LinkKeyword {
+  font-style: italic;
+}
+.LinkDate {
+  font-size: 1rem;
+}
 a:hover {
-  color: #0056b3;
+  color: #ff00aa;
 }
 
 .textBox {
   position: absolute;
   display: flex;
   align-items: center;
-  
-            
-            color: rgb(0, 0, 0);
-            font-size: 50px;
-        
-            pointer-events: none;
-            /* width: calc(100vw/2); */
-            
-            max-height: 90vh;
+
+  color: rgb(0, 0, 0);
+  font-size: 50px;
+
+  pointer-events: none;
+  /* width: calc(100vw/2); */
+
+  max-height: 90vh;
   min-height: 80vh;
 
   max-width: 3000px;
   min-width: 300px;
 
-            height: inherit;
-            text-align: left;
-            margin-left: 50px;
+  height: inherit;
+  text-align: left;
+  margin-left: 50px;
 
-
-            z-index: 1;
-         
-
-            
-            
-
-  
+  z-index: 1;
 }
 
-
-
-.visual{
-
+.visual {
   position: relative;
- 
+
   width: 100vw;
   height: inherit;
 
   z-index: 2;
- 
-
- 
 }
-#credo{
-  
+#credo {
   width: 100vw;
   top: 50;
-
 }
 
-.footer_Container{
+.footer_Container {
   background-color: black;
   height: 100px;
-
 }
-
 
 /* Responsive adjustments */
 @media (max-width: 500px) {
