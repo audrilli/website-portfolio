@@ -1,27 +1,42 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
 
 body,
 html {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: "Roboto", sans-serif;
-
-  font-size: 20px;
-  color: #ffffff;
+  background-color: #ff00aa;
+  font-family: "Jost", sans-serif;
 }
+
+.jost-copy {
+  font-family: "Jost", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 10;
+  font-style: normal;
+}
+
 #header_Container {
   width: 100vw;
   height: fit-content;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(244, 244, 244);
 }
 #header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding-left: 50px;
   padding-right: 50px;
   text-align: center;
+
+  font-size: 30px;
+  gap: 2rem;
+}
+
+canvas {
+  display: block;
 }
 
 .header_Elements {
@@ -38,7 +53,7 @@ html {
   border-radius: 0;
   appearance: none;
   all: inherit;
-  color: #ffffff;
+  color: #000000;
 }
 .header_Button:hover {
   color: #ff00aa;
@@ -46,7 +61,7 @@ html {
 
 .logo {
   stroke: rgb(0, 0, 0);
-  fill: white;
+  fill: rgb(0, 0, 0);
 }
 
 .container {
@@ -54,35 +69,39 @@ html {
 
   display: flex;
   text-align: center;
-  max-height: 90vh;
+  height: 100vh;
   min-height: 80vh;
 
-  max-width: 3000px;
-  min-width: 300px;
+ 
 
-  background-color: aqua;
+  background-color: rgb(244, 244, 244);
   z-index: initial;
+
+  
 }
 
-.containerVisual{
+.containerVisual {
   background-color: beige;
 }
 
 .backgroundImage {
   position: relative;
-  place-content: center;
-  width: 100%;
+  
+  max-height: 100%;
   height: auto;
-  background-size: cover;
+  background-size:contain;
   background-repeat: no-repeat;
 
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
 
-  margin-left: calc(100dvh / 5);
-  margin-right: calc(100dvh / 5);
-  margin-top: calc(2 * (100dvh / 15));
-  margin-bottom: calc(100dvh / 15);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+   margin-top: 2rem;
+   margin-bottom: 2rem;
+
 
   z-index: inherit;
 }
@@ -97,41 +116,98 @@ html {
   max-height: 90vh;
   min-height: 80vh;
 
-  width: 100vw;
+  width: fit-content;
 
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   z-index: 2;
+  text-align: left;
+
+  margin: 50px;
 }
 
 p {
   margin: 0px;
-
+  font-size: 2em;
 }
 
 a {
   text-decoration: none;
-  color: #007bff;
-  font-size: 18px;
+  color: #000000;
+  font-size: 2rem;
 }
 
+/* Span Define*/
+.LinkNumber {
+  font-weight: bold;
+}
+.LinkKeyword {
+  font-style: italic;
+}
+.LinkDate {
+  font-size: 1rem;
+}
 a:hover {
-  color: #0056b3;
+  color: #ff00aa;
 }
 
 .textBox {
-  background-color: #ff00aa;
+  position: absolute;
+  display: flex;
+  align-items: center;
+
+  color: rgb(0, 0, 0);
+  font-size: 50px;
+
+  pointer-events: none;
+  /* width: calc(100vw/2); */
+
+  max-height: 90vh;
+  min-height: 80vh;
+
+  max-width: 3000px;
+  min-width: 300px;
+
+  height: inherit;
+  text-align: left;
+  margin-left: 50px;
+
+  z-index: 1;
 }
 
-.visual{
-  background-color: #96ee2a;
-  width: 300px;
+.visual {
+  position: relative;
+
+  width: 100vw;
+  height: inherit;
+
+  z-index: 2;
+  
+}
+#credo {
+  width: 100vw;
+  top: 50;
+}
+#front{
+  width: 100vw;
+  top: 50;
+}
+
+.footer_Container {
+  background-color: black;
+  height: 100px;
+}
+
+.headerSection {
+  display: flex;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 500px) {
   .content {
     margin: 15px;
     padding: 8px;

@@ -24,11 +24,14 @@ transformScale = 1.1;
       pathElement.style.transform = transform;
       // pathElement.setAttribute('fill', '#bfff36');
       pathElement.setAttribute('fill', '#ff00aa');
+      pathElement.setAttribute('stroke','#ff00aa')
+      
     });
   
     petalElement.addEventListener('mouseout', () => {
       pathElement.style.transform = 'scale(1)';
-      pathElement.setAttribute('fill', '#ffffff');
+      pathElement.setAttribute('fill', '#000000');
+      pathElement.setAttribute('stroke','#000000')
     });
   });
 
@@ -50,3 +53,5 @@ transformScale = 1.1;
     });
   });
 
+  const content = document.querySelector('.content');
+  console.log(content);
