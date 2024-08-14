@@ -202,18 +202,21 @@ a:hover {
 
   
 }
+
+.visual1{
+  width: fit-content;
+  background-color: rgb(0, 255, 255);
+}
 #credo {
   width: 100vw;
   top: 50;
   z-index: 2;
   
 }
-#front{
+#landing {
+  
   top: 50;
-  width: 100vw;
-
-  background-color: #ff00aa;
-  opacity: 40%;
+ 
 }
 
 .footer_Container {

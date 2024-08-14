@@ -1,28 +1,35 @@
-
+console.log("file connecetd");
 
 import * as THREE from 'three';
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import * as CANNON from 'cannon-es';
 
-console.log("file connecetd");
+
 
 // Select the div where the canvas should be rendered
-const containerFront = document.getElementById('front');
-console.log('contaierFront:',containerFront);
+const container = document.getElementById('landing');
+
+document.addEventListener("DOMContentLoaded",() => {
+    const container = document.getElementById('landing');
+
+    if (container){
+        console.error('div not in DOM');
+    }
+})
+
+
 
 
 
 // Scene, Camera, Renderer
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
+const rendererfront = new THREE.WebGLRenderer({ antialias: true });
+rendererfront.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(rendererfront.domElement);
 
-
-document.body.appendChild(renderer.domElement);
-
-// Set initial camera position
-camera.position.z = 1;
+console.log(rendererfront.domElement.parentNode); 
+console.log(document.getElementById('landing'))
 
 // Lighting
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
@@ -81,14 +88,14 @@ function animate() {
         models[i].quaternion.copy(bodies[i].quaternion);
     }
 
-    renderer.render(scene, camera);
+    rendererfront.render(scene, camera);
 }
 
 // Handle window resize
 window.addEventListener('resize', () => {
     const width = container.clientWidth;
     const height = container.clientHeight;
-    renderer.setSize(width, height);
+    rendererfront.setSize(width, height);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
 });
@@ -97,4 +104,5 @@ window.addEventListener('resize', () => {
 // Start the animation loop
 animate();
 
-
+// Set initial camera position
+camera.position.z = 1;
