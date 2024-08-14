@@ -4,11 +4,9 @@ import * as THREE from 'three';
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import * as CANNON from 'cannon-es';
 
-const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-        if (mutation.addedNodes) {
+
             const containerfront = document.getElementById('landing');
-            if (containerfront) {
+            
                 // Initialize the scene, camera, and renderer here
                 
 
@@ -26,7 +24,7 @@ const observer = new MutationObserver((mutations) => {
 //     }
 // })
 
-console.log(document.getElementById('div2'));
+
 
 
 
@@ -54,7 +52,7 @@ world.gravity.set(0, -1.0, 0); // Gravity
 world.broadphase = new CANNON.NaiveBroadphase();
 world.solver.iterations = 10;
 
-// GLTF Models paths (replace these with your actual model paths)
+// GLTF Models paths
 const modelPaths = [
     'Flower.gltf',
     'Star1.gltf',
@@ -66,10 +64,31 @@ const bodies = [];
 
 const loader = new GLTFLoader();
 
+// Set a fixed z-value for all models
+const fixedZ = 0; // You can adjust this value to position them closer or further away from the camera
+
+// Function to generate random position within camera view
+function getRandomPositionInView() {
+    const distance = 1; // Distance from the camera
+    const aspect = container.clientWidth / container.clientHeight;
+    const height = 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * distance;
+    const width = height * aspect;
+
+    return {
+        x: (Math.random() - 0.5) * width,
+        y: (Math.random() - 0.5) * height,
+        z: fixedZ // Fixed z-axis value
+    };
+}
+
+
+
+
 modelPaths.forEach((path, index) => {
     loader.load(path, (gltf) => {
         const model = gltf.scene;
-        scene.add(model);
+        model.scale.set(10,10,10);
+        
 
         
 
@@ -82,8 +101,25 @@ modelPaths.forEach((path, index) => {
         const body = new CANNON.Body({ mass: 0.1, shape });
         body.position.set(model.position.x, model.position.y, model.position.z);
         body.linearDamping = 0.9; // To make it float like a balloon
+
+        // Apply an initial random velocity to make the models move
+        body.velocity.set(
+            (Math.random() - 0.5) * 2,
+            (Math.random() - 0.5) * 2,
+            0 // No velocity along the z-axis
+        );
+
+
+
         bodies.push(body);
         world.addBody(body);
+
+
+
+        scene.add(model);
+        //Debug Statements
+        console.log(model)
+        console.log("modelbuilt")
     });
 });
 
@@ -119,10 +155,4 @@ animate();
 // Set initial camera position
 camera.position.z = 1;
 
-observer.disconnect(); // Stop observing once found
-            }
-        }
-    });
-});
 
-observer.observe(document.body, { childList: true, subtree: true });

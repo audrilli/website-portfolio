@@ -94,7 +94,7 @@ loader.load(
         });
 
         scene.add(model);
-        console.log("modelBuilt")
+        // console.log("modelBuilt")
     },
     undefined,
     function (error) {
