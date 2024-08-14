@@ -4,19 +4,29 @@ import * as THREE from 'three';
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import * as CANNON from 'cannon-es';
 
+const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        if (mutation.addedNodes) {
+            const containerfront = document.getElementById('landing');
+            if (containerfront) {
+                // Initialize the scene, camera, and renderer here
+                
 
 
 // Select the div where the canvas should be rendered
-const container = document.getElementById('landing');
+// const container = document.getElementById('landing');
 
-document.addEventListener("DOMContentLoaded",() => {
-    const container = document.getElementById('landing');
 
-    if (container){
-        console.error('div not in DOM');
-    }
-})
+// //Check if Div is in the DOM
+// document.addEventListener("DOMContentLoaded",() => {
+//     const container = document.getElementById('landing');
 
+//     if (container){
+//         console.error('div not in DOM');
+//     }
+// })
+
+console.log(document.getElementById('div2'));
 
 
 
@@ -24,9 +34,9 @@ document.addEventListener("DOMContentLoaded",() => {
 // Scene, Camera, Renderer
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const rendererfront = new THREE.WebGLRenderer({ antialias: true });
+const rendererfront = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 rendererfront.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(rendererfront.domElement);
+containerfront.appendChild(rendererfront.domElement);
 
 console.log(rendererfront.domElement.parentNode); 
 console.log(document.getElementById('landing'))
@@ -61,6 +71,8 @@ modelPaths.forEach((path, index) => {
         const model = gltf.scene;
         scene.add(model);
 
+        
+
         // Random initial position
         model.position.set(Math.random() * 10 - 5, Math.random() * 10, Math.random() * 10 - 5);
         models.push(model);
@@ -93,8 +105,8 @@ function animate() {
 
 // Handle window resize
 window.addEventListener('resize', () => {
-    const width = container.clientWidth;
-    const height = container.clientHeight;
+    const width = containerfront.clientWidth;
+    const height = containerfront.clientHeight;
     rendererfront.setSize(width, height);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
@@ -106,3 +118,11 @@ animate();
 
 // Set initial camera position
 camera.position.z = 1;
+
+observer.disconnect(); // Stop observing once found
+            }
+        }
+    });
+});
+
+observer.observe(document.body, { childList: true, subtree: true });
