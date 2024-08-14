@@ -35,9 +35,9 @@ html {
   gap: 2rem;
 }
 
-canvas {
+/* canvas {
   display: block;
-}
+} */
 
 .header_Elements {
   text-align: inherit;
@@ -65,7 +65,7 @@ canvas {
 }
 
 .container {
-
+  position: relative;
 
   display: flex;
   text-align: center;
@@ -81,7 +81,17 @@ canvas {
 }
 
 .containerVisual {
-  background-color: beige;
+  position: relative;
+
+
+
+  width: 100vw;
+  height: inherit;
+
+  z-index: 4;
+  top: 0%;
+
+
 }
 
 .backgroundImage {
@@ -103,9 +113,12 @@ canvas {
 
    margin-top: 2rem;
    margin-bottom: 2rem;
+
+ 
+
+
   z-index: 2;
 }
-
 
 .backgroundImage.visible {
   position: relative;
@@ -123,7 +136,7 @@ canvas {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  z-index: 3;
+  z-index: 10;
   text-align: left;
 
   margin: 50px;
@@ -162,7 +175,7 @@ a:hover {
   color: rgb(0, 0, 0);
   font-size: 50px;
 
-  pointer-events: none;
+  /* pointer-events: none; */
   /* width: calc(100vw/2); */
 
   max-height: 90vh;
@@ -177,24 +190,28 @@ a:hover {
 
   z-index: 1;
 }
+.textBox:hover{
+  color: blue;
+}
 
 .visual {
   position: relative;
 
   width: 100vw;
-  height: inherit;
+  height:100vh;
 
-  z-index: 2;
   
 }
 #credo {
   width: 100vw;
   top: 50;
+  z-index: 2;
+  
 }
 #front{
+  top: 50;
   width: 100vw;
- left: 0;
- top: 0;
+
   background-color: #ff00aa;
   opacity: 40%;
 }

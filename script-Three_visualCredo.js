@@ -26,21 +26,6 @@ const texture1 = loader1.load("Material/kloppenheim_06_puresky_4k.jpg", () => {
   console.log("texture1");
 });
 
-
-
-//Load HDRI
-// new RGBELoader()
-//   .setDataType(THREE.UnsignedByteType)
-//   .setPath("Material/kloppenheim_06_puresky_4k.exr")
-//   .load("kloppenheim_06_puresky_4k.exr", function (texture) {
-//     texture.mapping = THREE.EquirectangularReflectionMapping;
-
-//     scene.background = texture;
-//     scene.environment = texture;
-
-//     console.log("hdri: Loadad");
-//   });
-
 // Setup camera
 const camera = new THREE.PerspectiveCamera(
   75,
