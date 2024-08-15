@@ -5,9 +5,9 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import * as CANNON from 'cannon-es';
 
 
-            const containerfront = document.getElementById('landing');
+const containerfront = document.getElementById('landing');
             
-                // Initialize the scene, camera, and renderer here
+
                 
 
 
@@ -34,6 +34,8 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const rendererfront = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 rendererfront.setSize(window.innerWidth, window.innerHeight);
+
+//Append to div
 containerfront.appendChild(rendererfront.domElement);
 
 console.log(rendererfront.domElement.parentNode); 
@@ -48,7 +50,7 @@ scene.add(directionalLight);
 
 // Physics world
 const world = new CANNON.World();
-world.gravity.set(0, -1.0, 0); // Gravity
+world.gravity.set(0, -9.81, 0); // Gravity
 world.broadphase = new CANNON.NaiveBroadphase();
 world.solver.iterations = 10;
 
@@ -63,44 +65,53 @@ const models = [];
 const bodies = [];
 
 const loader = new GLTFLoader();
+//get Position in Camera view to position Model
+function getRandomPositioninView(zValue){
+    const distance =10; //DistanceCamera
+    const aspect = containerfront.clientWidth/containerfront.clientHeight;
+    const height = 2*Math.tan(THREE.MathUtils.degToRad(camera.fov/2)) *distance;
+    const width=height*aspect;
 
-// Set a fixed z-value for all models
-const fixedZ = 0; // You can adjust this value to position them closer or further away from the camera
+    return{
+        x: (Math.random() - 0.5)*width,
+        y: (Math.random() - 0.5)*height,
 
-// Function to generate random position within camera view
-function getRandomPositionInView() {
-    const distance = 1; // Distance from the camera
-    const aspect = container.clientWidth / container.clientHeight;
-    const height = 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * distance;
-    const width = height * aspect;
-
-    return {
-        x: (Math.random() - 0.5) * width,
-        y: (Math.random() - 0.5) * height,
-        z: fixedZ // Fixed z-axis value
+        //fixed Z Value
+        z:zValue
     };
 }
-
-
+//set Z Value
+const fixedZ = 0;
 
 
 modelPaths.forEach((path, index) => {
     loader.load(path, (gltf) => {
         const model = gltf.scene;
-        model.scale.set(10,10,10);
+       scene.add(model);
+
+       //Add Position of the Models
+       const position = getRandomPositioninView(fixedZ);
+       model.position.set(position.x,position.y, position.z);
+
+       //Scale of the Mode9
+       model.scale.set(10,10,10)
+
+       models.push(model);
         
 
         
 
-        // Random initial position
-        model.position.set(Math.random() * 10 - 5, Math.random() * 10, Math.random() * 10 - 5);
-        models.push(model);
+        
+      
+
+        //Log Model Position
+        console.log('ModelPosition',model.position)
 
         // Create a physics body
         const shape = new CANNON.Sphere(1); // Assuming a spherical shape for simplicity
         const body = new CANNON.Body({ mass: 0.1, shape });
         body.position.set(model.position.x, model.position.y, model.position.z);
-        body.linearDamping = 0.9; // To make it float like a balloon
+        body.linearDamping = 1; // To make it float like a balloon
 
         // Apply an initial random velocity to make the models move
         body.velocity.set(
@@ -116,7 +127,7 @@ modelPaths.forEach((path, index) => {
 
 
 
-        scene.add(model);
+       
         //Debug Statements
         console.log(model)
         console.log("modelbuilt")
