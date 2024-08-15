@@ -31,15 +31,17 @@ const containerfront = document.getElementById('landing');
 
 // Scene, Camera, Renderer
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.5, 1000);
+const helper = new THREE.CameraHelper( camera ); scene.add( helper );
+
 const rendererfront = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 rendererfront.setSize(window.innerWidth, window.innerHeight);
 
 //Append to div
 containerfront.appendChild(rendererfront.domElement);
 
-console.log(rendererfront.domElement.parentNode); 
-console.log(document.getElementById('landing'))
+// console.log(rendererfront.domElement.parentNode); 
+// console.log(document.getElementById('landing'))
 
 // Lighting
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
@@ -54,6 +56,9 @@ world.gravity.set(0, -9.81, 0); // Gravity
 world.broadphase = new CANNON.NaiveBroadphase();
 world.solver.iterations = 10;
 
+
+
+
 // GLTF Models paths
 const modelPaths = [
     'Flower.gltf',
@@ -65,23 +70,34 @@ const models = [];
 const bodies = [];
 
 const loader = new GLTFLoader();
-//get Position in Camera view to position Model
-function getRandomPositioninView(zValue){
-    const distance =10; //DistanceCamera
-    const aspect = containerfront.clientWidth/containerfront.clientHeight;
-    const height = 2*Math.tan(THREE.MathUtils.degToRad(camera.fov/2)) *distance;
-    const width=height*aspect;
 
-    return{
-        x: (Math.random() - 0.5)*width,
-        y: (Math.random() - 0.5)*height,
+// Calculate the bounds of the visible area based on the camera's perspective
+function calculateFrustumBounds(zPosition) {
+    const aspect = containerfront.clientWidth / containerfront.clientHeight;
+    const height = 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * zPosition;
+    const width = height * aspect;
 
-        //fixed Z Value
-        z:zValue
+    return {
+        left: -width / 2,
+        right: width / 2,
+        top: height / 2,
+        bottom: -height / 2,
     };
 }
+
+// Function to generate random position within the frustum bounds, with a fixed z-axis
+function getRandomPositionInFrustum(zValue) {
+    const bounds = calculateFrustumBounds(zValue);
+
+    return {
+        x: Math.random() * (bounds.right - bounds.left) + bounds.left,
+        y: Math.random() * (bounds.top - bounds.bottom) + bounds.bottom,
+        z: zValue
+    };
+}
+
 //set Z Value
-const fixedZ = 0;
+const fixedZ = 1;
 
 
 modelPaths.forEach((path, index) => {
@@ -89,11 +105,11 @@ modelPaths.forEach((path, index) => {
         const model = gltf.scene;
        scene.add(model);
 
-       //Add Position of the Models
-       const position = getRandomPositioninView(fixedZ);
-       model.position.set(position.x,position.y, position.z);
+              // Set random position within the calculated frustum bounds
+              const position = getRandomPositionInFrustum(fixedZ);
+              model.position.set(position.x, position.y, position.z);
 
-       //Scale of the Mode9
+       //Scale of the Model
        model.scale.set(10,10,10)
 
        models.push(model);
@@ -163,7 +179,6 @@ window.addEventListener('resize', () => {
 // Start the animation loop
 animate();
 
+
 // Set initial camera position
-camera.position.z = 1;
-
-
+camera.position.set(0,0,3);
