@@ -39,7 +39,7 @@ scene.add(directionalLight);
 
 // Physics world
 const world = new CANNON.World();
-world.gravity.set(0, -1, 0); // Gravity
+world.gravity.set(0, 0, 0); // Gravity
 world.broadphase = new CANNON.NaiveBroadphase();
 world.solver.iterations = 10;
 
