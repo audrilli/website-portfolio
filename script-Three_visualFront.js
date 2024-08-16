@@ -1,3 +1,4 @@
+
 console.log("file connecetd");
 
 import * as THREE from "three";
@@ -39,7 +40,7 @@ scene.add(directionalLight);
 
 // Physics world
 const world = new CANNON.World();
-world.gravity.set(0, -1, 0); // Gravity
+world.gravity.set(0, 0, 0); // Gravity
 world.broadphase = new CANNON.NaiveBroadphase();
 world.solver.iterations = 10;
 
@@ -63,8 +64,8 @@ function calculateFrustumBounds(zPosition) {
   return {
     left: -width / 2,
     right: width / 2,
-    top: height / 2,
-    bottom: -height / 2,
+    top: height /2,
+    bottom: -height /2,
   };
 }
 
@@ -76,8 +77,26 @@ function getRandomPositionInFrustum(zValue) {
     x: Math.random() * (bounds.right - bounds.left) + bounds.left,
     y: Math.random() * (bounds.top - bounds.bottom) + bounds.bottom,
     z: zValue - 2,
+
+    
   };
+
+
 }
+
+// Scroll-based velocity increase
+function increaseVelocityOnScroll() {
+    window.addEventListener('scroll', () => {
+        const scrollAmount = window.scrollY; // Get the current scroll amount
+
+        bodies.forEach(body => {
+            // Gradually increase the velocity based on scroll amount
+            body.velocity.x += scrollAmount * 0.001; // Adjust the multiplier for desired effect
+            body.velocity.y += scrollAmount * 0.001;
+        });
+    });
+}
+
 
 // Visualize the frustum bounds
 function visualizeFrustumBounds(bounds) {
@@ -85,7 +104,7 @@ function visualizeFrustumBounds(bounds) {
     const edges = new THREE.EdgesGeometry(geometry);
     const line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0x00ff00 }));
     
-    line.position.set((bounds.right + bounds.left) / 2, (bounds.top + bounds.bottom) / 2, fixedZ - 0.1); // Move it slightly closer to the camera
+    line.position.set((bounds.right + bounds.left) / 2, (bounds.top + bounds.bottom) / 2, fixedZ ); // Move it slightly closer to the camera
     scene.add(line);
 }
 
@@ -108,13 +127,16 @@ modelPaths.forEach((path, index) => {
     models.push(model);
 
     //Log Model Position
-    console.log("ModelPosition", model.position);
+    // console.log("ModelPosition", model.position);
 
     // Create a physics body
     const shape = new CANNON.Sphere(0.5); // Assuming a spherical shape for simplicity
     const body = new CANNON.Body({ mass: 0.1, shape });
     body.position.set(model.position.x, model.position.y, model.position.z);
-    body.linearDamping = 1; // To make it float like a balloon
+    body.linearDamping = 0.5; // To make it float like a balloon
+
+
+console.log('BodyPosition:', body.position.y);
 
     // Apply an initial random velocity to make the models move
     body.velocity.set(
@@ -144,10 +166,11 @@ modelPaths.forEach((path, index) => {
     boundingSpheres.push(boundingSphere);
 
     //Debug Statements
-    console.log(model);
+    // console.log(model);
     console.log("modelbuilt");
   });
 });
+
 
 // Tolerance value to avoid false positives in collision detection
 const collisionTolerance = 0.1;
@@ -155,30 +178,36 @@ const collisionTolerance = 0.1;
 // Function to handle bouncing off boundaries
 function handleBoundaryCollision(body) {
   const bounds = calculateFrustumBounds(fixedZ);
-  const radius = 1; // Assuming a spherical body with a radius of 1
+  const radius = 0.1; // Assuming a spherical body with a radius of 1
+
+//   console.log('BoundsBottom:',bounds.bottom);                     
+//   console.log('BoundsTop:',bounds.top)
 
    // Simplified collision logic
    if (body.position.x - radius <  bounds.left || body.position.x + radius > bounds.right) {
-    // console.log("Collision on x-axis");
-    body.velocity.x = -body.velocity.x; // Reverse velocity on x-axis
+   
+    body.velocity.x = body.velocity.x*-1 ; // Reverse velocity on x-axis
 }
-
+    console.log('velocity before collision',body.velocity.y)        
   // Check for boundary collision on y-axis
   if (body.position.y - radius < bounds.bottom || body.position.y + radius > bounds.top) {
-    // console.log("Collision on y-axis");
-    body.velocity.y = +body.velocity.y; // Reverse velocity on y-axis
+    console.log("Collision on y-axis");
+    body.velocity.y = body.velocity.y*-1; // Reverse velocity on y-axis
     console.log(body.velocity.y)
 }
 
     // console.log('collision on y')
 
     //Debug Statements1
-    // console.log('position happened')
+   
 
     //console.log(bounds.left);
     // console.log(bounds.right);
+
+
   
 }
+;
 
 // Animation Loop
 function animate() {
@@ -200,7 +229,7 @@ function animate() {
     // Handle boundary collisions
     handleBoundaryCollision(body);
 
-    //   console.log('outofloop')
+    
   }
 
   rendererfront.render(scene, camera);
@@ -210,6 +239,9 @@ function animate() {
 animate();
 // Visualize the frustum bounds
 visualizeFrustumBounds(calculateFrustumBounds(fixedZ));
+
+// Increase velocity on scroll
+increaseVelocityOnScroll();
 
 // Handle window resize
 window.addEventListener("resize", () => {
@@ -225,3 +257,4 @@ window.addEventListener("resize", () => {
 });
 
 
+console.clear();
