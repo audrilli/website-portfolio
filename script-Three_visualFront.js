@@ -39,7 +39,7 @@ scene.add(directionalLight);
 
 // Physics world
 const world = new CANNON.World();
-world.gravity.set(0, -9.81, 0); // Gravity
+world.gravity.set(0, -1, 0); // Gravity
 world.broadphase = new CANNON.NaiveBroadphase();
 world.solver.iterations = 10;
 
@@ -118,8 +118,8 @@ modelPaths.forEach((path, index) => {
 
     // Apply an initial random velocity to make the models move
     body.velocity.set(
-      (Math.random() - 0.5) * 5,
-      (Math.random() - 0.5) * 2,
+      (Math.random() - 0.5) * 1,
+      (Math.random() - 0.5) * 1,
       0 // No velocity along the z-axis
     );
 
@@ -157,21 +157,19 @@ function handleBoundaryCollision(body) {
   const bounds = calculateFrustumBounds(fixedZ);
   const radius = 1; // Assuming a spherical body with a radius of 1
 
-   // Check for boundary collision on x-axis
-   if (
-    body.position.x - radius < bounds.bottom ||
-    body.position.x + radius > bounds.top
-  ) {
-    body.velocity.x *= -1; // Reverse velocity on y-axis
-    // console.log("collision on x")
+   // Simplified collision logic
+   if (body.position.x - radius <  bounds.left || body.position.x + radius > bounds.right) {
+    // console.log("Collision on x-axis");
+    body.velocity.x = -body.velocity.x; // Reverse velocity on x-axis
 }
 
   // Check for boundary collision on y-axis
-  if (
-    body.position.y - radius < bounds.bottom ||
-    body.position.y + radius > bounds.top
-  ) {
-    body.velocity.y *= -1; // Reverse velocity on y-axis
+  if (body.position.y - radius < bounds.bottom || body.position.y + radius > bounds.top) {
+    // console.log("Collision on y-axis");
+    body.velocity.y = +body.velocity.y; // Reverse velocity on y-axis
+    console.log(body.velocity.y)
+}
+
     // console.log('collision on y')
 
     //Debug Statements1
@@ -179,7 +177,7 @@ function handleBoundaryCollision(body) {
 
     //console.log(bounds.left);
     // console.log(bounds.right);
-  }
+  
 }
 
 // Animation Loop
