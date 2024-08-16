@@ -91,8 +91,8 @@ function increaseVelocityOnScroll() {
 
         bodies.forEach(body => {
             // Gradually increase the velocity based on scroll amount
-            body.velocity.x += scrollAmount * 0.001; // Adjust the multiplier for desired effect
-            body.velocity.y += scrollAmount * 0.001;
+            body.velocity.x += scrollAmount * 0.0001; // Adjust the multiplier for desired effect
+            body.velocity.y += scrollAmount * 0.0001;
         });
     });
 }
@@ -140,8 +140,8 @@ console.log('BodyPosition:', body.position.y);
 
     // Apply an initial random velocity to make the models move
     body.velocity.set(
-      (Math.random() - 0.5) * 1,
-      (Math.random() - 0.5) * 1,
+      (Math.random() - 0.5) * 0.5,
+      (Math.random() - 0.5) * 0.5,
       0 // No velocity along the z-axis
     );
 
@@ -171,14 +171,15 @@ console.log('BodyPosition:', body.position.y);
   });
 });
 
+// Minimum velocity to prevent models from getting stuck
+const minVelocity = 0.3;
 
-// Tolerance value to avoid false positives in collision detection
-const collisionTolerance = 0.1;
+
 
 // Function to handle bouncing off boundaries
 function handleBoundaryCollision(body) {
   const bounds = calculateFrustumBounds(fixedZ);
-  const radius = 0.1; // Assuming a spherical body with a radius of 1
+  const radius = 0.05; // Assuming a spherical body with a radius of 1
 
 //   console.log('BoundsBottom:',bounds.bottom);                     
 //   console.log('BoundsTop:',bounds.top)
@@ -187,14 +188,35 @@ function handleBoundaryCollision(body) {
    if (body.position.x - radius <  bounds.left || body.position.x + radius > bounds.right) {
    
     body.velocity.x = body.velocity.x*-1 ; // Reverse velocity on x-axis
+
+       // Ensure minimum velocity
+       if (Math.abs(body.velocity.x) < minVelocity) {
+        body.velocity.x = (body.velocity.x < 0 ? -1 : 1) * minVelocity;
+    }
+
+    // Apply a small random nudge to help prevent getting stuck
+    body.velocity.y += (Math.random() - 0.5) * 0.1;
 }
-    console.log('velocity before collision',body.velocity.y)        
+
+
+    // console.log('velocity before collision',body.velocity.y)   
+
   // Check for boundary collision on y-axis
   if (body.position.y - radius < bounds.bottom || body.position.y + radius > bounds.top) {
-    console.log("Collision on y-axis");
+    // console.log("Collision on y-axis");
     body.velocity.y = body.velocity.y*-1; // Reverse velocity on y-axis
-    console.log(body.velocity.y)
+
+
+     // Ensure minimum velocity
+     if (Math.abs(body.velocity.y) < minVelocity) {
+        body.velocity.y = (body.velocity.y < 0 ? -1 : 1) * minVelocity;
+    }
+
+    // Apply a small random nudge to help prevent getting stuck
+    body.velocity.x += (Math.random() - 0.5) * 0.1;
 }
+    // console.log(body.velocity.y)
+
 
     // console.log('collision on y')
 
