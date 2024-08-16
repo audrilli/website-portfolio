@@ -4,7 +4,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 
 
-console.log("threeisthere");
+// console.log("threeisthere");
 
 //Canvas
 // const canvas = document.querySelector('canvas.credo');
@@ -23,7 +23,7 @@ const texture1 = loader1.load("Material/kloppenheim_06_puresky_4k.jpg", () => {
 
   scene.environment = texture1;
 
-  console.log("texture1");
+//   console.log("texture1");
 });
 
 // Setup camera
@@ -36,7 +36,7 @@ const camera = new THREE.PerspectiveCamera(
 camera.position.set(0, 0, 1);
 
 const container = document.getElementById('credo');
-console.log(container)
+// console.log(container)
 
 // Setup renderer and size it according to the credo div while maintaining aspect ratio
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -102,7 +102,7 @@ loader.load(
     }
 );
 
-console.log(model);
+// console.log(model);
 
 // Resize function to fit renderer to container while maintaining aspect ratio
 function resizeRendererToDisplaySize() {
