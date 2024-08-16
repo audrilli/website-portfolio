@@ -80,19 +80,10 @@ html {
   
 }
 
-.containerVisual {
-  position: relative;
 
 
+ 
 
-  width: 100vw;
-  height: inherit;
-
-  z-index: 4;
-  top: 0%;
-
-
-}
 
 .backgroundImage {
   position: relative;
@@ -195,7 +186,7 @@ a:hover {
 }
 
 .visual {
-  position: relative;
+  position:absolute;
 
   width: 100vw;
   height:100vh;
@@ -203,11 +194,7 @@ a:hover {
   
 }
 
-.visual1{
-  width: fit-content;
-  height: 100vh;
-  
-}
+
 #credo {
   width: 100vw;
   top: 50;
