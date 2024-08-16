@@ -8,6 +8,8 @@ import * as CANNON from "cannon-es";
 const containerfront = document.getElementById("landing");
 
 
+
+
 // Scene, Camera, Renderer
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -18,6 +20,17 @@ const camera = new THREE.PerspectiveCamera(
 );
 // const helper = new THREE.CameraHelper(camera);
 // scene.add(helper);
+
+//TextureLoader
+const loader1 = new THREE.TextureLoader();
+const texture1 = loader1.load("Material/kloppenheim_06_puresky_4k.jpg", () => {
+  texture1.mapping = THREE.EquirectangularReflectionMapping;
+  texture1.colorSpace = THREE.SRGBColorSpace;
+
+  scene.environment = texture1;
+
+//   console.log("texture1");
+});
 
 // Set initial camera position
 camera.position.set(0, 0, 1);
@@ -45,7 +58,7 @@ world.broadphase = new CANNON.NaiveBroadphase();
 world.solver.iterations = 10;
 
 // GLTF Models paths
-const modelPaths = ["Flower.gltf", "Star1.gltf"];
+const modelPaths = ["3DAssets/Flower.gltf", "3DAssets/Star1.gltf","3DAssets/Star2.gltf"];
 
 const models = [];
 const bodies = [];
@@ -123,6 +136,21 @@ modelPaths.forEach((path, index) => {
 
     //Scale of the Model
     model.scale.set(10, 10, 10);
+
+     // Apply chrome-like material
+     model.traverse((child) => {
+        if (child.isMesh) {
+            child.material = new THREE.MeshStandardMaterial({
+                color: 0xB1B1B1, // Chrome is typically reflective silver
+                metalness: 1,    // Full metallic
+                roughness: 0,    // No roughness, fully smooth and shiny
+                envMap: scene.environment,  // Use the HDRI environment map for reflections
+                envMapIntensity: 1, // Control the reflection intensity
+
+                
+            });
+        }
+    });
 
     models.push(model);
 

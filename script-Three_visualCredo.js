@@ -70,7 +70,7 @@ let scrollBoost = 100; // Additional speed boost on scroll
 // Load the model
 const loader = new GLTFLoader();
 loader.load(
-    'Flower.gltf',  // Path to the custom model
+    '3DAssets/Flower.gltf',  // Path to the custom model
     function (gltf) {
         model = gltf.scene;
         model.scale.set(6, 6, 6); // Double the size of the model
