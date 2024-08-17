@@ -62,8 +62,8 @@ const modelPaths = ["3DAssets/Flower.gltf", "3DAssets/Star1.gltf","3DAssets/Star
 
 const models = [];
 const bodies = [];
-const boxHelpers = []; // Store box helpers to update them later
-const boundingSpheres = [];
+// const boxHelpers = []; // Store box helpers to update them later
+// const boundingSpheres = [];
 
 const loader = new GLTFLoader();
 
@@ -111,15 +111,15 @@ function increaseVelocityOnScroll() {
 }
 
 
-// Visualize the frustum bounds
-function visualizeFrustumBounds(bounds) {
-    const geometry = new THREE.BoxGeometry(bounds.right - bounds.left, bounds.top - bounds.bottom, 1);
-    const edges = new THREE.EdgesGeometry(geometry);
-    const line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0x00ff00 }));
+// // Visualize the frustum bounds
+// function visualizeFrustumBounds(bounds) {
+//     const geometry = new THREE.BoxGeometry(bounds.right - bounds.left, bounds.top - bounds.bottom, 1);
+//     const edges = new THREE.EdgesGeometry(geometry);
+//     const line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0x00ff00 }));
     
-    line.position.set((bounds.right + bounds.left) / 2, (bounds.top + bounds.bottom) / 2, fixedZ ); // Move it slightly closer to the camera
-    scene.add(line);
-}
+//     line.position.set((bounds.right + bounds.left) / 2, (bounds.top + bounds.bottom) / 2, fixedZ ); // Move it slightly closer to the camera
+//     scene.add(line);
+// }
 
 
 //set Z Value
@@ -176,22 +176,22 @@ console.log('BodyPosition:', body.position.y);
     bodies.push(body);
     world.addBody(body);
 
-    const boxHelper = new THREE.BoxHelper(model, 0xfff000); // Yellow bounding box
-    scene.add(boxHelper);
-    boxHelpers.push(boxHelper); // Store the box helper for later updates
+    // const boxHelper = new THREE.BoxHelper(model, 0xfff000); // Yellow bounding box
+    // scene.add(boxHelper);
+    // boxHelpers.push(boxHelper); // Store the box helper for later updates
 
-    //Visualize the bounding sphere
-    const sphereGeometry = new THREE.SphereGeometry(shape.radius, 16, 16);
-    const sphereMaterial = new THREE.MeshBasicMaterial({
-      color: 0xff0000,
-      wireframe: true,
-    }); 
+    // //Visualize the bounding sphere
+    // const sphereGeometry = new THREE.SphereGeometry(shape.radius, 16, 16);
+    // const sphereMaterial = new THREE.MeshBasicMaterial({
+    //   color: 0xff0000,
+    //   wireframe: true,
+    // }); 
     
-    // Red bounding sphere
-    const boundingSphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-    boundingSphere.position.copy(model.position);
-    scene.add(boundingSphere);
-    boundingSpheres.push(boundingSphere);
+     // Red bounding sphere
+    // const boundingSphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+    // boundingSphere.position.copy(model.position);
+    // scene.add(boundingSphere);
+    // boundingSpheres.push(boundingSphere);
 
     //Debug Statements
     // console.log(model);
@@ -273,8 +273,8 @@ function animate() {
     models[i].quaternion.copy(body.quaternion);
 
     // Update the bounding boxes
-    boxHelpers[i].update();
-    boundingSpheres[i].position.copy(body.position);
+    // boxHelpers[i].update();
+    // boundingSpheres[i].position.copy(body.position);
 
     // Handle boundary collisions
     handleBoundaryCollision(body);
@@ -287,8 +287,9 @@ function animate() {
 
 // Start the animation loop
 animate();
+
 // Visualize the frustum bounds
-visualizeFrustumBounds(calculateFrustumBounds(fixedZ));
+// visualizeFrustumBounds(calculateFrustumBounds(fixedZ));
 
 // Increase velocity on scroll
 increaseVelocityOnScroll();
@@ -302,8 +303,10 @@ window.addEventListener("resize", () => {
   camera.updateProjectionMatrix();
 
    // Update and visualize the new frustum bounds after resizing
-   const newBounds = calculateFrustumBounds(fixedZ);
-   visualizeFrustumBounds(newBounds);
+//    const newBounds = calculateFrustumBounds(fixedZ);
+
+   //Visualise Bounds in Animate
+//    visualizeFrustumBounds(newBounds);
 });
 
 
