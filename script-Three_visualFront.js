@@ -200,7 +200,7 @@ console.log('BodyPosition:', body.position.y);
 });
 
 // Minimum velocity to prevent models from getting stuck
-const minVelocity = 0.3;
+const minVelocity = 0.2;
 
 
 
@@ -215,7 +215,7 @@ function handleBoundaryCollision(body) {
    // Simplified collision logic
    if (body.position.x - radius <  bounds.left || body.position.x + radius > bounds.right) {
    
-    body.velocity.x = body.velocity.x*-1 ; // Reverse velocity on x-axis
+    body.velocity.x = body.velocity.x*-1.1 ; // Reverse velocity on x-axis
 
        // Ensure minimum velocity
        if (Math.abs(body.velocity.x) < minVelocity) {
@@ -232,7 +232,7 @@ function handleBoundaryCollision(body) {
   // Check for boundary collision on y-axis
   if (body.position.y - radius < bounds.bottom || body.position.y + radius > bounds.top) {
     // console.log("Collision on y-axis");
-    body.velocity.y = body.velocity.y*-1; // Reverse velocity on y-axis
+    body.velocity.y = body.velocity.y*-1.1; // Reverse velocity on y-axis
 
 
      // Ensure minimum velocity
