@@ -221,7 +221,7 @@ a:hover {
 }
 
 /* Responsive adjustments */
-@media (max-width: 500px) {
+@media (min-width: 700px) {
   .content {
     margin: 15px;
     padding: 8px;

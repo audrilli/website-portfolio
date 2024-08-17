@@ -4,6 +4,7 @@ console.log("file connecetd");
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import * as CANNON from "cannon-es";
+import { EXRLoader } from 'three/addons/loaders/EXRLoader.js';
 
 const containerfront = document.getElementById("landing");
 
@@ -21,22 +22,44 @@ const camera = new THREE.PerspectiveCamera(
 // const helper = new THREE.CameraHelper(camera);
 // scene.add(helper);
 
-//TextureLoader
+// //TextureLoader
+// const loader1 = new THREE.TextureLoader();
+// const texture1 = loader1.load("Material/kloppenheim_06_puresky_4k.jpg", () => {
+//   texture1.mapping = THREE.EquirectangularReflectionMapping;
+//   texture1.colorSpace = THREE.SRGBColorSpace;
+
+//   scene.environment = texture1;
+
+// //   console.log("texture1");
+// });
+// loader = new UltraHDRLoader();
+// const loadEnviroment = function (resolution = '8k', type = 'HalfFloatType'){
+
+// loader.setDataType(THREE[type]);
+// loader.load(`Material/rosendal_park_sunset_puresky_${resolution}.hdr.jpg`, function(texture){
+//     texture.mapping =  THREE.EquirectangularReflectionMapping;
+//     texture.needsUpdate = true;
+//     scene.background = texture;
+// 	scene.environment = texture;
+// });
+// };
+
 const loader1 = new THREE.TextureLoader();
-const texture1 = loader1.load("Material/kloppenheim_06_puresky_4k.jpg", () => {
-  texture1.mapping = THREE.EquirectangularReflectionMapping;
-  texture1.colorSpace = THREE.SRGBColorSpace;
+const texture = loader1.load("Material/kloppenheim_06_puresky_4k.jpg", () => {
+    // new EXRLoader().load('Material/kloppenheim_06_puresky_4k.exr', function (texture) {
 
-  scene.environment = texture1;
-
-//   console.log("texture1");
-});
+    texture.mapping = THREE.EquirectangularReflectionMapping;
+    texture.encoding = THREE.sRGBEncoding;
+    scene.environment = texture;
+} );
 
 // Set initial camera position
 camera.position.set(0, 0, 1);
 
 const rendererfront = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 rendererfront.setSize(window.innerWidth, window.innerHeight);
+rendererfront.toneMapping = THREE.ACESFilmicToneMapping; // Better tone mapping for HDRI
+rendererfront.toneMappingExposure = 2;
 
 //Append to div
 containerfront.appendChild(rendererfront.domElement);
@@ -44,12 +67,42 @@ containerfront.appendChild(rendererfront.domElement);
 // console.log(rendererfront.domElement.parentNode);
 // console.log(document.getElementById('landing'))
 
+
+
 // Lighting
-const ambientLight = new THREE.AmbientLight(0xffffff, 100);
+const ambientLight = new THREE.AmbientLight(0x504040,5 );
 scene.add(ambientLight);
-const directionalLight = new THREE.DirectionalLight(0xffffff, 100);
-directionalLight.position.set(-10, 0, 7.5).normalize();
+
+const directionalLight = new THREE.DirectionalLight(0xffffff, 10);
+directionalLight.position.set(5, 10, 7.5);
 scene.add(directionalLight);
+
+const directionalLight1 = new THREE.DirectionalLight(0xffffff, 100);
+directionalLight1.position.set(5, -10, 7.5);
+scene.add(directionalLight1);
+
+const backLight = new THREE.DirectionalLight(0xff00aa, 1000);
+backLight.position.set(0,0,-1).normalize();
+scene.add(backLight);
+
+// Light helper to visualize the directional light position
+// const directionalLightHelper = new THREE.DirectionalLightHelper(backLight, 10); // Adjust the size as needed
+// scene.add(directionalLightHelper);
+// helper.update(); 
+
+// directionalLightHelper.update();
+
+
+// Visualize the ambient light position (using a small sphere as a placeholder)
+// const ambientLightHelper = new THREE.Mesh(
+//     new THREE.SphereGeometry(0.5, 16, 16),
+//     new THREE.MeshBasicMaterial({ color: 0xffffff })
+// );
+// ambientLightHelper.position.set(0, 0, 0); // Ambient light is usually global, so this is just for visualization
+// scene.add(ambientLightHelper);
+
+
+
 
 // Physics world
 const world = new CANNON.World();
@@ -62,6 +115,7 @@ const modelPaths = ["3DAssets/Flower.gltf", "3DAssets/Star1.gltf","3DAssets/Star
 
 const models = [];
 const bodies = [];
+
 // const boxHelpers = []; // Store box helpers to update them later
 // const boundingSpheres = [];
 
@@ -90,8 +144,6 @@ function getRandomPositionInFrustum(zValue) {
     x: Math.random() * (bounds.right - bounds.left) + bounds.left,
     y: Math.random() * (bounds.top - bounds.bottom) + bounds.bottom,
     z: zValue - 2,
-
-    
   };
 
 
@@ -128,24 +180,31 @@ const fixedZ = 1;
 modelPaths.forEach((path, index) => {
   loader.load(path, (gltf) => {
     const model = gltf.scene;
+
+    model.traverse((child) => {
+        if (child.isMesh) {
+            child.material.envMap = scene.environment;  // Apply the environment map to the material
+            child.material.envMapIntensity = 1.0;  // Adjust the intensity of reflections
+        }
+    });
     scene.add(model);
 
     // Set random position within the calculated frustum bounds
     const position = getRandomPositionInFrustum(fixedZ);
     model.position.set(position.x, position.y, position.z);
-
+const modelScale = 8;
     //Scale of the Model
-    model.scale.set(10, 10, 10);
+    model.scale.set(modelScale, modelScale, modelScale);
 
      // Apply chrome-like material
      model.traverse((child) => {
         if (child.isMesh) {
             child.material = new THREE.MeshStandardMaterial({
-                color: 0xB1B1B1, // Chrome is typically reflective silver
-                metalness: 1,    // Full metallic
-                roughness: 0,    // No roughness, fully smooth and shiny
-                envMap: scene.environment,  // Use the HDRI environment map for reflections
-                envMapIntensity: 1, // Control the reflection intensity
+                color: 0xB1B1B0, 
+                metalness: 1,    
+                roughness: 0,    
+                envMap: scene.environment,  // Use the HDRI environment 
+                envMapIntensity: 0.97, 
 
                 
             });
@@ -195,6 +254,7 @@ console.log('BodyPosition:', body.position.y);
 
     //Debug Statements
     // console.log(model);
+
     console.log("modelbuilt");
   });
 });
