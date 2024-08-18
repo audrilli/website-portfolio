@@ -1,13 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
 body,
 html {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #ff00aa;
+  /* background-color: #ff00aa; */
   font-family: "Jost", sans-serif;
 }
 
@@ -21,7 +22,7 @@ html {
 #header_Container {
   width: 100vw;
   height: fit-content;
-  background-color: rgb(244, 244, 244);
+  /* background-color:#ff00aa */
 }
 #header {
   display: flex;
@@ -108,7 +109,7 @@ html {
  
 
 
-  z-index: 2;
+  z-index: 3;
 }
 
 .backgroundImage.visible {
@@ -203,8 +204,7 @@ a:hover {
 }
 #landing {
   width: 100vw;
-  height: 100vh;
-  top: 50;
+  height: 100vh; 
   z-index: 2;
  
 }
@@ -221,7 +221,7 @@ a:hover {
 }
 
 /* Responsive adjustments */
-@media (max-width: 500px) {
+@media (min-width: 1700px) {
   .content {
     margin: 15px;
     padding: 8px;

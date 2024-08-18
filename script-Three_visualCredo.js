@@ -13,7 +13,7 @@ import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 // Setup scene
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xffffff); // Set background to white
+scene.background = new THREE.Color(0xffffff);
 scene.background = null; // No background, transparent
 
 const loader1 = new THREE.TextureLoader();
@@ -55,6 +55,11 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 100);
 directionalLight.position.set(5, 10, 7.5);
 scene.add(directionalLight);
 
+const backLightPink = new THREE.DirectionalLight(0xff00aa, 80);
+backLightPink.position.set(0, 0, 10).normalize();
+scene.add(backLightPink);
+
+
 // Setup orbit controls
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableRotate = false; // Disable auto-rotation
@@ -82,11 +87,11 @@ loader.load(
         model.traverse((child) => {
             if (child.isMesh) {
                 child.material = new THREE.MeshStandardMaterial({
-                    color: 0xB1B1B1, // Chrome is typically reflective silver
+                    color: 0xB1B1B1, 
                     metalness: 1,    // Full metallic
-                    roughness: 0,    // No roughness, fully smooth and shiny
-                    envMap: scene.environment,  // Use the HDRI environment map for reflections
-                    envMapIntensity: 1, // Control the reflection intensity
+                    roughness: 0,    
+                    envMap: scene.environment,  //HRDI for refelction
+                    envMapIntensity: 2, // Control the reflection intensity
 
                     
                 });
