@@ -193,6 +193,7 @@ modelPaths.forEach((path, index) => {
         child.material.envMapIntensity = 1.0; // Adjust the intensity of reflections
       }
     });
+    model.userData.originalScale = model.scale.clone(); // Store the original scale
     scene.add(model);
 
     // Set random position within the calculated frustum bounds
@@ -335,6 +336,20 @@ const maxVelocity = 5.0; // Adjust this value as needed
             velocity.scale(maxVelocity / speed, velocity);
         }
     }
+    // Function to scale models on window resize
+function scaleModelsOnResize() {
+    const scaleFactor = Math.min(window.innerWidth / containerfront.clientWidth, window.innerHeight / containerfront.clientHeight);
+
+    models.forEach((model) => {
+        const originalScale = model.userData.originalScale;
+        model.scale.set(
+            originalScale.x * scaleFactor,
+            originalScale.y * scaleFactor,
+            originalScale.z * scaleFactor
+        );
+    });
+}
+
 // Animation Loop
 function animate() {
   requestAnimationFrame(animate);
@@ -380,6 +395,8 @@ window.addEventListener("resize", () => {
   rendererfront.setSize(width, height);
   camera.aspect = width / height;
   camera.updateProjectionMatrix();
+
+  scaleModelsOnResize(); // Scale models when window is resized
 
 //   composer.setSize(width, height); // Update composer size
 //   bloomPass.setSize(width, height); // Update bloom pass size
