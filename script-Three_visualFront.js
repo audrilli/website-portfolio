@@ -3,9 +3,7 @@ console.log("file connecetd");
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
-import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
-import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass";
-import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+
 
 import * as CANNON from "cannon-es";
 
@@ -155,7 +153,7 @@ function getRandomPositionInFrustum(zValue) {
   return {
     x: Math.random() * (bounds.right - bounds.left) + bounds.left,
     y: Math.random() * (bounds.top - bounds.bottom) + bounds.bottom,
-    z: zValue - 2,
+    z: zValue - 1.5,
   };
 }
 
@@ -166,21 +164,21 @@ function increaseVelocityOnScroll() {
 
     bodies.forEach((body) => {
       // Gradually increase the velocity based on scroll amount
-      body.velocity.x += scrollAmount * 0.0001; // Adjust the multiplier for desired effect
+      body.velocity.x += scrollAmount * -0.0001; // Adjust the multiplier for desired effect
       body.velocity.y += scrollAmount * 0.0001;
     });
   });
 }
 
 // // Visualize the frustum bounds
-// function visualizeFrustumBounds(bounds) {
-//     const geometry = new THREE.BoxGeometry(bounds.right - bounds.left, bounds.top - bounds.bottom, 1);
-//     const edges = new THREE.EdgesGeometry(geometry);
-//     const line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0x00ff00 }));
+function visualizeFrustumBounds(bounds) {
+    const geometry = new THREE.BoxGeometry(bounds.right - bounds.left, bounds.top - bounds.bottom, 1);
+    const edges = new THREE.EdgesGeometry(geometry);
+    const line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0x00ff00 }));
 
-//     line.position.set((bounds.right + bounds.left) / 2, (bounds.top + bounds.bottom) / 2, fixedZ ); // Move it slightly closer to the camera
-//     scene.add(line);
-// }
+    line.position.set((bounds.right + bounds.left) / 2, (bounds.top + bounds.bottom) / 2, fixedZ ); // Move it slightly closer to the camera
+    scene.add(line);
+}
 
 //set Z Value
 const fixedZ = 1;
@@ -200,7 +198,7 @@ modelPaths.forEach((path, index) => {
     // Set random position within the calculated frustum bounds
     const position = getRandomPositionInFrustum(fixedZ);
     model.position.set(position.x, position.y, position.z);
-    const modelScale = 16;
+    const modelScale = 15;
     //Scale of the Model
     model.scale.set(modelScale, modelScale, modelScale);
 
@@ -239,6 +237,9 @@ modelPaths.forEach((path, index) => {
 
     bodies.push(body);
     world.addBody(body);
+    
+
+
 
     // const boxHelper = new THREE.BoxHelper(model, 0xfff000); // Yellow bounding box
     // scene.add(boxHelper);
@@ -265,12 +266,14 @@ modelPaths.forEach((path, index) => {
 });
 
 // Minimum velocity to prevent models from getting stuck
-const minVelocity = 0.002;
+const minVelocity = 0.2;
+
+
 
 // Function to handle bouncing off boundaries
 function handleBoundaryCollision(body) {
   const bounds = calculateFrustumBounds(fixedZ);
-  const radius = 0.15; // Assuming a spherical body with a radius of 1
+  const radius = 0.005; // Assuming a spherical body with a radius of 1
 
   //   console.log('BoundsBottom:',bounds.bottom);
   //   console.log('BoundsTop:',bounds.top)
@@ -280,7 +283,7 @@ function handleBoundaryCollision(body) {
     body.position.x - radius < bounds.left ||
     body.position.x + radius > bounds.right
   ) {
-    body.velocity.x = body.velocity.x * -1.1; // Reverse velocity on x-axis
+    body.velocity.x = body.velocity.x * -1.2; // Reverse velocity on x-axis
 
     // Ensure minimum velocity
     if (Math.abs(body.velocity.x) < minVelocity) {
@@ -321,6 +324,17 @@ function handleBoundaryCollision(body) {
 
 //Composer
 
+// Maximum velocity
+const maxVelocity = 5.0; // Adjust this value as needed
+    // Function to clamp velocity
+    function clampVelocity(body) {
+        const velocity = body.velocity;
+        const speed = velocity.length();
+    
+        if (speed > maxVelocity) {
+            velocity.scale(maxVelocity / speed, velocity);
+        }
+    }
 // Animation Loop
 function animate() {
   requestAnimationFrame(animate);
@@ -331,9 +345,13 @@ function animate() {
   // Sync the models with their physics bodies
   for (let i = 0; i < models.length; i++) {
     const body = bodies[i];
+     // Clamp the velocity to prevent excessive speed
+     
+     clampVelocity(body);
+
     models[i].position.copy(body.position);
     models[i].quaternion.copy(body.quaternion);
-
+   
     // Update the bounding boxes
     // boxHelpers[i].update();
     // boundingSpheres[i].position.copy(body.position);
@@ -350,7 +368,7 @@ function animate() {
 animate();
 
 // Visualize the frustum bounds
-// visualizeFrustumBounds(calculateFrustumBounds(fixedZ));
+visualizeFrustumBounds(calculateFrustumBounds(fixedZ));
 
 // Increase velocity on scroll
 increaseVelocityOnScroll();
@@ -363,14 +381,14 @@ window.addEventListener("resize", () => {
   camera.aspect = width / height;
   camera.updateProjectionMatrix();
 
-  composer.setSize(width, height); // Update composer size
-  bloomPass.setSize(width, height); // Update bloom pass size
+//   composer.setSize(width, height); // Update composer size
+//   bloomPass.setSize(width, height); // Update bloom pass size
 
   // Update and visualize the new frustum bounds after resizing
-  //    const newBounds = calculateFrustumBounds(fixedZ);
+     const newBounds = calculateFrustumBounds(fixedZ);
 
-  //Visualise Bounds in Animate
-  //    visualizeFrustumBounds(newBounds);
+//   Visualise Bounds in Animate
+     visualizeFrustumBounds(newBounds);
 });
 
 console.clear();
