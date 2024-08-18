@@ -55,6 +55,9 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 100);
 directionalLight.position.set(5, 10, 7.5);
 scene.add(directionalLight);
 
+const backLightPink = new THREE.DirectionalLight(0xff00aa, 80);
+backLightPink.position.set(0, 0, 10).normalize();
+scene.add(backLightPink);
 
 
 // Setup orbit controls
