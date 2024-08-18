@@ -193,13 +193,12 @@ modelPaths.forEach((path, index) => {
         child.material.envMapIntensity = 1.0; // Adjust the intensity of reflections
       }
     });
-    model.userData.originalScale = model.scale.clone(); // Store the original scale
     scene.add(model);
 
     // Set random position within the calculated frustum bounds
     const position = getRandomPositionInFrustum(fixedZ);
     model.position.set(position.x, position.y, position.z);
-    const modelScale = 15;
+    const modelScale = 10;
     //Scale of the Model
     model.scale.set(modelScale, modelScale, modelScale);
 
@@ -274,7 +273,7 @@ const minVelocity = 0.2;
 // Function to handle bouncing off boundaries
 function handleBoundaryCollision(body) {
   const bounds = calculateFrustumBounds(fixedZ);
-  const radius = 0.005; // Assuming a spherical body with a radius of 1
+  const radius = 0.05; // Assuming a spherical body with a radius of 1
 
   //   console.log('BoundsBottom:',bounds.bottom);
   //   console.log('BoundsTop:',bounds.top)
@@ -338,7 +337,7 @@ const maxVelocity = 5.0; // Adjust this value as needed
     }
     // Function to scale models on window resize
 function scaleModelsOnResize() {
-    const scaleFactor = Math.min(window.innerWidth / containerfront.clientWidth, window.innerHeight / containerfront.clientHeight);
+    const scaleFactor = Math.min(window.innerWidth / container.clientWidth, window.innerHeight / container.clientHeight);
 
     models.forEach((model) => {
         const originalScale = model.userData.originalScale;
@@ -396,7 +395,7 @@ window.addEventListener("resize", () => {
   camera.aspect = width / height;
   camera.updateProjectionMatrix();
 
-  scaleModelsOnResize(); // Scale models when window is resized
+  
 
 //   composer.setSize(width, height); // Update composer size
 //   bloomPass.setSize(width, height); // Update bloom pass size
