@@ -235,19 +235,28 @@ a:hover {
   height: 100px;
 }
 .containerAbout{
+  position: relative;
   display: flex;
-  height: fit-content;
-  flex-direction: column;
+  height: 80vh;
+  
+  flex-flow: wrap;
+  
 }
 .headerSection {
   display: flex;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding: 50px;
+  flex-direction: row;
+  width: 100vw;
+  justify-content: space-between;
 }
 
 .contentAbout{
+  position: relative;
   display: flex;
   padding: 50px;
+  justify-content: space-between;
+  flex-direction:row;
+
   
 }
 
