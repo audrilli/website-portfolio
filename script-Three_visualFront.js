@@ -221,8 +221,8 @@ modelPaths.forEach((path, index) => {
     // console.log("ModelPosition", model.position);
 
     // Create a physics body
-    const shape = new CANNON.Sphere(0.6); // Assuming a spherical shape for simplicity
-    const body = new CANNON.Body({ mass: 0.1, shape });
+    const shape = new CANNON.Sphere(0.4); // Assuming a spherical shape for simplicity
+    const body = new CANNON.Body({ mass: 0.3, shape });
     body.position.set(model.position.x, model.position.y, model.position.z);
     body.linearDamping = 0.8; // To make it float like a balloon
           
@@ -230,7 +230,7 @@ modelPaths.forEach((path, index) => {
 
     // Apply an initial random velocity to make the models move
     body.velocity.set(
-      (Math.random() - 0.5) * 0.002,
+      (Math.random() - 0.5) * 0.05,
       (Math.random() - 0.5) * 0.002,
       0 // No velocity along the z-axis
     );
@@ -265,15 +265,16 @@ modelPaths.forEach((path, index) => {
   });
 });
 
+
 // Minimum velocity to prevent models from getting stuck
-const minVelocity = 0.2;
+const minVelocity = 0.5;
 
 
 
 // Function to handle bouncing off boundaries
 function handleBoundaryCollision(body) {
   const bounds = calculateFrustumBounds(fixedZ);
-  const radius = 0.05; // Assuming a spherical body with a radius of 1
+  const radius = 0.0001  ; // Assuming a spherical body with a radius of 1
 
   //   console.log('BoundsBottom:',bounds.bottom);
   //   console.log('BoundsTop:',bounds.top)

@@ -19,6 +19,9 @@ html {
   font-style: normal;
 }
 
+
+
+
 #header_Container {
   width: 100vw;
   height: fit-content;
@@ -68,18 +71,14 @@ html {
 
 .container {
   position: relative;
+  flex-direction: row;
+ 
 
   display: flex;
   text-align: center;
   height: 100vh;
   min-height: 80vh;
-
- 
-
-  background-color: rgb(244, 244, 244);
-
-
-  
+  background-color: rgb(244, 244, 244); 
 }
 
 
@@ -123,10 +122,11 @@ html {
   max-height: 90vh;
   min-height: 80vh;
 
-  width: fit-content;
+ max-width: fit-content;
+ min-width: 1000px;
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 10;
@@ -144,6 +144,26 @@ a {
   text-decoration: none;
   color: #000000;
   font-size: 2rem;
+}
+.subText{
+  font-family: 'Roboto Mono';font-size: 20px;
+  padding: 50px;
+  text-align: center;
+
+}
+.addInfo{
+  font-family: 'Roboto Mono';font-size: 20px;
+  padding: 50px;
+  text-align: center;
+  
+  position: absolute;
+  height: fit-content;
+  z-index: 10;
+  bottom: 0;
+
+
+
+
 }
 
 /* Span Define*/
@@ -175,9 +195,9 @@ a:hover {
   min-height: 80vh;
 
   max-width: 3000px;
-  min-width: 300px;
+  min-width: 1000px;
 
-  height: inherit;
+  
   text-align: left;
   margin-left: 50px;
 
@@ -214,11 +234,21 @@ a:hover {
   background-color: black;
   height: 100px;
 }
-
+.containerAbout{
+  display: flex;
+  height: fit-content;
+  flex-direction: column;
+}
 .headerSection {
   display: flex;
   padding-left: 50px;
   padding-right: 50px;
+}
+
+.contentAbout{
+  display: flex;
+  padding: 50px;
+  
 }
 
 /* Responsive adjustments */
