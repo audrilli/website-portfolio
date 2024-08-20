@@ -169,6 +169,15 @@ a {
 
 
 }
+.addInforelative{
+  position: relative;
+  font-family: 'Roboto Mono';font-size: 20px;
+ bottom: 0;
+  
+  
+  
+ 
+}
 
 /* Span Define*/
 .LinkNumber {
@@ -212,7 +221,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   gap: 2em;
-  width: 30vw;
+  
 }
 
 .visual {
