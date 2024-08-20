@@ -81,8 +81,12 @@ html {
   background-color: rgb(244, 244, 244); 
 }
 
-
-
+.inLineLink{
+  inherits: all;
+}
+.inLineLink:hover{
+  color: #ff00aa;
+}
  
 
 
@@ -123,7 +127,7 @@ html {
   min-height: 80vh;
 
  max-width: fit-content;
- min-width: 1000px;
+ min-width: 300px;
 
   display: flex;
   flex-direction: column;
@@ -203,8 +207,12 @@ a:hover {
 
   z-index: 1;
 }
-.textBox:hover{
-  color: blue;
+
+.containerCopy{
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  width: 30vw;
 }
 
 .visual {
@@ -226,38 +234,42 @@ a:hover {
 #landing {
   width: 100vw;
   height: 100vh; 
-  z-index: 2;
+  z-index:  1;
  
+}
+#about{
+  width: 100vw;
 }
 
 .footer_Container {
-  background-color: black;
-  height: 100px;
+  display: flex;
+  background-color: rgb(255, 18, 18);
+  height: fit-contentq;
+  padding: 50px;
+}
+.footer{
+
 }
 .containerAbout{
-  position: relative;
-  display: flex;
-  height: 80vh;
+
   
-  flex-flow: wrap;
   
 }
 .headerSection {
   display: flex;
   padding: 50px;
   flex-direction: row;
-  width: 100vw;
+ 
   justify-content: space-between;
 }
 
 .contentAbout{
-  position: relative;
-  display: flex;
-  padding: 50px;
-  justify-content: space-between;
-  flex-direction:row;
+ display: flex ;
+ padding: 50px;
+}
+.Image{
+  padding:0px,50px;
 
-  
 }
 
 /* Responsive adjustments */

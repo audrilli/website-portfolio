@@ -109,20 +109,20 @@ loader.load(
 
 // console.log(model);
 
-// Resize function to fit renderer to container while maintaining aspect ratio
-function resizeRendererToDisplaySize() {
-    const canvas = renderer.domElement;
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-    const canvasPixelWidth = canvas.width / window.devicePixelRatio;
-    const canvasPixelHeight = canvas.height / window.devicePixelRatio;
+// // Resize function to fit renderer to container while maintaining aspect ratio
+// function resizeRendererToDisplaySize() {
+//     const canvas = renderer.domElement;
+//     const width = container.clientWidth;
+//     const height = container.clientHeight;
+//     const canvasPixelWidth = canvas.width / window.devicePixelRatio;
+//     const canvasPixelHeight = canvas.height / window.devicePixelRatio;
 
-    if (canvasPixelWidth !== width || canvasPixelHeight !== height) {
-        renderer.setSize(width, height, false);
-        camera.aspect = width / height;
-        camera.updateProjectionMatrix();
-    }
-}
+//     if (canvasPixelWidth !== width || canvasPixelHeight !== height) {
+//         renderer.setSize(width, height, false);
+//         camera.aspect = width / height;
+//         camera.updateProjectionMatrix();
+//     }
+// }
 
 // Resize function to fit renderer to container while maintaining aspect ratio
 function resizeRendererToDisplaySize() {
