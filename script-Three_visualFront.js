@@ -157,14 +157,33 @@ function getRandomPositionInFrustum(zValue) {
   };
 }
 
+//Random ScrollVelocity to not have the models stuck in the Corner
+// --> Logic: Everythime the user scolls, A random Value between -1 and 1 gets called and used in the window function.
+
+function getScrollVelocity(min, max) {
+  setTimeout(getScrollVelocity, 5000);
+  return {
+  ScrollVelocity: Math.random() * (max - min) + min,
+  };
+}
+const AppliedVelocity =getScrollVelocity(-1,1)
+console.log(AppliedVelocity);
+
+
+
+
 // Scroll-based velocity increase
 function increaseVelocityOnScroll() {
+  
   window.addEventListener("scroll", () => {
     const scrollAmount = window.scrollY; // Get the current scroll amount
+    
+
 
     bodies.forEach((body) => {
+
       // Gradually increase the velocity based on scroll amount
-      body.velocity.x += scrollAmount * -0.0001; // Adjust the multiplier for desired effect
+      body.velocity.x += scrollAmount * 0.0001; // Adjust the multiplier for desired effect
       body.velocity.y += scrollAmount * 0.0001;
     });
   });

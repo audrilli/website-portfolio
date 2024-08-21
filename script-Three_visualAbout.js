@@ -11,8 +11,6 @@ const loader1 = new THREE.TextureLoader();
 const texture1 = loader1.load("Material/kloppenheim_06_puresky_4k.jpg", () => {
     texture1.mapping = THREE.EquirectangularReflectionMapping;
     texture1.colorSpace = THREE.SRGBColorSpace;
-
-    // Set environment texture once loaded
     scene.environment = texture1;
 });
 
@@ -25,7 +23,7 @@ const camera = new THREE.PerspectiveCamera(
 );
 camera.position.set(0, 0, 1);
 
-const container = document.getElementById('credo');
+const container = document.getElementById('about');
 
 // Setup renderer and size it according to the credo div while maintaining aspect ratio
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -56,6 +54,17 @@ controls.enableZoom = false; // Disable zoom
 let model;
 let baseRotationSpeed = 0.005; // Base rotation speed
 let scrollBoost = 100; // Additional speed boost on scroll
+let imageIndex = 0; // Index for image rotation
+const images = [
+    'Images/personalImages/Image1.png',
+    'Images/personalImages/Image2.jpg',
+    'Images/personalImages/Image3.jpg',
+    'Images/personalImages/Image4.jpg'
+    
+];
+const imageDiv = document.getElementById('Image'); // Assuming you have a div with this ID
+// Initialize the imageDiv with the first image
+imageElement.src = images[imageIndex];
 
 // Load the model
 const loader = new GLTFLoader();
@@ -78,6 +87,17 @@ loader.load(
         });
 
         scene.add(model);
+
+        // Add click event to the model
+        renderer.domElement.addEventListener('click', () => {
+            if (model) {
+                // Trigger the scale animation
+                scaleModel();
+
+                // Rotate through the images
+                updateImage();
+            }
+        });
     },
     undefined,
     function (error) {
@@ -103,18 +123,7 @@ function resizeRendererToDisplaySize() {
 // Handle window resize to adjust the renderer's size based on the credo div
 window.addEventListener('resize', resizeRendererToDisplaySize);
 
-// Mouse move effect
-document.addEventListener('mousemove', (event) => {
-    if (!model) return;
 
-    const mouseX = (event.clientX / container.clientWidth) * 2 - 1;
-    const mouseY = -(event.clientY / container.clientHeight) * 2 + 1;
-
-    camera.position.x += (mouseX - camera.position.x) * 0.05;
-    camera.position.y += (mouseY - camera.position.y) * 0.05;
-
-    camera.lookAt(model.position);
-});
 
 // Scroll event to increase rotation speed temporarily (throttled)
 document.addEventListener('scroll', () => {
@@ -134,3 +143,38 @@ function animate() {
     renderer.render(scene, camera);
 }
 animate();
+
+// Function to scale the model with a snappy animation
+function scaleModel() {
+    const targetScale = 8; // Target scale
+    const scaleSpeed = 0.3; // Speed of scaling
+
+    function scaleUp() {
+        if (model.scale.x < targetScale) {
+            model.scale.x += scaleSpeed;
+            model.scale.y += scaleSpeed;
+            model.scale.z += scaleSpeed;
+            requestAnimationFrame(scaleUp);
+        } else {
+            scaleDown();
+        }
+    }
+
+    function scaleDown() {
+        if (model.scale.x > 6) {
+            model.scale.x -= scaleSpeed;
+            model.scale.y -= scaleSpeed;
+            model.scale.z -= scaleSpeed;
+            requestAnimationFrame(scaleDown);
+        }
+    }
+
+    scaleUp();
+}
+
+// Function to update the image in the div
+function updateImage() {
+    imageIndex = (imageIndex + 1) % images.length; // Rotate through the images
+    document.getElementById('imageElement').src = images[imageIndex]; // Update the image source
+    console.log(imageIndex)
+}
