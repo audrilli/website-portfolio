@@ -116,6 +116,9 @@ function animate() {
     controls.update();
 
     if (model) {
+        model.rotation.z += baseRotationSpeed + scrollBoost;
+        scrollBoost = Math.max(0, scrollBoost - 0.0005);
+
         model.rotation.y += baseRotationSpeed + scrollBoost;
         scrollBoost = Math.max(0, scrollBoost - 0.0005);
     }

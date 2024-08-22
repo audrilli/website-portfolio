@@ -70,11 +70,12 @@ imageElement.src = images[imageIndex];
 
 // Load the model
 const loader = new GLTFLoader();
+const modelScale = 4;
 loader.load(
     '3DAssets/Star1.gltf',  // Path to the custom model
     function (gltf) {
         model = gltf.scene;
-        model.scale.set(6, 6, 6);
+        model.scale.set(modelScale, modelScale, modelScale);
 
         model.traverse((child) => {
             if (child.isMesh) {
@@ -148,7 +149,7 @@ animate();
 
 // Function to scale the model with a snappy animation
 function scaleModel() {
-    const targetScale = 8; // Target scale
+    const targetScale = 6; // Target scale
     const scaleSpeed = 0.3; // Speed of scaling
 
     function scaleUp() {
@@ -163,7 +164,7 @@ function scaleModel() {
     }
 
     function scaleDown() {
-        if (model.scale.x > 6) {
+        if (model.scale.x > 4) {
             model.scale.x -= scaleSpeed;
             model.scale.y -= scaleSpeed;
             model.scale.z -= scaleSpeed;
