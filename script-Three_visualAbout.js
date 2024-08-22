@@ -66,6 +66,8 @@ const imageDiv = document.getElementById('Image'); // Assuming you have a div wi
 // Initialize the imageDiv with the first image
 imageElement.src = images[imageIndex];
 
+
+
 // Load the model
 const loader = new GLTFLoader();
 loader.load(
@@ -177,4 +179,9 @@ function updateImage() {
     imageIndex = (imageIndex + 1) % images.length; // Rotate through the images
     document.getElementById('imageElement').src = images[imageIndex]; // Update the image source
     console.log(imageIndex)
+
+    
+   
+    
 }
+
