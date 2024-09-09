@@ -287,7 +287,7 @@ top: 0;
 .footerContainer {
   display: flex;
   background-color: rgb(0, 0, 0);
-  height: fit-contentq;
+  height: fit-content;
   padding: 25px 50px;
   flex-direction: row;
   justify-content: space-between;
@@ -328,6 +328,7 @@ height: 80vh;
 
 .contentAbout{
  display: flex ;
+ 
  padding: 0px 50px;
 align-items: center;
  height: 80vh;
@@ -404,16 +405,15 @@ height: fit-content;
 
 
 /* Responsive adjustments */
-@media (min-width: 1700px) {
-  .content {
-    margin: 15px;
-    padding: 8px;
-  }
-}
 
-@media (max-width: 480px) {
+
+@media (max-width: 840px) {
   .content {
     margin: 10px;
     padding: 5px;
   }
-}
+  
+    
+   }
+
+

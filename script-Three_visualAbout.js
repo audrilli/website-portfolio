@@ -147,7 +147,7 @@ function animate() {
 }
 animate();
 
-// Function to scale the model with a snappy animation
+// Function to scale the model
 function scaleModel() {
     const targetScale = 6; // Target scale
     const scaleSpeed = 0.3; // Speed of scaling
@@ -179,10 +179,36 @@ function scaleModel() {
 function updateImage() {
     imageIndex = (imageIndex + 1) % images.length; // Rotate through the images
     document.getElementById('imageElement').src = images[imageIndex]; // Update the image source
-    console.log(imageIndex)
-
-    
-   
+    console.log("ImageIndex", imageIndex)
     
 }
 
+// //imageDescription rotation
+// const imageDescriptions = [
+//     'Description for image 1',
+//     'Description for image 2',
+//     'Description for image 3',
+//     'Description for image 4',
+//     'Description for image 5'
+// ];
+
+// // Function to update the image and description with a smooth transition
+// function updateImage() {
+//     const imageElement = document.getElementById('imageElement');
+//     const descriptionElement = document.getElementById('imageDescription');
+    
+//     // Fade out the image and description
+//     imageElement.style.opacity = 0;
+//     descriptionElement.style.opacity = 0;
+
+//     // Wait for the fade-out to complete before changing the image and description
+//     setTimeout(() => {
+//         imageIndex = (imageIndex + 1) % images.length; // Rotate through the images
+//         imageElement.src = images[imageIndex]; // Update the image source
+//         descriptionElement.textContent = imageDescriptions[imageIndex]; // Update the description text
+
+//         // Fade in the new image and description
+//         imageElement.style.opacity = 1;
+//         descriptionElement.style.opacity = 1;
+//     }, 500); // Timeout matches the transition duration (0.5s)
+// }
