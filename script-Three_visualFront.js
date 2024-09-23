@@ -178,7 +178,7 @@ function increaseVelocityOnScroll() {
   window.addEventListener("scroll", () => {
     const scrollAmount = window.scrollY; // Get the current scroll amount
     
-
+ 
 
     bodies.forEach((body) => {
 
@@ -286,7 +286,7 @@ modelPaths.forEach((path, index) => {
 
 
 // Minimum velocity to prevent models from getting stuck
-const minVelocity = 0.5;
+const minVelocity = 1;
 
 
 
