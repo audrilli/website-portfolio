@@ -31,6 +31,7 @@ html {
 
 .headerContainer {
   position: sticky;
+  top: 0;
   width: 100vw;
   height: fit-content;
   /* background-color:#ff00aa */
@@ -78,7 +79,10 @@ html {
   stroke: rgb(0, 0, 0);
   fill: rgb(0, 0, 0);
 }
-
+.visualLanding{
+  position: absolute;
+  top: 0%;
+}
 .containerLanding {
 
   position: relative;
@@ -203,7 +207,7 @@ a {
   z-index: 10;
 
 }
-.addInfoCenter{
+.addInfoRight{
 font-family:'Roboto Mono'; font-size: 15px;
 }
 .addInforelative{
@@ -264,14 +268,7 @@ a:hover {
   
 }
 
-.visual {
-  position:absolute;
 
-  width: 100vw;
-  height:100vh;
-top: 0;
-  
-}
 .containerVisual{
   
   width: 100vw;

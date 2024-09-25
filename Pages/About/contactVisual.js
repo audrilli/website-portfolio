@@ -4,17 +4,13 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 // Setup scene
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xffffff);
 scene.background = null; // No background, transparent
 
 const loader1 = new THREE.TextureLoader();
-const texture1 = loader1.load("Material/kloppenheim_06_puresky_4k.jpg", () => {
-    texture1.mapping = THREE.EquirectangularReflectionMapping;
-    texture1.colorSpace = THREE.SRGBColorSpace;
-
-    // Set environment texture once loaded
-    scene.environment = texture1;
-});
+const texture1 = loader1.load("Material/kloppenheim_06_puresky_4k.jpg");
+texture1.mapping = THREE.EquirectangularReflectionMapping;
+texture1.colorSpace = THREE.SRGBColorSpace;
+scene.environment = texture1; // Set environment texture once loaded
 
 // Setup camera
 const camera = new THREE.PerspectiveCamera(
@@ -27,12 +23,10 @@ camera.position.set(0, 0, 1);
 
 const container = document.getElementById('contact');
 
-
 // Setup renderer and size it according to the credo div while maintaining aspect ratio
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.toneMapping = THREE.ACESFilmicToneMapping; // Better tone mapping for HDRI
 renderer.toneMappingExposure = 1;
-resizeRendererToDisplaySize();
 container.appendChild(renderer.domElement);
 
 // Add ambient light
@@ -103,10 +97,9 @@ function resizeRendererToDisplaySize() {
 
 // Handle window resize to adjust the renderer's size based on the credo div
 window.addEventListener('resize', resizeRendererToDisplaySize);
+resizeRendererToDisplaySize(); // Ensure initial sizing
 
-
-
-// Scroll event to increase rotation speed temporarily (throttled)
+// Scroll event to increase rotation speed temporarily
 document.addEventListener('scroll', () => {
     scrollBoost = 0.01;
 });
@@ -117,10 +110,9 @@ function animate() {
     controls.update();
 
     if (model) {
-        model.rotation.z += baseRotationSpeed + scrollBoost;
-        scrollBoost = Math.max(0, scrollBoost - 0.0005);
-
-        model.rotation.y += baseRotationSpeed + scrollBoost;
+        const speed = baseRotationSpeed + scrollBoost;
+        model.rotation.z += speed;
+        model.rotation.y += speed;
         scrollBoost = Math.max(0, scrollBoost - 0.0005);
     }
 
