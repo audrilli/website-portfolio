@@ -23,42 +23,82 @@
 
   .contentWrapper{
     display: flex ;
-    max-width: 600px;
+    
     
     
     padding: 0px 50px 0px 50px;
    align-items: center;
+   justify-content: center;
     height: fit-content;
 
     animation: slideUp 1s ease-out forwards;
+    gap:100px;
+
+    flex-wrap: wrap;
+    overflow: hidden;
+   }
+.contact{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 50px;
+}
+
+   .contactWrapper{
+    height: 100vh;
+    display: flex;
+    padding: 0px 50px 0px 50px;
+    align-items: center;
+    justify-content: center;
+
    }
 
    .copy{
+    
     display: flex;
     align-self: flex-start;
    
-    gap:20px;
+    gap:40px;
     flex-direction: column;
+    max-width: 600px;
+  }
+
+  .callToAction{
+    font-family: jost;
+    font-size: 150px;
+    opacity: 0;
+
+    transform: translateY(50px);
+    transition: all 1s ease-out 1s;
+  }
+
+  .callToAction.show{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+
+  .btnWrapper{
+    display: flex;
+    gap: 20px;
   }
   
 
 /* Responsive adjustments */
 
 @media (max-width: 840px) {
-    .header{
-        padding: 0px 15px 0px 15px;;
-    }
+    
     .headerSection {
-      padding: 15px;
+ 
       font-size: 20px;
       
     }
 
 .copy{
     font-size: 15px;
-}
-.contentWrapper{
-    padding: 15px;
+
+
     max-width: 400px;
 }
 
