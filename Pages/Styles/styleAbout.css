@@ -43,6 +43,8 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 50px;
+    margin: 0px 50px 0px 50px;
+
 }
 #contact{
     width: 20px
@@ -50,7 +52,7 @@
    .contactWrapper{
     height: 100vh;
     display: flex;
-    padding: 0px 50px 0px 50px;
+   
     align-items: center;
     justify-content: center;
 
@@ -73,6 +75,7 @@
 
     transform: translateY(50px);
     transition: all 1s ease-out 1s;
+    white-space: nowrap;
   }
 
   .callToAction.show{
@@ -88,7 +91,7 @@
   
   .visual {
    
-  position:absolute;
+  position:relative;
   z-index: 10;
    right: 0%;
    height: 500px;
@@ -96,7 +99,7 @@
 
   }
   #contact{
-    width: 500px;
+    width: 200px;
   }
 
 /* Responsive adjustments */
@@ -111,10 +114,16 @@
 
 .copy{
     font-size: 15px;
-
-
     max-width: 400px;
 }
 
+.callToAction{
+  font-size: 60px;
+}
+.visual{
+  height: 200px;
+  width: 300px
+}
 
 }
+

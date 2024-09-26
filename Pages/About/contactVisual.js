@@ -51,6 +51,15 @@ controls.enableZoom = false; // Disable zoom
 let model;
 let baseRotationSpeed = 0.005; // Base rotation speed
 let scrollBoost = 100; // Additional speed boost on scroll
+let clock = new THREE.Clock();
+let oscillationSpeed = 0.8; // Speed of oscillation
+let amplitude = 0.2; // How far up and down the model will move
+let isHovered = false; // Whether the model is being hovered over
+let targetSlowdown = 2; // Target value for hover slowdown
+let currentSlowdown = 1; // Actual slowdown value used for smooth transition
+const smoothingFactor = 0.05; // Smoothing factor for interpolation
+
+
 
 // Load the model
 const loader = new GLTFLoader();
@@ -104,16 +113,41 @@ document.addEventListener('scroll', () => {
     scrollBoost = 0.01;
 });
 
+container.addEventListener('mouseenter', () => {
+    targetSlowdown = 0.5; // Slow down when hovered
+    console.log("mouseentered")
+    
+});
+
+container.addEventListener('mouseleave', () => {
+    targetSlowdown = 5; // Return to normal speed when not hovered
+    console.log('mouseleft')
+});
+
 // Animation loop
 function animate() {
     requestAnimationFrame(animate);
     controls.update();
 
     if (model) {
+        currentSlowdown += (targetSlowdown - currentSlowdown) * smoothingFactor;
+
+        const delta = clock.getDelta();
+        const time = clock.elapsedTime;
+
+        // Update oscillation speed based on hover state
+        
+        const hoverSlowdown = isHovered ? 0.2 : 1; // Reduce speed when hovered
+        const oscillation = Math.sin(time * oscillationSpeed * hoverSlowdown) * amplitude;
+
         const speed = baseRotationSpeed + scrollBoost;
-        model.rotation.z += speed;
-        model.rotation.y += speed;
-        scrollBoost = Math.max(0, scrollBoost - 0.0005);
+        model.rotation.z += speed * currentSlowdown;
+        model.rotation.y += speed *currentSlowdown;
+        model.position.y = oscillation; // Move model up and down
+
+        scrollBoost = Math.max(0, scrollBoost - 0.1);
+
+
     }
 
     renderer.render(scene, camera);
