@@ -27,6 +27,8 @@ const container = document.getElementById('contact');
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.toneMapping = THREE.ACESFilmicToneMapping; // Better tone mapping for HDRI
 renderer.toneMappingExposure = 1;
+
+//container of the render
 container.appendChild(renderer.domElement);
 
 // Add ambient light
@@ -88,14 +90,21 @@ loader.load(
         console.error('An error occurred loading the model', error);
     }
 );
+//Center the Model
+// function centerModel(){
+//     if(model){
+//         model.position.ser(camera.position.x,   camera.postion.y, 0);
+//     }
+// }
 
 // Resize function to fit renderer to container while maintaining aspect ratio
 function resizeRendererToDisplaySize() {
     const canvas = renderer.domElement;
     const width = container.clientWidth;
     const height = container.clientHeight;
-    const canvasPixelWidth = canvas.width / window.devicePixelRatio;
-    const canvasPixelHeight = canvas.height / window.devicePixelRatio;
+
+    const canvasPixelWidth = canvas.width / container.devicePixelRatio;
+    const canvasPixelHeight = canvas.height / container.devicePixelRatio;
 
     if (canvasPixelWidth !== width || canvasPixelHeight !== height) {
         renderer.setSize(width, height, false);
@@ -107,6 +116,7 @@ function resizeRendererToDisplaySize() {
 // Handle window resize to adjust the renderer's size based on the credo div
 window.addEventListener('resize', resizeRendererToDisplaySize);
 resizeRendererToDisplaySize(); // Ensure initial sizing
+// centerModel();
 
 // Scroll event to increase rotation speed temporarily
 document.addEventListener('scroll', () => {

@@ -1,4 +1,6 @@
-
+.body{
+  margin: 50px;
+}
 .headerSection {
     position: relative;
     display: flex;
@@ -35,29 +37,39 @@
     gap:100px;
 
     flex-wrap: wrap;
-    overflow: hidden;
+    
    }
 .contact{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    
+    gap: 40px;
+  
+    justify-content: flex-start;
     align-items: center;
-    gap: 50px;
-    margin: 0px 50px 0px 50px;
 
 }
-#contact{
-    width: 20px
-}
+
    .contactWrapper{
-    height: 100vh;
+    height: 89vh;
     display: flex;
    
     align-items: center;
     justify-content: center;
-
+    margin: 50px;
+   
+  
    }
 
+   .contactContent{
+    display: flex;
+flex-direction: row;
+margin: 50px;
+
+
+   }
+   
    .copy{
     
     display: flex;
@@ -92,15 +104,11 @@
   .visual {
    
   position:relative;
-  z-index: 10;
-   right: 0%;
-   height: 500px;
-    
+width: 400px;
+height: 600px;
 
   }
-  #contact{
-    width: 200px;
-  }
+
 
 /* Responsive adjustments */
 
@@ -120,10 +128,42 @@
 .callToAction{
   font-size: 60px;
 }
-.visual{
-  height: 200px;
-  width: 300px
+.contact{
+  
+  max-width: 400px;
+  
+
+  
+}
+.contactContent{
+  max-width: 400px;
+
+}
+.visual {
+   
+  position:relative;
+width: 200px;
+height: 200px;
+
+  }
+
+}
+/* Mobile Adjustments*/
+
+@media (max-width:400px) {
+
+.callToAction{
+  font-size: 40px;
+}
+
+
+.contactWrapper{
+  height: 60vh;
 }
 
 }
+
+
+
+
 
