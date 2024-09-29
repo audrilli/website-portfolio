@@ -1,3 +1,5 @@
+
+
 console.log("gugus");
 
   //Logo Animation final
@@ -55,3 +57,11 @@ transformScale = 1.1;
 
   const content = document.querySelector('.content');
   console.log(content);
+
+
+ //Scrollbehaviour ContactButton
+
+ document.getElementById('btnContact').addEventListener('click',() => {
+  document.getElementById('scrolltoContact').scrollIntoView({
+    behavior:'smooth'});
+    });
