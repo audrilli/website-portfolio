@@ -208,7 +208,10 @@ a {
 
 }
 .addInfoRight{
+  display: flex;
+  flex-direction: column;
 font-family:'Roboto Mono'; font-size: 15px;
+gap: 10px;
 }
 .addInforelative{
   position: relative;
@@ -404,7 +407,8 @@ gap: 5px;
 
   .addInfo,
   .addInforelative,
-  .addInfoRight
+  .addInfoRight,
+  .buttonText
   { 
     font-size: 11px;
   }
