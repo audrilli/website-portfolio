@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Document</title>
-    <link rel="stylesheet" href="style-LandingPage.css" />
+    <link rel="stylesheet" href="./Pages/Styles/styleUniversal.css" />
 
 
 </head>
 
 <body>
-    <div id="header_Container">
-        <div id="header">
+    <div class="headerContainer">
+        <div class="headerContent">
 
             <div class="header_Elements" id="header_Logo">
-                <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="-2 3 60 30" fill="none"
+                <svg class="logo" xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="-2 3 60 30" fill="none"
                     stroke-width="1" class="logo">
                     <g class="logo_petal00">
                         <path
@@ -75,20 +75,33 @@
             </div>
 
             <div class="header_buttonContainer">
-                <button class="header_Button" id="header_audreyButton">Audrey Lohmann </button>
+                <a href="Pages/About/about.html">
+                <button class="buttonLinks" >
+                <p class="buttonText"> Audrey Lohmann 
+                </p>
+                
+                    
+                </button>
+            </a>
+                
             </div>
+            <button class="buttonLinks">
+                <div class="buttonText" >Get in contact</div>
+                
+            </button>
             <!-- <div id="header_buttonContainer">
                 <button class="header_Button" id="header_infoButton">INFO</button>
             </div> -->
         </div>
     </div>
+    <div class="visualLanding" id="landing"></div>
+    <div class="containerLanding">
+        
+        <div class="backgroundImage" id="background">
+            
 
-    <div class="container">
-        <div class="backgroundImage" id="background"></div>
-        <div class="visual" id="landing">
-             </div>
-      
-
+        
+    </div>
         <div class="Links">
             <p>
                 <a href="Pages/Projects/01/project1.html" class="link" data-bg="Pages/Projects/01/Media/Image_init.png">
@@ -115,50 +128,32 @@
                     <span class="LinkDescription">creating a social brand intertwined with raquetsport and fashion with
                         PFA Studios</span>
                     <sup class="LinkDate">2024</sup></a>
-                <a href="Pages/Projects/05/project5.html" class="link" data-bg="image5.jpg"> <span
-                        class="LinkNumber">01</span>
-                    <span class="LinkKeyword">3RDPLACE</span>
-                    <span class="LinkDescription">creating a social brand intertwined with raquetsport and fashion with
-                        PFA Studios</span>
-                    <sup class="LinkDate">2024</sup></a>
-            </p>
-        </div>
-       
-       
+               
+            </p> </div>
     </div>
-    
-
-    
+    <div class="addInfo">
+    <span >
+        UX/UI / Brand Design / Brand Messaging / 3D Design / Graphic Design / Illustration / Animation
+    </span>
 </div>
-
-
-    <div class="container">
-        <div class="headerSection">
-            <p>ABOUT</p>
+    
+    
+    <div class="footerContainer">
+        <div class="footer">
+            <p class="addInforelative" id="white">© Audrey Lohmann
+                 </p>
         </div>
-        <div class="textBox">
-
-
-        </div>
-        <div class="visual">
-        </div>
-    </div>
-    <div class="container">
-
-        <div class="textBox">
-            <p>Here comes the text that the user should see, when they have scrolled through the Projects</p>
-        </div>
-
-        <div class='visual' id="credo">
+                 <div class="footer">
+                 <p class="addInforelative" id="white">Designed by me
+                </p><p class="addInforelative" id="white">Developed by me
+                </p>
+            </div>
         </div>
     
 
-    <div class="footer_Container">
-        <div class="footer">
-
-        </div>
     </div>
-    <script type="importmap">
+</body>
+<script type="importmap">
         {
             "imports": {
                 "three": "../build/three.module.js",
@@ -166,16 +161,15 @@
             }
         }
     </script>
+<script type="module" src="./Pages/JS/script-Three_visualContact.js"> </script>
+    <script type="module" src="./Pages/JS/script-Three_visualAbout.js"></script>
+<script type="module" src="./Pages/JS/script-Three_visualFront.js"></script>
+<script type="module" src="Pages/JS/script-Three_visualCredo.js"></script>
+<script src="./Pages/JS/script-LandingPage.js"></script>
 
-    
-    <script type="module" src="script-Three_visualFront.js"></script>
-    <script type="module" src="script-Three_visualCredo.js"></script>
-    <script  src="script-LandingPage.js"></script>
-    
 
 
 
 
 </body>
-
 </html>
