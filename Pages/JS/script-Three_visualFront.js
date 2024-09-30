@@ -173,19 +173,31 @@ console.log(AppliedVelocity);
 function increaseVelocityOnScroll() {
   
   window.addEventListener("scroll", () => {
-    const scrollAmount = window.scrollY; // Get the current scroll amount
-    
+    const scrollAmount = window.scrollY; // Scrollanmount detection
+    let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
  
 
     bodies.forEach((body) => {
-
-      // Gradually increase the velocity based on scroll amount
-      body.velocity.x += scrollAmount * 0.0001; // Adjust the multiplier for desired effect
-      body.velocity.y += scrollAmount * 0.0001;
-
-      body.position.y += scrollAmount * 0.0001;
+      if (currentScrollTop > lastScrollTop) {
+        // Scrolling down
+        console.log('Scrolling down');
+        body.velocity.x += scrollAmount * 0.0001; // Adjust the multiplier for desired effect
+      } else {
+        // Scrolling up
+        console.log('Scrolling up');
+        body.velocity.y += scrollAmount * 0.0001;
+      }
+    
+      lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // For mobile or negative scrolling
     });
-  });
+
+      // // Gradually increase the velocity based on scroll amount
+      // body.velocity.x += scrollAmount * 0.0001; // Adjust the multiplier for desired effect
+      // body.velocity.y += scrollAmount * 0.0001;
+
+    
+    });
+
 }
 //Scrolling up or down?
 let lastScrollTop = 0;
@@ -361,7 +373,7 @@ function handleBoundaryCollision(body) {
 //Composer
 
 // Maximum velocity
-const maxVelocity = 5.0; // Adjust this value as needed
+const maxVelocity = 2.0; // Adjust this value as needed
     // Function to clamp velocity
     function clampVelocity(body) {
         const velocity = body.velocity;
