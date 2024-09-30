@@ -298,7 +298,7 @@ a:hover {
   display: flex;
   background-color: rgb(0, 0, 0);
   height: fit-content;
-  padding: 20px;
+padding: 10px 50px 10px  50px;
   flex-direction: row;
   justify-content: space-between;
   
@@ -342,7 +342,13 @@ height: 80vh;
   
   
 }
-
+.containerBtnUpTop{
+  display: flex;
+  margin: 50px 50px 50px 50px;
+  
+  justify-content: flex-end;
+  
+}
 #imageDiv img {
 
   height: 600px;
@@ -382,6 +388,7 @@ gap: 5px;
 
 
 
+
 /* Responsive adjustments */
 
 
@@ -409,6 +416,7 @@ gap: 5px;
   .addInforelative,
   .addInfoRight,
   .buttonText
+  
   { 
     font-size: 11px;
   }
