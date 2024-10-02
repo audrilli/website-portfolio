@@ -301,10 +301,7 @@ modelPaths.forEach((path, index) => {
 
     bodies.push(body);
     world.addBody(body);
-    
-
-
-
+  
     const boxHelper = new THREE.BoxHelper(model, 0xfff000); // Yellow bounding box
     scene.add(boxHelper);
     boxHelpers.push(boxHelper); // Store the box helper for later updates
