@@ -188,7 +188,7 @@ function increaseVelocityOnScroll() {
       if (currentScrollTop > lastScrollTop) {
         // Scrolling down
         console.log('Scrolling down');
-        body.velocity.y += scrollAmount * 0.001; // Adjust the multiplier for desired effect
+        body.velocity.y += scrollAmount * 0.0005; // Adjust the multiplier for desired effect
        
       } else {
         // Scrolling up
