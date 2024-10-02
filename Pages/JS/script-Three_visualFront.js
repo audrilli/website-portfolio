@@ -204,30 +204,6 @@ function increaseVelocityOnScroll() {
 }
 
 
-      // // Gradually increase the velocity based on scroll amount
-      // body.velocity.x += scrollAmount * 0.0001; // Adjust the multiplier for desired effect
-      // body.velocity.y += scrollAmount * 0.0001;
-
-    
-
-
-
-// //Scrolling up or down?
-// let lastScrollTop = 0;
-
-// window.addEventListener('scroll', function() {
-//   let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-//   if (currentScrollTop > lastScrollTop) {
-//     // Scrolling down
-//     console.log('Scrolling down');
-//   } else {
-//     // Scrolling up
-//     console.log('Scrolling up');
-//   }
-
-//   lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // For mobile or negative scrolling
-// });
 
 
 // // Visualize the frustum bounds
