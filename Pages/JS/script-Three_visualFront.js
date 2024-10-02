@@ -49,6 +49,7 @@ rendererfront.toneMappingExposure = -0.55;
 
 //Append to div
 containerfront.appendChild(rendererfront.domElement);
+
 // Postprocessing setup
 // const composer = new EffectComposer(rendererfront);
 // const renderPass = new RenderPass(scene, camera);
@@ -117,13 +118,19 @@ const modelPaths = [
   "3DAssets/Flower.gltf",
   "3DAssets/Star1.gltf",
   "3DAssets/Star2.gltf",
+  "3DAssets/Flower.gltf",
+  "3DAssets/Star1.gltf",
+  "3DAssets/Star2.gltf",
+  "3DAssets/Flower.gltf",
+  "3DAssets/Star1.gltf",
+  "3DAssets/Star2.gltf",
 ];
 
 const models = [];
 const bodies = [];
 
-// const boxHelpers = []; // Store box helpers to update them later
-// const boundingSpheres = [];
+const boxHelpers = []; // Store box helpers to update them later
+const boundingSpheres = [];
 
 const loader = new GLTFLoader();
 
@@ -171,50 +178,56 @@ console.log(AppliedVelocity);
 
 // Scroll-based velocity increase
 function increaseVelocityOnScroll() {
-  
+  let lastScrollTop = 0; // Move this outside of the event listener to track scroll position between events
+
   window.addEventListener("scroll", () => {
-    const scrollAmount = window.scrollY; // Scrollanmount detection
-    let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
- 
+    const scrollAmount = window.scrollY; // Scroll amount detection
+    let currentScrollTop = window.scrollY || document.documentElement.scrollTop;
 
     bodies.forEach((body) => {
       if (currentScrollTop > lastScrollTop) {
         // Scrolling down
         console.log('Scrolling down');
-        body.velocity.x += scrollAmount * 0.0001; // Adjust the multiplier for desired effect
+        body.velocity.y += scrollAmount * 0.001; // Adjust the multiplier for desired effect
+       
       } else {
         // Scrolling up
         console.log('Scrolling up');
-        body.velocity.y += scrollAmount * 0.0001;
+        body.velocity.y -= scrollAmount * 0.0001; // Adjust the multiplier for desired effect
+        
       }
-    
-      lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // For mobile or negative scrolling
     });
+
+    // Update the last scroll position
+    lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // For mobile or negative scrolling
+  });
+}
+
 
       // // Gradually increase the velocity based on scroll amount
       // body.velocity.x += scrollAmount * 0.0001; // Adjust the multiplier for desired effect
       // body.velocity.y += scrollAmount * 0.0001;
 
     
-    });
 
-}
-//Scrolling up or down?
-let lastScrollTop = 0;
 
-window.addEventListener('scroll', function() {
-  let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-  if (currentScrollTop > lastScrollTop) {
-    // Scrolling down
-    console.log('Scrolling down');
-  } else {
-    // Scrolling up
-    console.log('Scrolling up');
-  }
+// //Scrolling up or down?
+// let lastScrollTop = 0;
 
-  lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // For mobile or negative scrolling
-});
+// window.addEventListener('scroll', function() {
+//   let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+//   if (currentScrollTop > lastScrollTop) {
+//     // Scrolling down
+//     console.log('Scrolling down');
+//   } else {
+//     // Scrolling up
+//     console.log('Scrolling up');
+//   }
+
+//   lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // For mobile or negative scrolling
+// });
 
 
 // // Visualize the frustum bounds
@@ -245,7 +258,11 @@ modelPaths.forEach((path, index) => {
     // Set random position within the calculated frustum bounds
     const position = getRandomPositionInFrustum(fixedZ);
     model.position.set(position.x, position.y, position.z);
-    const modelScale = 10;
+
+    //Model scale
+    const modelScale = 3;
+
+
     //Scale of the Model
     model.scale.set(modelScale, modelScale, modelScale);
 
@@ -268,7 +285,7 @@ modelPaths.forEach((path, index) => {
     // console.log("ModelPosition", model.position);
 
     // Create a physics body
-    const shape = new CANNON.Sphere(0.4); // Assuming a spherical shape for simplicity
+    const shape = new CANNON.Sphere(0.2); // Assuming a spherical shape for simplicity
     const body = new CANNON.Body({ mass: 0.3, shape });
     body.position.set(model.position.x, model.position.y, model.position.z);
     body.linearDamping = 0.8; // To make it float like a balloon
@@ -279,7 +296,7 @@ modelPaths.forEach((path, index) => {
     body.velocity.set(
       (Math.random() - 0.5) * 0.05,
       (Math.random() - 0.5) * 0.002,
-      0 // No velocity along the z-axis
+      (Math.random()- 0.5) * 0.1,
     );
 
     bodies.push(body);
@@ -288,22 +305,22 @@ modelPaths.forEach((path, index) => {
 
 
 
-    // const boxHelper = new THREE.BoxHelper(model, 0xfff000); // Yellow bounding box
-    // scene.add(boxHelper);
-    // boxHelpers.push(boxHelper); // Store the box helper for later updates
+    const boxHelper = new THREE.BoxHelper(model, 0xfff000); // Yellow bounding box
+    scene.add(boxHelper);
+    boxHelpers.push(boxHelper); // Store the box helper for later updates
 
-    // //Visualize the bounding sphere
-    // const sphereGeometry = new THREE.SphereGeometry(shape.radius, 16, 16);
-    // const sphereMaterial = new THREE.MeshBasicMaterial({
-    //   color: 0xff0000,
-    //   wireframe: true,
-    // });
+    //Visualize the bounding sphere
+    const sphereGeometry = new THREE.SphereGeometry(shape.radius, 16, 16);
+    const sphereMaterial = new THREE.MeshBasicMaterial({
+      color: 0xff0000,
+      wireframe: true,
+    });
 
     // Red bounding sphere
-    // const boundingSphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-    // boundingSphere.position.copy(model.position);
-    // scene.add(boundingSphere);
-    // boundingSpheres.push(boundingSphere);
+    const boundingSphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+    boundingSphere.position.copy(model.position);
+    scene.add(boundingSphere);
+    boundingSpheres.push(boundingSphere);
 
     //Debug Statements
     // console.log(model);
@@ -415,8 +432,8 @@ function animate() {
     models[i].quaternion.copy(body.quaternion);
    
     // Update the bounding boxes
-    // boxHelpers[i].update();
-    // boundingSpheres[i].position.copy(body.position);
+    boxHelpers[i].update();
+    boundingSpheres[i].position.copy(body.position);
 
     handleBoundaryCollision(body);
 
