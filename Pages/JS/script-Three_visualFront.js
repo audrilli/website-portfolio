@@ -50,19 +50,6 @@ rendererfront.toneMappingExposure = -0.55;
 //Append to div
 containerfront.appendChild(rendererfront.domElement);
 
-// Postprocessing setup
-// const composer = new EffectComposer(rendererfront);
-// const renderPass = new RenderPass(scene, camera);
-// composer.addPass(renderPass);
-
-// Unreal Bloom Pass
-// const bloomPass = new UnrealBloomPass(
-//   new THREE.Vector2(containerfront.clientWidth, containerfront.clientHeight),
-//   1.5, // Strength
-//   1, // Radius
-//   0.85 // Threshold 
-// );
-// composer.addPass(bloomPass);
 
 const loader1 = new THREE.TextureLoader();
 const texture = loader1.load("Material/kloppenheim_06_puresky_4k.jpg", () => {
@@ -72,9 +59,6 @@ const texture = loader1.load("Material/kloppenheim_06_puresky_4k.jpg", () => {
   texture.encoding = THREE.sRGBEncoding;
   scene.environment = texture;
 });
-
-// console.log(rendererfront.domElement.parentNode);
-// console.log(document.getElementById('landing'))
 
 // Lighting
 const ambientLight = new THREE.AmbientLight(0x504040, 5);
@@ -171,7 +155,7 @@ function getScrollVelocity(min, max) {
   };
 }
 const AppliedVelocity =getScrollVelocity(-1,1)
-console.log(AppliedVelocity);
+
 
 
 
@@ -187,12 +171,12 @@ function increaseVelocityOnScroll() {
     bodies.forEach((body) => {
       if (currentScrollTop > lastScrollTop) {
         // Scrolling down
-        console.log('Scrolling down');
+     
         body.velocity.y += scrollAmount * 0.0005; // Adjust the multiplier for desired effect
        
       } else {
         // Scrolling up
-        console.log('Scrolling up');
+        
         body.velocity.y -= scrollAmount * 0.0001; // Adjust the multiplier for desired effect
         
       }
@@ -257,8 +241,7 @@ modelPaths.forEach((path, index) => {
 
     models.push(model);
 
-    //Log Model Position
-    // console.log("ModelPosition", model.position);
+  
 
     // Create a physics body
     const shape = new CANNON.Sphere(0.2); // Assuming a spherical shape for simplicity
@@ -266,7 +249,7 @@ modelPaths.forEach((path, index) => {
     body.position.set(model.position.x, model.position.y, model.position.z);
     body.linearDamping = 0.8; // To make it float like a balloon
           
-    console.log("BodyPosition:", body.position.y);
+
 
     // Apply an initial random velocity to make the models move
     body.velocity.set(
@@ -298,10 +281,9 @@ modelPaths.forEach((path, index) => {
     scene.add(boundingSphere);
     boundingSpheres.push(boundingSphere);
 
-    //Debug Statements
-    // console.log(model);
 
-    console.log("modelbuilt");
+
+    // console.log("modelbuilt");
   });
 });
 
@@ -316,9 +298,7 @@ function handleBoundaryCollision(body) {
   const bounds = calculateFrustumBounds(fixedZ);
   const radius = 0.0001  ; // Assuming a spherical body with a radius of 1
 
-  //   console.log('BoundsBottom:',bounds.bottom);
-  //   console.log('BoundsTop:',bounds.top)
-
+ 
   // Simplified collision logic
   if (
     body.position.x - radius < bounds.left ||
@@ -335,14 +315,14 @@ function handleBoundaryCollision(body) {
     body.velocity.y += (Math.random() - 0.5) * 0.1;
   }
 
-  // console.log('velocity before collision',body.velocity.y)
+
 
   // Check for boundary collision on y-axis
   if (
     body.position.y - radius < bounds.bottom ||
     body.position.y + radius > bounds.top
   ) {
-    // console.log("Collision on y-axis");
+  
     body.velocity.y = body.velocity.y * -1.1; // Reverse velocity on y-axis
 
     // Ensure minimum velocity
@@ -353,14 +333,7 @@ function handleBoundaryCollision(body) {
     // Apply a small random nudge to help prevent getting stuck
     body.velocity.x += (Math.random() - 0.5) * 0.1;
   }
-  // console.log(body.velocity.y)
 
-  // console.log('collision on y')
-
-  //Debug Statements1
-
-  //console.log(bounds.left);
-  // console.log(bounds.right);
 }
 
 //Composer
