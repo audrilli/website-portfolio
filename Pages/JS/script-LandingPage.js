@@ -65,3 +65,13 @@ transformScale = 1.1;
   document.getElementById('scrolltoContact').scrollIntoView({
     behavior:'smooth'});
     });
+
+    //Back to top Button
+
+  const backToTopButton = document.getElementById("btnUpTop");
+backToTopButton.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  })
+})
