@@ -3,6 +3,7 @@ console.log("file connecetd");
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import * as CANNON from "cannon-es";
+import { gsap } from "gsap"
 
 const containerfront = document.getElementById("landing");
 
@@ -161,8 +162,6 @@ function getRandomPositionInFrustum(zValue) {
   };
 }
 
-//Random ScrollVelocity to not have the models stuck in the Corner
-// --> Logic: Everythime the user scolls, A random Value between -1 and 1 gets called and used in the window function.
 
 function getScrollVelocity(min, max) {
   setTimeout(getScrollVelocity, 5000);
@@ -397,6 +396,8 @@ const maxVelocity = 2.0; // Adjust this value as needed
             velocity.scale(maxVelocity / speed, velocity);
         }
     }
+
+
     // Function to scale models on window resize
 function scaleModelsOnResize() {
     const scaleFactor = Math.min(window.innerWidth / container.clientWidth, window.innerHeight / container.clientHeight);
@@ -410,6 +411,49 @@ function scaleModelsOnResize() {
         );
     });
 }
+
+
+ //Function to detect and rotate the models on hover.
+ const raycaster = new THREE.Raycaster();
+ const mouse = new THREE.Vector2();
+ console.log('mouseposition:', mouse);
+ 
+ // Rotating Function
+ function rotateModel(model){
+
+ //smooth gsap animation
+ gsap.to(model.rotation, {
+  y: model.rotation.y + Math.PI *2,
+  duration: 1, //Rotation in one second
+  ease: "power2.out",
+
+ });
+ }
+
+
+ //mousemove on canvas
+ rendererfront.domElement.addEventListener('mousemove', (event) => {
+
+  mouse.x = (event.clientX / window.innerWidth) * 2 - 1; 
+  mouse.y = (event.clientY / window.innerHeight) * 2 + 1;
+
+  //update raycaster
+  raycaster.setFromCamera(mouse, camera);
+
+  const intersects = raycaster.intersectObjects(models,true);
+  // console.log('Raycaster intersects:', intersects);
+
+  if (intersects.length > 0){
+    const intersectedModel = intersects[0].object;
+    console.log('Model intersected:', intersectedModel.name || intersectedModel); // Log the intersected model
+
+  rotateModel(intersectedModel);
+console.log('rotated');
+
+} 
+});
+
+
 
 // Animation Loop
 function animate() {
@@ -434,6 +478,7 @@ function animate() {
 
     handleBoundaryCollision(body);
 
+
   };
 
   rendererfront.render(scene, camera);
@@ -442,6 +487,10 @@ function animate() {
 
 // Start the animation loop
 animate();
+
+// //Model Rotation on hover
+// rotateModel();
+// console.log(rotateModel)
 
 // Visualize the frustum bounds
 visualizeFrustumBounds(calculateFrustumBounds(fixedZ));
