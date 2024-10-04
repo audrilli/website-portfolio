@@ -1,5 +1,6 @@
-.body{
-  margin: 50px;
+* {
+  padding: 0;
+  margin: 0px;
 }
 .headerSection {
     position: relative;
@@ -78,6 +79,7 @@ margin: 50px;
     gap:40px;
     flex-direction: column;
     max-width: 600px;
+    font-size: 15px;
   }
 
   .callToAction{

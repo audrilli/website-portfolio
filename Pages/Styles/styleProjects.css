@@ -1,0 +1,62 @@
+.projectDescriptionHeader{
+    position: relative;
+    display: flex;
+    
+    gap: 50px;
+    font-size: 30px; 
+
+    opacity: 0%;
+    animation: slideUp 1s ease-out forwards;
+  }
+  .projectOverview{
+    
+    display: flex;
+    margin: 0px 50px;
+    justify-content: space-between;
+    flex-wrap: wrap-reverse;
+  }
+  .projectDescription{
+    font-size: 15px;
+    max-width: 300px;
+  }
+
+
+  .imageWrapperProject{
+ 
+    width: 100%;
+    max-width: 1000px; /* Optional: set max width for better control */
+    max-height: 800px;
+    margin:  0px 50px 50px 0px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 16/9; /* Adjust as needed */
+  }
+
+.imageWrapperProject img{
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position:center
+    display: block;
+}
+
+
+  @keyframes slideUp {
+    0% {
+      transform: translateY(20px); /* Start 50px from the bottom */
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0); /* End at its original position */
+      opacity: 1;
+    }
+  }
+
+
+
+
+
+  @media (max-width:840px) {
+
+  }
