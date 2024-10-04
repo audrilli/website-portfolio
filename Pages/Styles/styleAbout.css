@@ -103,11 +103,11 @@ margin: 50px;
   
   .visual {
    
-  position:relative;
-width: 400px;
-height: 600px;
-
-  }
+    position:relative;
+  width: 300px;
+  height: 300px;
+  
+    }
 
 
 /* Responsive adjustments */
@@ -128,26 +128,23 @@ height: 600px;
 .callToAction{
   font-size: 60px;
 }
-.contact{
-  
-  max-width: 400px;
+
   
 
   
 }
-.contactContent{
-  max-width: 400px;
 
-}
+
+
 .visual {
    
   position:relative;
-width: 200px;
-height: 200px;
+width: 300px;
+height: 300px;
 
   }
 
-}
+
 /* Mobile Adjustments*/
 
 @media (max-width:400px) {
@@ -161,6 +158,13 @@ height: 200px;
   height: 60vh;
 }
 
+.visual {
+   
+  position:relative;
+width: 100px;
+height: 200px;
+
+  }
 }
 
 
