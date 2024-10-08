@@ -15,7 +15,8 @@ html {
   width: 100%;
   /* background-color: #ff00aa; */
   font-family: "Jost", sans-serif;
-  background-color: rgb(244, 244, 244);
+  /* background-color: rgb(219, 219, 219); */
+  background: linear-gradient(to top, #ff00aa,rgb(241, 241, 241) 7%);
   gap: 100px;
 }
 
@@ -26,7 +27,12 @@ html {
   font-style: normal;
 }
 
-
+.centerContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column
+}
 
 
 .headerContainer {
