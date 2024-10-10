@@ -21,6 +21,11 @@
     max-width: 300px;
   }
 
+  .imageWrapper{
+    display: flex;
+    flex-wrap: nowrap;
+    
+  }
 
   .imageWrapperProject{
  
