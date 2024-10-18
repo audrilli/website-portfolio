@@ -18,14 +18,17 @@
   }
   .projectDescription{
     font-size: 15px;
-    max-width: 300px;
+    max-width: 600px;
   }
 
   .imageWrapper{
     display: flex;
     flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
     
   }
+
 
   .imageWrapperProject{
  
@@ -73,6 +76,8 @@
 .visualSeperating{
     height: 300px;
 }
+
+
 
 
   @keyframes slideUp {
