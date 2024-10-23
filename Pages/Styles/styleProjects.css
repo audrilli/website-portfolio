@@ -1,3 +1,8 @@
+
+*{
+  margin:0px;
+  padding: 0px;
+}
 .projectDescriptionHeader{
     position: relative;
     display: flex;
@@ -76,6 +81,41 @@
 .visualSeperating{
     height: 300px;
 }
+
+
+.progressBarWrapper{
+  display: flex;
+  justify-content: space-between;
+  margin: 50px;
+  position: relative;
+  
+ 
+}
+
+.progress{
+  content: "";
+  position: absolute;
+  background-color: black;
+  top: 50%;
+  height: 2px;
+  transform: translateY(-50%);
+  width: 50%;
+  z-index: 1;
+  transition: 1s ease;
+}
+.circle{
+  padding: 5px 10px;
+  background-color: #ffffff;
+  border: 2px solid #000;
+ border-radius: 25px;
+  position: relative;
+  z-index: 2;
+
+  font-family: 'Roboto Mono'; font-size: 12px;
+}
+
+
+
 
 
 
