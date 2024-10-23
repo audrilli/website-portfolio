@@ -206,13 +206,13 @@ a {
 
 }
 .subText{
-  font-family: 'Roboto Mono'; font-size: 15px;
+  font-family: 'Roboto Mono'; font-size: 12px;
   padding: 50px;
   text-align: center;
 
 }
 .addInfo{
-  font-family: 'Roboto Mono'; font-size: 15px;
+  font-family: 'Roboto Mono'; font-size: 12px;
   padding: 0px 50px;
   text-align: center;
   
@@ -224,12 +224,12 @@ a {
 .addInfoRight{
   display: flex;
   flex-direction: column;
-font-family:'Roboto Mono'; font-size: 15px;
-gap: 10px;
+font-family:'Roboto Mono'; font-size: 12px;
+gap: 5px;
 }
 .addInforelative{
   position: relative;
-  font-family: 'Roboto Mono';font-size: 15px;
+  font-family: 'Roboto Mono';font-size: 12px;
  
 }
 #white{
