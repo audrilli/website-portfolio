@@ -20,6 +20,7 @@ body {
     background-color:white;
 
     font-size: 15px;
+    animation: slideUp 1s ease-out forwards;
     
 }
 .grid-item-bottomAligned{

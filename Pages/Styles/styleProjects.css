@@ -1,7 +1,10 @@
-
+.body{
+  background: linear-gradient(to top, #ff00aa,rgb(241, 241, 241) 7%);
+}
 *{
   margin:0px;
   padding: 0px;
+  
 }
 .projectDescriptionHeader{
     position: relative;
