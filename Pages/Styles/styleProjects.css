@@ -24,6 +24,7 @@
   .projectDescription{
     font-size: 15px;
     max-width: 600px;
+
   }
 
   .imageWrapper{
@@ -38,9 +39,9 @@
   .imageWrapperProject{
  
     width: 100%;
-    max-width: 1000px; 
-    max-height: 800px;
-   padding:  0px 50px;
+    height: 100%;
+   
+   
     position: relative;
    
   }
