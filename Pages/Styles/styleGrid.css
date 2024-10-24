@@ -8,8 +8,8 @@ body {
 .grid-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 20px; /* Adjust the gap between columns as needed */
-    margin: 0 50px; /* 50px left and right margins */
+    gap: 1px; 
+    margin: 0 50px;
     width: calc(100vw - 100px); /* Full width minus the margins */
     grid-auto-rows: minmax(auto, 20vh); /* Row height capped at 1/5th of the viewport height */
 
@@ -17,6 +17,7 @@ body {
 }
 
 .grid-item {
+    padding: 10px;
     background-color:white;
 
     font-size: 15px;
@@ -49,6 +50,8 @@ align-self: end;
 @media (max-width:840px) {
   .grid-container{
     grid-template-columns: repeat(2,1fr);
+    grid-auto-rows: minmax(auto, 25vh); /* Row height capped at 1/5th of the viewport height */
+
     
   }
 
@@ -57,10 +60,13 @@ align-self: end;
         
     }
   
-  .span3x3,
-  .span3x1{
+  .span3x3{
     grid-column: span 2;
     grid-row: span 2;
+  }
+  .span3x1{
+    grid-column: span 2;
+    grid-row: span  1;
   }
 
 }

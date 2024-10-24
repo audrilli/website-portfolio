@@ -1,3 +1,7 @@
+:root{
+  --main-margin: 50px;
+  }
+
 .body{
   background: linear-gradient(to top, #ff00aa,rgb(241, 241, 241) 7%);
 }
@@ -19,7 +23,7 @@
   .projectOverview{
     
     display: flex;
-    margin: 0px 50px;
+    margin: 0px var(--main-margin);
     justify-content: center;
     flex-wrap: wrap-reverse;
     gap: 50px;
@@ -83,15 +87,17 @@
 
 }
 .visualSeperating{
-    height: 300px;
+    height: auto
 }
 
 
 .progressBarWrapper{
   display: flex;
   justify-content: space-between;
-  margin: 50px;
-  position: relative;
+  margin: var(--main-margin);
+  position: sticky;
+  top: 121px;
+  z-index: 100;
   
  
 }
@@ -144,23 +150,37 @@
   @media (max-width:840px) {
   
 
+    .progressBarWrapper{
+      top: 60px;
+      }
+
   }
 
   /* Mobile adjustments */
   @media (max-width:400px) {
+    :root{
+      --main-margin: 20px;
+    }
    
     .projectDescriptionHeader{
         
         flex-direction: column;
     }
-    .visualSeperating{
-        height: 200px;
-    }
+ 
     .imageWrapperProject{
         margin: 0px;
     }
     .videoContainer{
         margin: 50px 50px 0px 50px;
         aspect-ratio: 16/9; /* Adjust as needed */
+    }
+
+    .progressBarWrapper{
+    top: 60px;
+    }
+
+    .circle{
+      font-family: 'Roboto Mono'; font-size: 10px;
+      padding: 3px 5px;
     }
   }
