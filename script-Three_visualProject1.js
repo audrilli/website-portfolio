@@ -9,7 +9,7 @@ scene.background = new THREE.Color(0xffffff);
 scene.background = null; // No background, transparent
 
 const loader1 = new THREE.TextureLoader();
-const texture1 = loader1.load("../../Material/kloppenheim_06_puresky_4k.jpg", () => {
+const texture1 = loader1.load("public/kloppenheim_06_puresky_4k.jpg", () => {
     texture1.mapping = THREE.EquirectangularReflectionMapping;
     texture1.colorSpace = THREE.SRGBColorSpace;
 
@@ -61,7 +61,7 @@ let scrollBoost = 100; // Additional speed boost on scroll
 // Load the model
 const loader = new GLTFLoader();
 loader.load(
-    '../../3DAssets/Star1.gltf',  // Path to the custom model
+    'public/Star1.gltf',  // Path to the custom model
     function (gltf) {
         model = gltf.scene;
         model.scale.set(6, 6, 6);

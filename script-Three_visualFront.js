@@ -76,15 +76,13 @@ world.solver.iterations = 10;
 
 // GLTF Models paths
 const modelPaths = [
-  "3DAssets/Flower.gltf",
-  "3DAssets/Star1.gltf",
-  "3DAssets/Star2.gltf",
-  "3DAssets/Flower.gltf",
-  "3DAssets/Star1.gltf",
-  "3DAssets/Star2.gltf",
-  "3DAssets/Flower.gltf",
-  "3DAssets/Star1.gltf",
-  "3DAssets/Star2.gltf",
+  "public/Flower.gltf",
+  "public/Star1.gltf",
+  "public/Star2.gltf",
+  "public/Flower.gltf",
+  "public/Star1.gltf",
+  "public/Star2.gltf",
+  
 ];
 
 const models = [];

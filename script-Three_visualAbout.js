@@ -72,7 +72,7 @@ imageElement.src = images[imageIndex];
 const loader = new GLTFLoader();
 const modelScale = 4;
 loader.load(
-    '3DAssets/Star1.gltf',  // Path to the custom model
+    'public/Star1.gltf',  // Path to the custom model
     function (gltf) {
         model = gltf.scene;
         model.scale.set(modelScale, modelScale, modelScale);
@@ -183,32 +183,3 @@ function updateImage() {
     
 }
 
-// //imageDescription rotation
-// const imageDescriptions = [
-//     'Description for image 1',
-//     'Description for image 2',
-//     'Description for image 3',
-//     'Description for image 4',
-//     'Description for image 5'
-// ];
-
-// // Function to update the image and description with a smooth transition
-// function updateImage() {
-//     const imageElement = document.getElementById('imageElement');
-//     const descriptionElement = document.getElementById('imageDescription');
-    
-//     // Fade out the image and description
-//     imageElement.style.opacity = 0;
-//     descriptionElement.style.opacity = 0;
-
-//     // Wait for the fade-out to complete before changing the image and description
-//     setTimeout(() => {
-//         imageIndex = (imageIndex + 1) % images.length; // Rotate through the images
-//         imageElement.src = images[imageIndex]; // Update the image source
-//         descriptionElement.textContent = imageDescriptions[imageIndex]; // Update the description text
-
-//         // Fade in the new image and description
-//         imageElement.style.opacity = 1;
-//         descriptionElement.style.opacity = 1;
-//     }, 500); // Timeout matches the transition duration (0.5s)
-// }
