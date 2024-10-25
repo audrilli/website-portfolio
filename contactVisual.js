@@ -7,7 +7,7 @@ const scene = new THREE.Scene();
 scene.background = null; // No background, transparent
 
 const loader1 = new THREE.TextureLoader();
-const texture1 = loader1.load("Material/kloppenheim_06_puresky_4k.jpg");
+const texture1 = loader1.load("public/kloppenheim_06_puresky_4k.jpg");
 texture1.mapping = THREE.EquirectangularReflectionMapping;
 texture1.colorSpace = THREE.SRGBColorSpace;
 scene.environment = texture1; // Set environment texture once loaded
@@ -66,7 +66,7 @@ const smoothingFactor = 0.05; // Smoothing factor for interpolation
 // Load the model
 const loader = new GLTFLoader();
 loader.load(
-    '/Pages/About/3D/Star2.gltf',  // Path to the custom model
+    'public/Star2.gltf',  // Path to the custom model
     function (gltf) {
         model = gltf.scene;
         model.scale.set(6, 6, 6);

@@ -29,7 +29,7 @@ containerfront.appendChild(rendererfront.domElement);
 
 
 const loader1 = new THREE.TextureLoader();
-const texture = loader1.load("Material/kloppenheim_06_puresky_4k.jpg", () => {
+const texture = loader1.load("public/kloppenheim_06_puresky_4k.jpg", () => {
   // new EXRLoader().load('Material/kloppenheim_06_puresky_4k.exr', function (texture) {
 
   texture.mapping = THREE.EquirectangularReflectionMapping;
