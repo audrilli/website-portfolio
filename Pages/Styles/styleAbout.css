@@ -1,3 +1,8 @@
+:root{
+  --main-margin: 50px;
+  }
+
+
 * {
   padding: 0;
   margin: 0px;
@@ -5,7 +10,7 @@
 .headerSection {
     position: relative;
     display: flex;
-    padding: 50px;
+    padding: var(--main-margin);
     gap: 50px;
     font-size: 30px; 
     text-align: center;
@@ -151,6 +156,11 @@ height: 300px;
 /* Mobile Adjustments*/
 
 @media (max-width:400px) {
+
+  :root{
+    --main-margin: 20px;
+  }
+
 
 .callToAction{
   font-size: 40px;
