@@ -111,8 +111,8 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 1px; 
-  margin: 0 50px;
-  width: calc(100vw - 100px); /* Full width minus the margins */
+  margin:  var(--main-margin);
+  width: calc(100vw - calc(--main-margin/2)); /* Full width minus the margins */
   grid-auto-rows: minmax(auto, 20vh); /* Row height capped at 1/5th of the viewport height */
 
   
@@ -217,8 +217,10 @@ align-self: end;
     }
 
     .circle{
-      font-family: 'Roboto Mono'; font-size: 10px;
-      padding: 3px 5px;
+      
+      font-family: 'Roboto Mono'; font-size: 8px;
+      padding: 5px 10px;
+      text-align: center;
     }
 
     .span2x1{
