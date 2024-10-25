@@ -1,7 +1,7 @@
 console.log("file connecetd");
 
 import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three-gltf-loader@1.111.0/index.min.js";
 import * as CANNON from "cannon-es";
 
 const containerfront = document.getElementById("landing");
