@@ -1,0 +1,186 @@
+:root{
+  --main-margin: 50px;
+  }
+
+
+* {
+  padding: 0;
+  margin: 0px;
+}
+.headerSection {
+    position: relative;
+    display: flex;
+    padding: var(--main-margin);
+    gap: 50px;
+    font-size: 30px; 
+    text-align: center;
+
+    opacity: 0%;
+    animation: slideUp 1s ease-out forwards;
+  }
+
+  @keyframes slideUp {
+    0% {
+      transform: translateY(20px); /* Start 50px from the bottom */
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0); /* End at its original position */
+      opacity: 1;
+    }
+  }
+
+  .contentWrapper{
+    display: flex ;
+    
+    
+    
+    padding: 0px 50px 0px 50px;
+   align-items: center;
+   justify-content: center;
+    height: fit-content;
+
+    animation: slideUp 1s ease-out forwards;
+    gap:100px;
+
+    flex-wrap: wrap;
+    
+   }
+.contact{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+    gap: 40px;
+  
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+   .contactWrapper{
+    height: 89vh;
+    display: flex;
+   
+    align-items: center;
+    justify-content: center;
+    margin: 50px;
+   
+  
+   }
+
+   .contactContent{
+    display: flex;
+flex-direction: row;
+margin: 50px;
+
+
+   }
+   
+   .copy{
+    
+    display: flex;
+    align-self: flex-start;
+   
+    gap:40px;
+    flex-direction: column;
+    max-width: 600px;
+    font-size: 15px;
+  }
+
+  .callToAction{
+    font-family: jost;
+    font-size: 150px;
+    opacity: 0;
+
+    transform: translateY(50px);
+    transition: all 1s ease-out 0.5s;
+    white-space: nowrap;
+  }
+
+  .callToAction.show{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+
+  .btnWrapper{
+    display: flex;
+    gap: 20px;
+  }
+  
+  .visual {
+   
+    position:relative;
+  width: 300px;
+  height: 300px;
+  
+    }
+
+
+/* Responsive adjustments */
+
+@media (max-width: 840px) {
+    
+    .headerSection {
+ 
+      font-size: 20px;
+      
+    }
+
+.copy{
+    font-size: 15px;
+    max-width: 400px;
+}
+
+.callToAction{
+  font-size: 60px;
+}
+
+  
+
+  
+}
+
+
+
+.visual {
+   
+  position:relative;
+width: 300px;
+height: 300px;
+
+  }
+
+
+/* Mobile Adjustments*/
+
+@media (max-width:400px) {
+
+  :root{
+    --main-margin: 20px;
+  }
+
+
+.callToAction{
+  font-size: 40px;
+}
+
+
+.contactWrapper{
+  height: 60vh;
+}
+
+.visual {
+   
+  position:relative;
+width: 100px;
+height: 200px;
+
+  }
+}
+
+
+
+
+
