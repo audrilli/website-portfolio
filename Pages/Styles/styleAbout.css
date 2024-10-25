@@ -1,12 +1,19 @@
-.body{
-  margin: 50px;
+:root{
+  --main-margin: 50px;
+  }
+
+
+* {
+  padding: 0;
+  margin: 0px;
 }
 .headerSection {
     position: relative;
     display: flex;
-    padding: 50px;
+    padding: var(--main-margin);
     gap: 50px;
     font-size: 30px; 
+    text-align: center;
 
     opacity: 0%;
     animation: slideUp 1s ease-out forwards;
@@ -78,6 +85,7 @@ margin: 50px;
     gap:40px;
     flex-direction: column;
     max-width: 600px;
+    font-size: 15px;
   }
 
   .callToAction{
@@ -103,11 +111,11 @@ margin: 50px;
   
   .visual {
    
-  position:relative;
-width: 400px;
-height: 600px;
-
-  }
+    position:relative;
+  width: 300px;
+  height: 300px;
+  
+    }
 
 
 /* Responsive adjustments */
@@ -128,29 +136,31 @@ height: 600px;
 .callToAction{
   font-size: 60px;
 }
-.contact{
-  
-  max-width: 400px;
+
   
 
   
 }
-.contactContent{
-  max-width: 400px;
 
-}
+
+
 .visual {
    
   position:relative;
-width: 200px;
-height: 200px;
+width: 300px;
+height: 300px;
 
   }
 
-}
+
 /* Mobile Adjustments*/
 
 @media (max-width:400px) {
+
+  :root{
+    --main-margin: 20px;
+  }
+
 
 .callToAction{
   font-size: 40px;
@@ -161,6 +171,13 @@ height: 200px;
   height: 60vh;
 }
 
+.visual {
+   
+  position:relative;
+width: 100px;
+height: 200px;
+
+  }
 }
 
 
