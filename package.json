@@ -2,6 +2,7 @@
   "name": "website-portfolio",
   "version": "1.0.0",
   "main": "script-LandingPage.js",
+  "homepage":"https://audreylohmann.ch",
   "scripts": {
     "dev": "vite",
     "build": "vite build"
