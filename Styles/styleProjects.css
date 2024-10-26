@@ -105,6 +105,22 @@
   font-family: 'Roboto Mono'; font-size: 12px;
 }
 
+.circle:hover{
+  border:2px solid #ff00aa;
+  transition: 1s ease;
+}
+
+.projectSubtitle{
+  font-size: 20px;
+ 
+  opacity: 100%;
+  
+
+}
+.projectCopy{
+font-size: 15px;
+}
+
 
 
 .grid-container {
@@ -125,6 +141,13 @@
   font-size: 15px;
   animation: slideUp 1s ease-out forwards;
   
+}
+
+.gridTextBox{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
 }
 .grid-item-bottomAligned{
 align-self: end;
