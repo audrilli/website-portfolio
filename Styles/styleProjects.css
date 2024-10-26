@@ -96,25 +96,40 @@
   position: sticky;
   top: 121px;
   z-index: 100;
-  
- 
 }
+
+.progressBarWrapper .circle {
+  background-color: #ffffff;
+  
+  border-radius: 25px;
+  color: black;
+  transition: background-color 2s ease, color 2s ease, border-color 2s ease;
+}
+
+.progressBarWrapper .circle.active {
+  background-color: #ff00aa;
+  border-color: #ff00aa;
+  color: white;
+}
+
 
 .progress{
   content: "";
   position: absolute;
-  background-color: black;
+  background-color: #ff00aa;
   top: 50%;
   height: 2px;
   transform: translateY(-50%);
-  width: 50%;
+  width: 0;
   z-index: 1;
   transition: 1s ease;
 }
+
+
 .circle{
   padding: 5px 10px;
   background-color: #ffffff;
-  border: 2px solid #000;
+  border: 2px solid lightgray;
  border-radius: 25px;
   position: relative;
   z-index: 2;
