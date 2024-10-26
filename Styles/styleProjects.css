@@ -2,9 +2,7 @@
   --main-margin: 50px;
   }
 
-.body{
-  background: linear-gradient(to top, #ff00aa,rgb(241, 241, 241) 7%);
-}
+
 *{
   margin:0px;
   padding: 0px;
@@ -52,6 +50,15 @@
     position: relative;
    
   }
+  .imageWrapperProject-multipleImages{
+ 
+    width: fit-content;
+    height: fit-content;
+   
+   
+    position: relative;
+   
+  }
 
   
 
@@ -66,6 +73,16 @@
     display: block;
     aspect-ratio: 16/9; /* Adjust as needed */
 
+}
+
+.imageWrapperProject-multipleImages img{
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  object-position:center;
+  display: block;
+  aspect-ratio: 16/9; /* Adjust as needed */
 }
 .visualSeperating{
     height: auto
@@ -108,6 +125,7 @@
 .circle:hover{
   border:2px solid #ff00aa;
   transition: 1s ease;
+  color: #ff00aa;
 }
 
 .projectSubtitle{
@@ -165,10 +183,21 @@ align-self: end;
 .span2x1{
   grid-column: span 2;
 }
+.span2x3{
+  display: flex;
+  flex-direction: column;
+  grid-column: span 2;
+  grid-row: span 3;
+  gap: 20px;
+}
 .span3x1{
   grid-column: span 5;
 }
 
+.imageBox{
+  display: flex;
+  gap: 10px;
+}
 
 
 
@@ -224,7 +253,11 @@ align-self: end;
     :root{
       --main-margin: 20px;
     }
-   
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+
+    }
     .projectDescriptionHeader{
         
         flex-direction: column;
@@ -250,4 +283,15 @@ align-self: end;
       grid-column: span 2;
       grid-row: span 3;
   }
+  .span2x3{
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.imageBox{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  grid-row: span 3;
+}
   }
