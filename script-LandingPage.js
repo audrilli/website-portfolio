@@ -68,10 +68,25 @@ transformScale = 1.1;
 
     //Back to top Button
 
-  const backToTopButton = document.getElementById("btnUpTop");
-backToTopButton.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  })
-})
+ 
+
+    const backToTopButton = document.getElementById("btnUpTop");
+    const backToTopButtonContainer = document.getElementById("containerBtnUpTop")
+
+    // Smooth scroll to top on button click
+    backToTopButton.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+    
+    // Toggle button visibility on scroll
+    window.addEventListener("scroll", () => {  // Corrected typo here
+      if (window.scrollY >= 500) {  // Adjusted threshold to 500px as per comment
+        backToTopButtonContainer.classList.add("visible");  // Show button when scrolled 500px
+      } else {
+        backToTopButtonContainer.classList.remove("visible"); // Hide button if scrolled less
+      }
+    });
+      

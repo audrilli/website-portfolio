@@ -10,11 +10,14 @@
     <link rel="stylesheet" href="/Styles/styleProjects.css" />
     <link rel="stylesheet" href="/Styles/styleUniversal.css" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js"></script>
-    
-</head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.4/lottie.min.js"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
+ 
+</head> 
 
 <body>
+    <!-- Header Background -->
+     
     <!-- Header -->
     <div class="headerContainer">
         <div class="headerContent">
@@ -91,10 +94,14 @@
                 <div class="buttonText ">Get in contact</div>
 
             </button>
-
+            
         </div>
+        
     </div>
     <!-- Header finished -->
+
+    
+
      <div class=" headerSection">
         <p>onRadar</p>
      </div>
@@ -105,6 +112,10 @@
                 <p>Bachelor Project and Thesis</p>
                 <p>2024</p>
                 <p>Zurich School of the Arts</p>
+                <p> My contributions: </p>
+                <p>Design / User Research / User Expirience /
+                    Interface Design</p> 
+                </p>
             </div>
         </div>
        
@@ -113,69 +124,253 @@
             <div class="addInfoRight">
                 <p>Audrey Lohmann</p>
                 <p>Lukman Ascic</p>
-                
+        
             </div>
         </div>
+       
         <div class="grid-item span3x3">
             <div class="imageWrapperProject">
-                <img src="public/01/Image_init.png" alt="">
+                <img src="public/01/Image_init.png" alt="Splash bild von den verschiedenen Elementen der Vision Os Applikation">
             </div>
         </div>
         <div class="grid-item span2x1">
+            
             <p>
                 Die App «On Radar» wurde für Apple Vision Pro entwickelt, um räumliches Computing zu ermöglichen. Junge Museums- und Ausstellungsbesucher können in einem immersiven Raum virtuelle chemische Objekte erleben, die mit der realen Welt interagieren. Mit Augen- und Handbewegungen können sie beobachten und lernen, wie Forscher Radiotracer zur Krebsdiagnose und -behandlung testen und herstellen. In Zusammenarbeit mit Experten aus nuklearer Medizin, wissenschaftlicher Kommunikation und Pädagogik werden komplexe Konzepte interaktiv visualisiert und für die Forscher von morgen erfahrbar gemacht.
 </p>
         </div>
+    </div>
+        <div class="centerContainer">
+            <iframe class="videoPlayer" src="https://www.youtube.com/embed/2Ps5lwOdIas?si=9HgFsT06mArs3Q19" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                
+            </iframe>
+        </div>
+       
         
-        <div class="grid-item span3x1 visualSeperating" id="lottie-hover"></div>
+        <div class="visualSeperating" id="lottie-scroll">
+            
+        </div>
     </div>
             <div class="progressBarWrapper">
                 <div class="progress" id="progress">
         
                 </div>
                     
-                    <div class="circle active">
-                        <p>Initial Idea</p>
+                    <div class="circle " id="briefing">
+                        <p>Briefing</p>
                     </div>
         
-                    <div class="circle active">
-                        <p>Initial Idea</p>
+                    <div class="circle" id="idee">
+                        <p>Idee</p>
                     </div>
-                    <div class="circle active">
-                        <p>Initial Idea</p>
+                    <div class="circle " id="prototype">
+                        <p>Prototype</p>
                     </div>
-                    <div class="circle active">
-                        <p>Initial Idea</p>
+                    <div class="circle " id="development">
+                        <p>Entwicklung</p>
                     </div>
-                    <div class="circle active">
-                        <p>Initial Idea</p>
+                    <div class="circle " id="nextsteps">
+                        <p>Nächste Schritte</p>
                     </div>
                     
             </div>
     </div>
 <div class="grid-container">
-    <div class="grid-item span3x3"></div>
-    <div class="grid-item span2x1"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
+    
+    <div class="grid-item span2x3">
+        <div class="gridTextBox trigger-section" id="briefing-section">
+            <div class="projectSubtitle">
+                <p>Briefing</p>
+            </div>
+            <div class="projectCopy">
+                <p> Die Idee der Bachelor Arbeit im interaciton Design ist es, sich in einer Gruppe arbeit über mehrerer
+                    Monate mit einem Thema zu befassen. Dabei sollten Innovations-, Sozial- und Design Aspekte besonders berücksichtigt werden.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="grid-item span3x3 trigger-section" id="briefing-section" >
+        <div class="imageWrapperProject">
+        <img src="public/01/AL_LA_on-radar_additional-teaser-5_3000x2000.png" alt="Detail ansickt eines Radiotracer mit Label">
+    </div>
+    </div>
+ 
+   
+    <div class="grid-item span2x3-mobileLong">
+        <div class="projectSubtitle">
+            <p>Kollaborationspartner</p>
+        </div>
+        <div class="projectCopy">
+            
+HollandLab ist eine Forschungsgruppe am Chemischen Institut der Universität
+Zürich unter der Leitung von Prof. Dr. Jason P. Holland. Ihre Forschung konzentriert sich auf die Synthese, 
+Entwicklung und Herstellung von Radiotracern im medizinischen Kontext, die in der Bildgebung und Behandlung von Krebs eingesetzt werden. 
+Die Projekte sind hochgradig interdisziplinär und verbinden Chemie, Biochemie und molekulare Medizin. Zur Unterstützung unseres Verständnisses der durchgeführten Forschung hatten wir direkten Kontakt mit zwei Doktoranden aus Hollands Gruppe: Eda Nisli und Jonas Genz.
+        </div>
+        <a href="https://www.sciencepavilion.uzh.ch/de.html">
+        <button class="buttonLinks" style="font-family: 'Roboto Mono'">
+            <p class="buttonText"> Science pavillion
+            </p>
+            <img class="btnIcon" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0xNCA0aC0xM3YxOGgyMHYtMTFoMXYxMmgtMjJ2LTIwaDE0djF6bTEwIDVoLTF2LTYuMjkzbC0xMS42NDYgMTEuNjQ3LS43MDgtLjcwOCAxMS42NDctMTEuNjQ2aC02LjI5M3YtMWg4djh6Ii8+PC9zdmc+" width="17px"
+            alt="Icon external Link">
+        </button>
+    </a>
+
+    <a href="https://www.hollandlab.org">
+        <button class="buttonLinks" style="font-family: 'Roboto Mono'">
+            <p class="buttonText"> HollandLab
+            </p>
+            <img class="btnIcon" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0xNCA0aC0xM3YxOGgyMHYtMTFoMXYxMmgtMjJ2LTIwaDE0djF6bTEwIDVoLTF2LTYuMjkzbC0xMS42NDYgMTEuNjQ3LS43MDgtLjcwOCAxMS42NDctMTEuNjQ2aC02LjI5M3YtMWg4djh6Ii8+PC9zdmc+" width="17px"
+            alt="Icon external Link">
+        </button>
+    </a>
+
+    </div>
+    <div class="grid-item span3x3 imageBox">
+
+        <div class="imageWrapperProject-multipleImages">
+            <img src="public/01/science-pavilion-uzh-banner-seitenansicht.png" alt="Detail ansickt eines Radiotracer mit Label">
+            <div class="addInfoRight">
+                <p>Science pavillion</p>
+            </div>
+        </div>
+
+        <div class="imageWrapperProject-multipleImages">
+            <img src="public/01/IMG_0261.png" alt="Detail ansickt eines Radiotracer mit Label">
+            <div class="addInfoRight">
+                <p>HollandLab</p>
+            </div>
+        </div>
+        
+        
+
+    </div>
+    <div class="grid-item span2x3 trigger-section" id="idee-section">
+        <div class="projectSubtitle">
+            <p>Idee</p>
+        </div>
+        <div class="projectCopy">
+            <p>Als Enthusiastin für Chemie und 3D Design und Lukmans Begeisterung für die IOS Programmierung, wollten 
+                wir zusammen mit unseren Kollaborationspartner*innen unser Project gestalten. Schon Früh war die Idee für eine
+                Apple Vision Pro Applikation geboren, die mittels Spatial Computing, Radioaktive Biochemie erklären und erlebbar machen kann.</p>
+        </div>
+
+               <div class="projectCopy">
+                <p> Auch wollten wir uns der Herausforderung stellen mit einem Neuen Framework
+                    zu arbeiten, und zu den ersten zu gehören, die auf der Apple Vision Pro designen und entwickeln.
+                </p>
+               </div>
+        </div>
+    
+    
+
+    <div class="grid-item span3x3 trigger-section">
+        <div class="imageWrapperProject">
+            <img src="public/01/AL_LA_on-radar_additional-teaser-5_3000x2000.jpg" alt="">
+        </div>
+    </div>
+
+    <div class="grid-item span2x3 trigger-section" id="prototype-section">
+        
+            <div class="projectSubtitle">
+                <p>Prototyp</p>
+            </div>
+            <div class="projectCopy">
+                Für das Prototypisieren der Applikation arbeiteten wir mit Storyboards, 
+                Papier-Prototypen und Workshops. 
+            </div>
+    </div>
+    <div class="grid-item span3x3 trigger-section">
+        <div class="imageWrapperProject">
+            <img src="public/01/AL_LA_on-radar_additional-teaser-5_3000x2000.jpg" alt="">
+        </div>
+    </div>
+
+    <div class="grid-item span2x3 trigger-section" id="development-section">
+        
+        <div class="projectSubtitle">
+            <p>Prototyp</p>
+        </div>
+        <div class="projectCopy">
+            Für das Prototypisieren der Applikation arbeiteten wir mit Storyboards, 
+            Papier-Prototypen und Workshops. 
+        </div>
 </div>
+<div class="grid-item span3x3 trigger-section">
+    <div class="imageWrapperProject">
+        <img src="public/01/AL_LA_on-radar_additional-teaser-5_3000x2000.jpg" alt="">
+    </div>
+</div>
+    
+<div class="grid-item span2x3 trigger-section" id="nextsteps-section">
+        
+    <div class="projectSubtitle">
+        <p>Prototyp</p>
+    </div>
+    <div class="projectCopy">
+        Für das Prototypisieren der Applikation arbeiteten wir mit Storyboards, 
+        Papier-Prototypen und Workshops. 
+    </div>
+</div>
+<div class="grid-item span3x3 trigger-section">
+<div class="imageWrapperProject">
+    <img src="public/01/AL_LA_on-radar_additional-teaser-5_3000x2000.jpg" alt="">
+</div>
+</div>
+  
+</div>
+
+      <!-- Up to top Button -->
+      <div class="containerBtnUpTop" id="containerBtnUpTop">
+        <button class="buttonLinks" id="btnUpTop">
+            <p class="buttonText">Back to top</p>
+            <img class="btnIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAlElEQVR4nO2SawrEIAwG5xRt6RW3x136OE0WIYJbWpOq/ecHQUGYiSHwLIPWK5mAVSvcm2YEvoBoHcD8FlxaSiZgU2A80/tWM6608127jYIheSv6yRWcRECN5A5+FhRJcvArwSOJBb8TuCQeeE5gShbn2klGcF7rwPzLx7HTYgiiJLCKIg5BVaQLrEgfkRXpI6L1iH6AQmEr1dP7BwAAAABJRU5ErkJggg==">
+        </button> 
+    </div>
+        <!-- Up to top Button END -->
+
+
+         <div class="containerBtn">
+            <button class="buttonLinks">
+                <img class="btnIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAW0lEQVR4nO2VUQqAIBAF5xQlXbGOK5anMQIX/FV8ILED+zsP5mdhIQJwKuU3UIBrtnwHYpU/wOHyD8/ysywbkKpcccgHbMQS5dmJDB/pwnOtlysoX2Y7Inv6w7yKJ2Enk2DIpgAAAABJRU5ErkJggg==">
+                <p class="buttonText">
+                    Previous Project
+                </p>
+            </button>
+            <button class="buttonLinks">
+                <p class="buttonText">
+                    Next Project
+                </p>
+                <img class="btnIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAXUlEQVR4nGNgGIQgm4GBQYJWhucwMDD8Z2BguE4rS8QYGBiuQC25ycDAIDVqCT4wGlxDKLj+0whfg1pKewuoBcSRgugGteNBfNRwbGA0WOgfLCBA8yoTBGha6ZMMAAQVYScAlryVAAAAAElFTkSuQmCC">
+            </button>
+         </div>
+        <!-- Footer Section -->
+        <div class="footerContainer">
+            <div class="footer">
+                <p class="addInforelative" id="white">© Audrey Lohmann
+                </p>
+            </div>
+            <div class="footer">
+                <p class="addInforelative" id="white">Designed by me
+                </p>
+                <p class="addInforelative" id="white">Developed by me
+                </p>
+            </div>
+        </div>
+    
+    
+        </div>
+    
+        <!-- End Footer Section -->
 
 
 </body>
 
-
+<script type="module" src="script-LottieAnimation.js" defer></script>
 <script type="module" src="script-LandingPage.js"></script>
-<script type="module" src="script-LottieAnimation.js"></script>
+
+<script type="module" src="script-Project.js"></script>
+
 <!-- <script type="module" src="script-Three_visualProject1.js"></script> -->
 
 
