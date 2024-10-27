@@ -52,8 +52,8 @@ html {
   position: sticky;
   top: 0;
   width: 100vw;
-  height: fit-content;
-  /* background-color:#ff00aa */
+  height: 200px;
+  background: linear-gradient(to bottom, rgb(242, 242, 242), rgba(0, 0, 255, 0)); 
   z-index: 12;
 }
 .headerContent {
@@ -66,7 +66,16 @@ html {
 
   font-size: 30px;
   gap: 50px;
- ;
+ 
+
+}
+
+.headerBackground{
+  position: absolute;
+  top: 0px;
+  height: 100px;
+  background: linear-gradient(to bottom, rgb(242, 242, 242), rgba(0, 0, 255, 0)); 
+  z-index: 10;
 
 }
 
@@ -366,7 +375,30 @@ height: 80vh;
   margin: var(--main-margin);
   
   justify-content: flex-end;
-  
+
+
+
+  position: fixed;
+  cursor: pointer;
+
+  bottom: 90px;    /* Adjust position as needed */
+  right: 0px;
+  opacity: 0;
+  transition: opacity 2s ease;
+
+  z-index: 10;
+}
+
+.containerBtn{
+
+  display: flex;
+  margin: var(--main-margin);
+  width: 50vw;
+  justify-content: space-between;
+}
+
+.containerBtnUpTop.visible{
+  opacity: 1;
 }
 #imageDiv img {
 
@@ -389,7 +421,7 @@ transition: color 0.8s ease, box-shadow 0.8s ease;
 overflow: hidden;
 cursor: pointer;
 align-items: center;
-gap: 5px;
+gap: 10px;
 }
 
 .buttonLinks:hover {
@@ -403,7 +435,9 @@ gap: 5px;
   align-items: center;
 }
 
-
+.btnIcon{
+  height: 24px
+}
 
 
 
@@ -453,6 +487,9 @@ gap: 5px;
 
       height: 400px;
       width: 300px;
+    }
+    .btnIcon{
+      height: 14px
     }
   
   }

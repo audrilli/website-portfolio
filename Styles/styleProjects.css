@@ -85,7 +85,7 @@
   aspect-ratio: 16/9; /* Adjust as needed */
 }
 .visualSeperating{
-    height: auto
+    height: 200px
 }
 
 
@@ -222,6 +222,8 @@ align-self: end;
   grid-column: span 5;
   grid-row: span 4;
   gap: 20px;
+
+
 }
 
 .imageBox{
@@ -229,6 +231,13 @@ align-self: end;
   gap: 10px;
 }
 
+.videoPlayer{
+  padding: 100px 0px;
+
+  width: 70%;
+  aspect-ratio: 16/9;
+
+}
 
 
 
@@ -276,6 +285,11 @@ align-self: end;
         grid-column: span 2;
         grid-row: span  1;
       }
+
+      .span5x4{
+        grid-column: span 2;
+        grid-row: span 1;
+      }
   }
 
   /* Mobile adjustments */
@@ -311,7 +325,7 @@ align-self: end;
 
     .span2x1{
       grid-column: span 2;
-      grid-row: span 3;
+      grid-row: span 2;
   }
   .span2x3{
     grid-column: span 2;
@@ -328,4 +342,16 @@ align-self: end;
   gap: 20px;
   grid-row: span 3;
 }
+.span5x4{
+grid-column: span 2;
+grid-row: span 1;
+}
+
+.visualSeperating{
+  height: 200px
+}
+.videoPlayer{
+  padding: 50px 0px;
+}
+
   }
