@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Document</title>
-    <link rel="stylesheet" href="./Pages/Styles/styleUniversal.css" />
-    <link rel="stylesheet" href="./Pages/Styles/styleAbout.css" />
+    <link rel="stylesheet" href="Styles/styleUniversal.css" />
+    <link rel="stylesheet" href="Styles/styleAbout.css" />
 
-
+   
+    
 </head>
 
 <body>
@@ -76,7 +77,7 @@
             </div>
 
             <div class="header_buttonContainer">
-                <a href="Pages/About/about.html">
+                <a href="about.html">
                 <button class="buttonLinks" >
                 <p class="buttonText"> Audrey Lohmann 
                 </p>
@@ -105,7 +106,7 @@
     </div>
         <div class="Links">
             <p>
-                <a href="Pages/Projects/project1.html" class="link" data-bg="Pages/Projects/01/Media/Image_init.png">
+                <a href="/project1.html" class="link" data-bg="public/01/Image_init.png">
                     <span class="LinkNumber">01</span>
                     <span class="LinkKeyword">3RDPLACE</span>
                     <span class="LinkDescription">creating a social brand intertwined with raquetsport and fashion with
@@ -180,13 +181,16 @@
 
 <!--  End Contact Section -->
 
-<!-- Up to top Button -->
- <div class="containerBtnUpTop">
-    <button class="buttonLinks" id="btnUpTop"> Back to top
-        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0yNCAxMmMwIDYuNjIzLTUuMzc3IDEyLTEyIDEycy0xMi01LjM3Ny0xMi0xMiA1LjM3Ny0xMiAxMi0xMiAxMiA1LjM3NyAxMiAxMnptLTEgMGMwIDYuMDcxLTQuOTI5IDExLTExIDExcy0xMS00LjkyOS0xMS0xMSA0LjkyOS0xMSAxMS0xMSAxMSA0LjkyOSAxMSAxMXptLTExLjUtNC44MjhsLTMuNzYzIDQuNjA4LS43MzctLjY3OSA1LTYuMTAxIDUgNi4xMTItLjc1My42NjYtMy43NDctNC42MDR2MTEuODI2aC0xdi0xMS44Mjh6Ii8+PC9zdmc+" alt="">
-    </button> 
-</div>
-    <!-- Up to top Button END -->
+
+    <!-- Up to top Button -->
+    <div class="containerBtnUpTop" id="containerBtnUpTop">
+        <button class="buttonLinks" id="btnUpTop">
+            <p class="buttonText">Back to top</p>
+            <img class="btnIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAlElEQVR4nO2SawrEIAwG5xRt6RW3x136OE0WIYJbWpOq/ecHQUGYiSHwLIPWK5mAVSvcm2YEvoBoHcD8FlxaSiZgU2A80/tWM6608127jYIheSv6yRWcRECN5A5+FhRJcvArwSOJBb8TuCQeeE5gShbn2klGcF7rwPzLx7HTYgiiJLCKIg5BVaQLrEgfkRXpI6L1iH6AQmEr1dP7BwAAAABJRU5ErkJggg==">
+        </button> 
+    </div>
+        <!-- Up to top Button END -->
+  
 
     <div class="footerContainer">
         <div class="footer">
@@ -203,21 +207,16 @@
    
 
 </body>
-<script type="importmap">
-        {
-            "imports": {
-                "three": "../build/three.module.js",
-                "three/addons/": "./jsm/"
-            }
-        }
-    </script>
-<script type="module" src="./Pages/JS/script-Three_visualContact.js"> </script>
-    <script type="module" src="./Pages/JS/script-Three_visualAbout.js"></script>
-<script type="module" src="./Pages/JS/script-Three_visualFront.js"></script>
-<!-- <script type="module" src="Pages/JS/script-Three_visualCredo.js"></script> -->
-<script type="module" src="./Pages/JS/script-ContactPage.js"></script>
-<script src="./Pages/JS/script-LandingPage.js"></script>
-<script src="./Pages/About/contactVisual.js"></script>
+
+
+    
+<script type="module" src="script-Three_visualContact.js"> </script>
+    <script type="module" src="script-Three_visualAbout.js"></script>
+<script type="module" src="script-Three_visualFront.js"></script>
+
+<script type="module" src="script-ContactPage.js"></script>
+<script type="module" src="script-LandingPage.js"></script>
+
 
 
 

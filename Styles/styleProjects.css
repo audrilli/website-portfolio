@@ -1,0 +1,357 @@
+:root{
+  --main-margin: 50px;
+  }
+
+
+*{
+  margin:0px;
+  padding: 0px;
+  
+}
+.projectDescriptionHeader{
+    position: relative;
+    display: flex;
+    
+    gap: 50px;
+    font-size: 30px; 
+
+    opacity: 0%;
+    animation: slideUp 1s ease-out forwards;
+  }
+  .projectOverview{
+    
+    display: flex;
+    margin: 0px var(--main-margin);
+    justify-content: center;
+    flex-wrap: wrap-reverse;
+    gap: 50px;
+  }
+  .projectDescription{
+    font-size: 15px;
+    max-width: 600px;
+
+  }
+
+  .imageWrapper{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+    
+  }
+
+
+  .imageWrapperProject{
+ 
+    width: 100%;
+    height: 100%;
+   
+   
+    position: relative;
+   
+  }
+  .imageWrapperProject-multipleImages{
+ 
+    width: fit-content;
+    height: fit-content;
+   
+   
+    position: relative;
+   
+  }
+
+  
+
+
+  
+.imageWrapperProject img{
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position:center;
+    display: block;
+    aspect-ratio: 16/9; /* Adjust as needed */
+
+}
+
+.imageWrapperProject-multipleImages img{
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  object-position:center;
+  display: block;
+  aspect-ratio: 16/9; /* Adjust as needed */
+}
+.visualSeperating{
+    height: 200px
+}
+
+
+.progressBarWrapper{
+  display: flex;
+  justify-content: space-between;
+  margin: var(--main-margin);
+  position: sticky;
+  top: 121px;
+  z-index: 100;
+}
+
+.progressBarWrapper .circle {
+  background-color: #ffffff;
+  
+  border-radius: 25px;
+  color: black;
+  transition: background-color 2s ease, color 2s ease, border-color 2s ease;
+}
+
+.progressBarWrapper .circle.active {
+  background-color: #ff00aa;
+  border-color: #ff00aa;
+  color: white;
+}
+
+
+.progress{
+  content: "";
+  position: absolute;
+  background-color: #ff00aa;
+  top: 50%;
+  height: 2px;
+  transform: translateY(-50%);
+  width: 0;
+  z-index: 1;
+  transition: 1s ease;
+}
+
+
+.circle{
+  padding: 5px 10px;
+  background-color: #ffffff;
+  border: 2px solid lightgray;
+ border-radius: 25px;
+  position: relative;
+  z-index: 2;
+
+  font-family: 'Roboto Mono'; font-size: 12px;
+}
+
+.circle:hover{
+  border:2px solid #ff00aa;
+  transition: 1s ease;
+  color: #ff00aa;
+}
+
+.projectSubtitle{
+  font-size: 20px;
+ 
+  opacity: 100%;
+  
+
+}
+.projectCopy{
+font-size: 15px;
+}
+
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px; 
+  margin:  var(--main-margin);
+  width: calc(100vw - calc(--main-margin/2)); /* Full width minus the margins */
+  grid-auto-rows: minmax(auto, 20vh); /* Row height capped at 1/5th of the viewport height */
+
+  
+}
+
+.grid-item {
+  padding: 10px;
+  /* background-color:white; */
+
+  font-size: 15px;
+  animation: slideUp 1s ease-out forwards;
+  
+}
+
+.gridTextBox{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+}
+.grid-item-bottomAligned{
+align-self: end;
+  
+}
+
+  
+
+.span3x3{
+  grid-column: span 3;
+  grid-row: span 3;
+  padding: 10px;
+}
+
+.span2x1{
+  grid-column: span 2;
+}
+.span2x3{
+  display: flex;
+  flex-direction: column;
+  grid-column: span 2;
+  grid-row: span 3;
+  gap: 20px;
+}
+
+.span2x3-mobileLong{
+  display: flex;
+  flex-direction: column;
+  grid-column: span 2;
+  grid-row: span 3;
+  gap: 20px;
+}
+.span3x1{
+  grid-column: span 5;
+}
+.span5x4{
+  display: flex;
+  flex-direction: column;
+  grid-column: span 5;
+  grid-row: span 4;
+  gap: 20px;
+
+
+}
+
+.imageBox{
+  display: flex;
+  gap: 10px;
+}
+
+.videoPlayer{
+  padding: 100px 0px;
+
+  width: 70%;
+  aspect-ratio: 16/9;
+
+}
+
+
+
+
+  @keyframes slideUp {
+    0% {
+      transform: translateY(20px); /* Start 50px from the bottom */
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0); /* End at its original position */
+      opacity: 1;
+    }
+  }
+
+
+.btnContainer{
+    margin: 20px 50px;
+}
+
+
+  @media (max-width:840px) {
+
+    .progressBarWrapper{
+      top: 60px;
+      }
+      
+      .grid-container{
+        grid-template-columns: repeat(2,1fr);
+        grid-auto-rows: minmax(auto, 25vh); /* Row height capped at 1/5th of the viewport height */
+    
+        
+      }
+    
+      .grid-item-bottomAligned{
+        align-self: self-start;
+            
+        }
+      
+      .span3x3{
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+      .span3x1{
+        grid-column: span 2;
+        grid-row: span  1;
+      }
+
+      .span5x4{
+        grid-column: span 2;
+        grid-row: span 1;
+      }
+  }
+
+  /* Mobile adjustments */
+  @media (max-width:400px) {
+    :root{
+      --main-margin: 20px;
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+
+    }
+    .projectDescriptionHeader{
+        
+        flex-direction: column;
+    }
+ 
+    .imageWrapperProject{
+        margin: 0px;
+    }
+
+
+    .progressBarWrapper{
+    top: 60px;
+    }
+
+    .circle{
+      
+      font-family: 'Roboto Mono'; font-size: 8px;
+      padding: 5px 10px;
+      text-align: center;
+    }
+
+    .span2x1{
+      grid-column: span 2;
+      grid-row: span 2;
+  }
+  .span2x3{
+    grid-column: span 2;
+    grid-row: span 2;
+}
+.span2x3-mobileLong{
+  grid-column: span 2;
+  grid-row: span 3;
+}
+
+.imageBox{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  grid-row: span 3;
+}
+.span5x4{
+grid-column: span 2;
+grid-row: span 1;
+}
+
+.visualSeperating{
+  height: 200px
+}
+.videoPlayer{
+  padding: 50px 0px;
+}
+
+  }
