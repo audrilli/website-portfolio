@@ -101,15 +101,17 @@
 .progressBarWrapper .circle {
   background-color: #ffffff;
   
-  border-radius: 25px;
+  
   color: black;
   transition: background-color 2s ease, color 2s ease, border-color 2s ease;
 }
 
 .progressBarWrapper .circle.active {
-  background-color: #ff00aa;
+  background-color: rgba(255, 0, 170, 50);
   border-color: #ff00aa;
-  color: white;
+  opacity: 70%;
+  color: #ffffff;
+  
 }
 
 
@@ -130,7 +132,7 @@
   padding: 5px 10px;
   background-color: #ffffff;
   border: 2px solid lightgray;
- border-radius: 25px;
+ 
   position: relative;
   z-index: 2;
 
@@ -173,6 +175,8 @@ font-size: 15px;
 
   font-size: 15px;
   animation: slideUp 1s ease-out forwards;
+
+  overflow: hidden;
   
 }
 
@@ -293,7 +297,7 @@ align-self: end;
   }
 
   /* Mobile adjustments */
-  @media (max-width:400px) {
+  @media (max-width:600px) {
     :root{
       --main-margin: 20px;
     }
