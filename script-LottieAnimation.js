@@ -1,6 +1,8 @@
+// // Lottie Animation on hover (works)
+
 // // Load and initialize the Lottie animation
 // const lottieHover = lottie.loadAnimation({
-//     container: document.getElementById('lottie-hover'),
+//     container: document.getElementById('lottie-scroll'),
 //     renderer: 'svg',
 //     loop: false, // Disable loop to manually control the animation
 //     autoplay: false, // Autoplay disabled for manual control
@@ -10,7 +12,7 @@
 //   // Track hover state and animation direction
 //   let isHovering = false;
 //   let currentDirection = 1; // 1 for forward, -1 for backward
-//   const lottieContainer = document.getElementById('lottie-hover');
+//   const lottieContainer = document.getElementById('lottie-scroll');
   
 //   // Play forward on hover
 //   lottieContainer.addEventListener('mouseenter', () => {
@@ -42,29 +44,32 @@
 //   });
 
 
+  
 
-  // Initialize the Lottie animation without autoplay
-const lottieAnimation = lottie.loadAnimation({
-    container: document.getElementById('lottie-scroll'),
+
+
+
+
+
+
+const animation = lottie.loadAnimation({
+    container: document.getElementById('lottie-scroll'), // Specify the container
     renderer: 'svg',
-    loop: false, // Set to false to avoid looping unless desired
-    autoplay: false, // Animation will start manually
-    path: 'public/Lottie/AnimationPreparation3.json' // Replace with your Lottie JSON file path
+    loop: true,   // Set to false because scroll controls playback
+    autoplay:true, // Autoplay set to false; controlled by scroll
+    path: 'public/Lottie/AnimationPreparation3.json' // Replace with your JSON file path
   });
-  
-  // Set up the Intersection Observer
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        lottieAnimation.play(); // Play animation when element is in view
-      } else {
-        lottieAnimation.stop(); // Optionally stop it when out of view
-      }
+
+  // Initialize Lottie interactivity
+
+    LottieInteractivity.create({
+      player: animation, // Use the animation instance
+      mode: "scroll",
+      actions: [
+        {
+          visibility: [0, 1.0], // Visibility range from start to end of scroll
+          type: "seek",
+          frames: [0, 72], // Frame range of the animation
+        },
+      ]
     });
-  }, {
-    threshold: 0.5 // Adjust this value for how much of the element should be visible to trigger
-  });
-  
-  // Start observing the target element
-  observer.observe(document.getElementById('lottie-scroll'));
-  
