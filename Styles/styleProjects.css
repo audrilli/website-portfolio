@@ -160,7 +160,7 @@ font-size: 15px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 1px; 
-  margin:  var(--main-margin);
+  margin:var(--main-margin);
   width: calc(100vw - calc(--main-margin/2)); /* Full width minus the margins */
   grid-auto-rows: minmax(auto, 20vh); /* Row height capped at 1/5th of the viewport height */
 
@@ -300,6 +300,7 @@ align-self: end;
     .grid-container {
       display: grid;
       grid-template-columns: repeat(1, 1fr);
+      margin: 10px;
 
     }
     .projectDescriptionHeader{

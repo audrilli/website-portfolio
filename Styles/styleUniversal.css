@@ -239,7 +239,7 @@ a {
   display: flex;
   flex-direction: column;
 font-family:'Roboto Mono'; font-size: 12px;
-gap: 5px;
+gap: 10px;
 }
 .addInforelative{
   position: relative;
