@@ -169,7 +169,7 @@ font-size: 15px;
 
 .grid-item {
   padding: 10px;
-  background-color:white;
+  /* background-color:white; */
 
   font-size: 15px;
   animation: slideUp 1s ease-out forwards;
@@ -205,8 +205,23 @@ align-self: end;
   grid-row: span 3;
   gap: 20px;
 }
+
+.span2x3-mobileLong{
+  display: flex;
+  flex-direction: column;
+  grid-column: span 2;
+  grid-row: span 3;
+  gap: 20px;
+}
 .span3x1{
   grid-column: span 5;
+}
+.span5x4{
+  display: flex;
+  flex-direction: column;
+  grid-column: span 5;
+  grid-row: span 4;
+  gap: 20px;
 }
 
 .imageBox{
@@ -301,6 +316,10 @@ align-self: end;
   .span2x3{
     grid-column: span 2;
     grid-row: span 2;
+}
+.span2x3-mobileLong{
+  grid-column: span 2;
+  grid-row: span 3;
 }
 
 .imageBox{
