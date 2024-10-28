@@ -1,95 +1,75 @@
-:root{
+:root {
   --main-margin: 50px;
-  }
+}
 
-
-*{
-  margin:0px;
+* {
+  margin: 0px;
   padding: 0px;
-  
 }
-.projectDescriptionHeader{
-    position: relative;
-    display: flex;
-    
-    gap: 50px;
-    font-size: 30px; 
+.projectDescriptionHeader {
+  position: relative;
+  display: flex;
 
-    opacity: 0%;
-    animation: slideUp 1s ease-out forwards;
-  }
-  .projectOverview{
-    
-    display: flex;
-    margin: 0px var(--main-margin);
-    justify-content: center;
-    flex-wrap: wrap-reverse;
-    gap: 50px;
-  }
-  .projectDescription{
-    font-size: 15px;
-    max-width: 600px;
+  gap: 50px;
+  font-size: 30px;
 
-  }
-
-  .imageWrapper{
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    align-items: center;
-    
-  }
-
-
-  .imageWrapperProject{
- 
-    width: 100%;
-    height: 100%;
-   
-   
-    position: relative;
-   
-  }
-  .imageWrapperProject-multipleImages{
- 
-    width: fit-content;
-    height: fit-content;
-   
-   
-    position: relative;
-   
-  }
-
-  
-
-
-  
-.imageWrapperProject img{
-
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-    object-position:center;
-    display: block;
-    aspect-ratio: 16/9; /* Adjust as needed */
-
+  opacity: 0%;
+  animation: slideUp 1s ease-out forwards;
+}
+.projectOverview {
+  display: flex;
+  margin: 0px var(--main-margin);
+  justify-content: center;
+  flex-wrap: wrap-reverse;
+  gap: 50px;
+}
+.projectDescription {
+  font-size: 15px;
+  max-width: 600px;
 }
 
-.imageWrapperProject-multipleImages img{
+.imageWrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+}
 
+.imageWrapperProject {
   width: 100%;
   height: 100%;
-  object-fit: cover; 
-  object-position:center;
+
+  position: relative;
+}
+.imageWrapperProject-multipleImages {
+  width: fit-content;
+  height: fit-content;
+
+  position: relative;
+}
+
+.imageWrapperProject img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   display: block;
   aspect-ratio: 16/9; /* Adjust as needed */
 }
-.visualSeperating{
-    height: 200px
+
+.imageWrapperProject-multipleImages img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  aspect-ratio: 16/9; /* Adjust as needed */
+}
+.visualSeperating {
+  height: 200px;
 }
 
-
-.progressBarWrapper{
+.progressBarWrapper {
   display: flex;
   justify-content: space-between;
   margin: var(--main-margin);
@@ -100,8 +80,7 @@
 
 .progressBarWrapper .circle {
   background-color: #ffffff;
-  
-  
+
   color: black;
   transition: background-color 2s ease, color 2s ease, border-color 2s ease;
 }
@@ -111,11 +90,9 @@
   border-color: #ff00aa;
   opacity: 70%;
   color: #ffffff;
-  
 }
 
-
-.progress{
+.progress {
   content: "";
   position: absolute;
   background-color: #ff00aa;
@@ -127,46 +104,42 @@
   transition: 1s ease;
 }
 
-
-.circle{
+.circle {
   padding: 5px 10px;
   background-color: #ffffff;
   border: 2px solid lightgray;
- 
+
   position: relative;
   z-index: 2;
 
-  font-family: 'Roboto Mono'; font-size: 12px;
+  font-family: "Roboto Mono";
+  font-size: 12px;
 }
 
-.circle:hover{
-  border:2px solid #ff00aa;
+.circle:hover {
+  border: 2px solid #ff00aa;
   transition: 1s ease;
   color: #ff00aa;
 }
 
-.projectSubtitle{
+.projectSubtitle {
   font-size: 20px;
- 
+
   opacity: 100%;
-  
-
 }
-.projectCopy{
-font-size: 15px;
+.projectCopy {
+  font-size: 15px;
 }
-
-
 
 .grid-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 1px; 
-  margin:var(--main-margin);
-  width: calc(100vw - calc(--main-margin/2)); /* Full width minus the margins */
-  grid-auto-rows: minmax(auto, 20vh); /* Row height capped at 1/5th of the viewport height */
+  grid-template-rows: 100px, 1fr;
 
-  
+  gap: 50px;
+  margin: var(--main-margin);
+  width: calc(100vw - calc(--main-margin/2)); /* Full width minus the margins */
+  grid-auto-rows: minmax(auto, 20vh);
 }
 
 .grid-item {
@@ -176,33 +149,28 @@ font-size: 15px;
   font-size: 15px;
   animation: slideUp 1s ease-out forwards;
 
-  overflow: hidden;
-  
+ 
 }
 
-.gridTextBox{
+.gridTextBox {
   display: flex;
   flex-direction: column;
   gap: 20px;
-
 }
-.grid-item-bottomAligned{
-align-self: end;
-  
+.grid-item-bottomAligned {
+  align-self: end;
 }
 
-  
-
-.span3x3{
+.span3x3 {
   grid-column: span 3;
   grid-row: span 3;
   padding: 10px;
 }
 
-.span2x1{
+.span2x1 {
   grid-column: span 2;
 }
-.span2x3{
+.span2x3 {
   display: flex;
   flex-direction: column;
   grid-column: span 2;
@@ -210,153 +178,145 @@ align-self: end;
   gap: 20px;
 }
 
-.span2x3-mobileLong{
+.span2x3-mobileLong {
   display: flex;
   flex-direction: column;
   grid-column: span 2;
   grid-row: span 3;
   gap: 20px;
 }
-.span3x1{
+.span3x1 {
   grid-column: span 5;
 }
-.span5x4{
+.span5x4 {
   display: flex;
   flex-direction: column;
   grid-column: span 5;
   grid-row: span 4;
   gap: 20px;
-
-
 }
 
-.imageBox{
+.imageBox {
   display: flex;
   gap: 10px;
 }
 
-.videoPlayer{
+.videoPlayer {
   padding: 100px 0px;
 
   width: 70%;
   aspect-ratio: 16/9;
-
 }
 
-
-
-
-  @keyframes slideUp {
-    0% {
-      transform: translateY(20px); /* Start 50px from the bottom */
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0); /* End at its original position */
-      opacity: 1;
-    }
+@keyframes slideUp {
+  0% {
+    transform: translateY(20px); /* Start 50px from the bottom */
+    opacity: 0;
   }
-
-
-.btnContainer{
-    margin: 20px 50px;
+  100% {
+    transform: translateY(0); /* End at its original position */
+    opacity: 1;
+  }
 }
 
+.btnContainer {
+  margin: 20px 50px;
+}
 
-  @media (max-width:840px) {
-
-    .progressBarWrapper{
-      top: 60px;
-      }
-      
-      .grid-container{
-        grid-template-columns: repeat(2,1fr);
-        grid-auto-rows: minmax(auto, 25vh); /* Row height capped at 1/5th of the viewport height */
-    
-        
-      }
-    
-      .grid-item-bottomAligned{
-        align-self: self-start;
-            
-        }
-      
-      .span3x3{
-        grid-column: span 2;
-        grid-row: span 2;
-      }
-      .span3x1{
-        grid-column: span 2;
-        grid-row: span  1;
-      }
-
-      .span5x4{
-        grid-column: span 2;
-        grid-row: span 1;
-      }
-  }
-
-  /* Mobile adjustments */
-  @media (max-width:600px) {
-    :root{
-      --main-margin: 20px;
-    }
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      margin: 10px;
-
-    }
-    .projectDescriptionHeader{
-        
-        flex-direction: column;
-    }
- 
-    .imageWrapperProject{
-        margin: 0px;
-    }
-
-
-    .progressBarWrapper{
+@media (max-width: 840px) {
+  .progressBarWrapper {
     top: 60px;
-    }
-
-    .circle{
-      
-      font-family: 'Roboto Mono'; font-size: 8px;
-      padding: 5px 10px;
-      text-align: center;
-    }
-
-    .span2x1{
-      grid-column: span 2;
-      grid-row: span 2;
   }
-  .span2x3{
+
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(
+      auto,
+      25vh
+    ); /* Row height capped at 1/5th of the viewport height */
+  }
+
+  .grid-item-bottomAligned {
+    align-self: self-start;
+  }
+
+  .span3x3 {
     grid-column: span 2;
     grid-row: span 2;
-}
-.span2x3-mobileLong{
-  grid-column: span 2;
-  grid-row: span 3;
-}
-
-.imageBox{
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  grid-row: span 3;
-}
-.span5x4{
-grid-column: span 2;
-grid-row: span 1;
-}
-
-.visualSeperating{
-  height: 200px
-}
-.videoPlayer{
-  padding: 50px 0px;
-}
-
   }
+  .span3x1 {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  .span5x4 {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  :root {
+    --main-margin: 20px;
+  }
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    margin: 10px;
+  }
+  .projectDescriptionHeader {
+    flex-direction: column;
+  }
+
+  .imageWrapperProject {
+    margin: 0px;
+  }
+
+  .progressBarWrapper {
+    top: 60px;
+  }
+
+  .circle {
+    font-family: "Roboto Mono";
+    font-size: 8px;
+    padding: 5px 10px;
+    text-align: center;
+  }
+
+  .span2x1 {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .span2x3 {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  .span2x3-mobileLong {
+    grid-column: span 2;
+    grid-row: span 3;
+  }
+  .span3x3{
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .imageBox {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    grid-row: span 3;
+  }
+  .span5x4 {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  .visualSeperating {
+    height: 200px;
+  }
+  .videoPlayer {
+    padding: 50px 0px;
+  }
+}
