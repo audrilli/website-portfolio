@@ -168,6 +168,7 @@
 
 .span2x1 {
   grid-column: span 2;
+  grid-row:  span 1;
 }
 .span2x3 {
   display: flex;
@@ -289,23 +290,20 @@
     text-align: center;
   }
 
-  .span2x1, .span5x2 {
-    grid-column: span 2;
-    grid-row: span 2;
-  }
-
-  .span2x3 {
-    grid-column: span 2;
-    grid-row: span 2;
-  }
-  .span2x3-mobileLong {
-    grid-column: span 2;
-    grid-row: span 3;
-  }
+  .span5x2,
+  .span2x1,
+  .span2x3,
   .span3x3{
     grid-column: span 2;
     grid-row: span 2;
   }
+ 
+
+  .span2x3-mobileLong {
+    grid-column: span 2;
+    grid-row: span 3;
+  }
+
 
   .imageBox {
     display: flex;
