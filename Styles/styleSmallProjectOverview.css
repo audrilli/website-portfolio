@@ -1,0 +1,117 @@
+/* Container for the grid */
+
+:root {
+    --main-margin: 50px;
+  }
+
+  .contentToShort{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;;
+    height: 80vh;
+  }
+  .fillerDiv{
+    flex: 1;
+  }
+/* Container for the grid */
+.small-projects-grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 30vh); /* Three equal columns with a width of 20vh */
+    gap: var(--main-margin);
+    margin: var(--main-margin);
+   
+    justify-content: center; /* Center the grid if the screen is wider than the grid */
+    animation: slideUp 1s ease-out forwards;
+  }
+  
+  /* Grid items */
+  .small-projects-grid-item {
+
+    position: relative;
+
+    width: 30vh; 
+    height: 30vh; 
+    background-color: #ddd; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+
+    
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: transform 0.3s ease;
+  }
+
+  .small-projects-grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease; /* Smooth zoom effect */
+  }
+
+  .small-projects-description {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    color: #333; /* Initial color */
+    font-family: "Roboto Mono";
+    
+    padding: 5px;
+    text-align: left;
+    font-size: 1rem;
+    transition: color 0.3s ease; /* Smooth color change on hover */
+  }
+
+  /* Hover effects */
+.small-projects-grid-item:hover img {
+    transform: scale(1.1); /* Slight zoom on hover */
+  }
+  
+  .small-projects-grid-item:hover .small-projects-description {
+    color: #ff00aa /* Change text color on hover */
+  }
+  
+  .sticky{
+    position: sticky;
+    top: 70px;
+    z-index: 12;
+  }
+
+  @keyframes slideUp {
+    0% {
+      transform: translateY(20px); /* Start 50px from the bottom */
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0); /* End at its original position */
+      opacity: 1;
+    }
+}
+  
+  /* Responsive behavior */
+  @media (max-width: 768px) {
+    .small-projects-grid-container {
+        display: flex;
+        flex-direction: column;
+      align-items: center;
+      margin: var(--main-margin);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .small-projects-grid-container {
+        display: flex;
+      
+    }
+    .small-projects-grid-item {
+      width: 100%; /* Full width on very small screens */
+      
+    }
+  }
+  

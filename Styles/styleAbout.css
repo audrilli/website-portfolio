@@ -10,7 +10,7 @@
 .headerSection {
     position: relative;
     display: flex;
-    padding: var(--main-margin);
+    margin: var(--main-margin);
     gap: 50px;
     font-size: 30px; 
     text-align: center;
