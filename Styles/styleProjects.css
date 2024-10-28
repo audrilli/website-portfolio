@@ -38,7 +38,6 @@
 .imageWrapperProject {
   width: 100%;
   height: 100%;
-
   position: relative;
 }
 .imageWrapperProject-multipleImages {
@@ -196,6 +195,11 @@
   gap: 20px;
 }
 
+.span5x2{
+  grid-column: span 5;
+  grid-row: span 2;
+}
+
 .imageBox {
   display: flex;
   gap: 10px;
@@ -244,7 +248,7 @@
     grid-column: span 2;
     grid-row: span 2;
   }
-  .span3x1 {
+  .span3x1, .span5x2 {
     grid-column: span 2;
     grid-row: span 1;
   }
@@ -271,6 +275,7 @@
 
   .imageWrapperProject {
     margin: 0px;
+
   }
 
   .progressBarWrapper {
@@ -284,7 +289,7 @@
     text-align: center;
   }
 
-  .span2x1 {
+  .span2x1, .span5x2 {
     grid-column: span 2;
     grid-row: span 2;
   }
