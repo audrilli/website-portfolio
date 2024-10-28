@@ -381,7 +381,7 @@ height: 80vh;
   position: fixed;
   cursor: pointer;
 
-  bottom: 90px;    /* Adjust position as needed */
+  bottom: 65px;    /* Adjust position as needed */
   right: 0px;
   opacity: 0;
   transition: opacity 2s ease;

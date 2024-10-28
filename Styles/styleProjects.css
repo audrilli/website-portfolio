@@ -39,21 +39,19 @@
   width: 100%;
   height: 100%;
   position: relative;
-  gap: 20px;
 }
 .imageWrapperProject-multipleImages {
   width: fit-content;
   height: fit-content;
 
   position: relative;
-  gap: 20px;
 }
 
 .imageWrapperProject img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: left;
+  object-position: center;
   display: block;
   aspect-ratio: 16/9; /* Adjust as needed */
 }
@@ -62,7 +60,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: left;
+  object-position: center;
   display: block;
   aspect-ratio: 16/9; /* Adjust as needed */
 }
@@ -267,13 +265,9 @@
     --main-margin: 20px;
   }
   .grid-container {
-    display: flex;
+    display: grid;
     grid-template-columns: repeat(1, 1fr);
     margin: 10px;
-    gap:50px;
-
-    flex-direction: column;
-    
   }
   .projectDescriptionHeader {
     flex-direction: column;
@@ -281,7 +275,6 @@
 
   .imageWrapperProject {
     margin: 0px;
-    gap: 20px;
 
   }
 
@@ -330,5 +323,6 @@
   }
   .videoPlayer {
     padding: 50px 0px;
+    width: fit-content;
   }
 }
