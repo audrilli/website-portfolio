@@ -451,6 +451,7 @@ gap: 10px;
 .visual{
 
   animation: rotate 10s linear infinite;
+  cursor: pointer;
 
 }
 
