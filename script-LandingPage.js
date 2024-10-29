@@ -55,8 +55,10 @@ transformScale = 1.1;
     });
   });
 
+
+  
+  
   const content = document.querySelector('.content');
-;
 
 
  //Scrollbehaviour ContactButton
