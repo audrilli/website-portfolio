@@ -16,7 +16,7 @@
 body,
 html {
   margin: 0px;
-  padding: 0;
+  padding: 0px;
   width: 100%;
   /* background-color: #ff00aa; */
   font-family: "Jost", sans-serif;
@@ -79,10 +79,6 @@ html {
 
 }
 
-/* canvas {
-  display: block;
-} */
-
 .headerElements {
   text-align: inherit;
 }
@@ -126,7 +122,7 @@ margin: 0px var(--main-margin) ;
   background-color: rgb(244, 244, 244); 
   align-items:center;
 
-  animation: slideUp 1s ease-out forwards;
+  
 }
 
   @keyframes slideUp {
@@ -214,6 +210,8 @@ height: fit-content;
   font-size: 20px;
 
   margin: 50px;
+  
+  animation: slideUp 1s ease-out forwards;
 }
 
 p {
