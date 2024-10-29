@@ -137,7 +137,9 @@ margin: 50px;
   font-size: 60px;
 }
 
-  
+ .contentWrapper{
+  gap: 50px;
+ } 
 
   
 }

@@ -255,19 +255,30 @@ align-items: center;
     align-self: self-start;
   }
 
-  .span3x3 {
-    grid-column: span 2;
+
+  .span5x2,
+  
+  .span2x3,
+  .span3x3,
+  .span5x4
+  .span2x1
+  {
+    grid-column: span 4;
     grid-row: span 2;
   }
-  .span3x1, .span5x2 {
-    grid-column: span 2;
-    grid-row: span 1;
-  }
+
+
 .imageWrapperProject-multipleImages
   .span5x4 {
     grid-column: span 2;
     grid-row: span 1;
   }
+.span2x3-short,
+.span2x3-mobileLong{
+  grid-column: span 4;
+  grid-row: span 1;
+
+}
 }
 
 
