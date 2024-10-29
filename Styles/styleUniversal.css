@@ -16,7 +16,7 @@
 body,
 html {
   margin: 0px;
-  padding: 0;
+  padding: 0px;
   width: 100%;
   /* background-color: #ff00aa; */
   font-family: "Jost", sans-serif;
@@ -79,10 +79,6 @@ html {
 
 }
 
-/* canvas {
-  display: block;
-} */
-
 .headerElements {
   text-align: inherit;
 }
@@ -125,7 +121,22 @@ margin: 0px var(--main-margin) ;
  
   background-color: rgb(244, 244, 244); 
   align-items:center;
+
+  
 }
+
+  @keyframes slideUp {
+    0% {
+      transform: translateY(20px); /* Start 50px from the bottom */
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0); /* End at its original position */
+      opacity: 1;
+    }
+  }
+
+
 
 .containerCredo {
   position: relative;
@@ -199,6 +210,8 @@ height: fit-content;
   font-size: 20px;
 
   margin: 50px;
+  
+  animation: slideUp 1s ease-out forwards;
 }
 
 p {
@@ -233,6 +246,11 @@ a {
   position: relative;
   height: fit-content;
   z-index: 10;
+
+  
+  animation: slideUp 1s ease-out forwards;
+
+
 
 }
 .addInfoRight{
@@ -512,6 +530,12 @@ gap: 10px;
       font-size: 10px;
     }
   
+.containerLanding{
+
+  height:56vh;
+
+}
+    
   }
 
 
