@@ -4,7 +4,7 @@ const animation = lottie.loadAnimation({
     renderer: 'svg',
     loop: true,   // Set to false because scroll controls playback
     autoplay:true, // Autoplay set to false; controlled by scroll
-    path: 'public/Lottie/AnimationPreparation3.json' // Replace with your JSON file path
+    path: 'public/Lottie/AnimationPreparation3.json' 
   });
 
   // Initialize Lottie interactivity
@@ -28,7 +28,7 @@ const animation = lottie.loadAnimation({
       renderer: 'svg',
       loop: true, // Set to true for looping
       autoplay: false, // Start manually when in view
-      path: 'public/Lottie/AnimationPreparationProjectDone 2.json' // Replace with your Lottie JSON file path
+      path: 'public/Lottie/AnimationPreparationProjectDone 2.json'
     });
     
     // Set up the Intersection Observer to trigger when element is in view
