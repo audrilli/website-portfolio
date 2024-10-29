@@ -68,10 +68,9 @@ transformScale = 1.1;
     behavior:'smooth'});
     });
 
+    
     //Back to top Button
-
- 
-
+    
     const backToTopButton = document.getElementById("btnUpTop");
     const backToTopButtonContainer = document.getElementById("containerBtnUpTop")
 
