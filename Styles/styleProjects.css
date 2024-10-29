@@ -104,12 +104,15 @@
 }
 
 .circle {
+  display: flex;
   padding: 5px 10px;
   background-color: #ffffff;
   border: 2px solid lightgray;
 
   position: relative;
   z-index: 2;
+align-items: center;
+  
 
   font-family: "Roboto Mono";
   font-size: 12px;
