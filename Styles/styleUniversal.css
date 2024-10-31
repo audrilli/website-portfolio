@@ -192,12 +192,17 @@ background-position: center;
 
 
 .Links {
+  display:flex;
+  flex-direction: column;
   position: relative;
 height: fit-content;
+
+gap: 20px;
   
 
  max-width: fit-content;
  min-width: 300px;
+
 
  
  
@@ -212,6 +217,8 @@ height: fit-content;
   margin: 50px;
   
   animation: slideUp 1s ease-out forwards;
+
+
 }
 
 p {
@@ -263,6 +270,14 @@ gap: 10px;
   position: relative;
   font-family: 'Roboto Mono';font-size: 12px;
  
+}
+.addInfoCenter{
+  display: flex;
+  flex-direction: column;
+text-align: center;
+font-family:'Roboto Mono'; font-size: 12px;
+
+padding: 10px;
 }
 #white{
   color: #FFF;
