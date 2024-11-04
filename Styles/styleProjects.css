@@ -242,7 +242,8 @@ align-items: center;
   margin: 20px 50px;
 }
 
-@media (max-width: 840px) {
+@media (max-width: 940px) {
+  
   .progressBarWrapper {
     top: 60px;
   }

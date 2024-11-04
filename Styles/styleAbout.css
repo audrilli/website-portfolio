@@ -10,10 +10,9 @@
 .headerSection {
     position: relative;
     display: flex;
-    margin: 0 var(--main-margin);
-    gap: 50px;
+    margin: 0 50px;
     font-size: 30px; 
-    text-align: center;
+    
 
     opacity: 0%;
     animation: slideUp 1s ease-out forwards;
@@ -120,13 +119,18 @@ margin: 50px;
 
 /* Responsive adjustments */
 
-@media (max-width: 840px) {
+@media (max-width: 940px) {
+
+  :root{
+    --main-margin: 20px;
+  }
+  
     
-    .headerSection {
+.headerSection {
  
       font-size: 20px;
-      
-    }
+     margin: 0px 50px;
+}
 
 .copy{
     font-size: 15px;
@@ -142,7 +146,7 @@ margin: 50px;
  } 
 
   
-}
+
 
 
 
@@ -153,11 +157,12 @@ width: 300px;
 height: 300px;
 
   }
+}
 
 
 /* Mobile Adjustments*/
 
-@media (max-width:400px) {
+@media (max-width:600px) {
 
   :root{
     --main-margin: 20px;
@@ -179,6 +184,9 @@ height: 300px;
 width: 100px;
 height: 200px;
 
+  }
+  .headerSection{
+    margin: 0px 20px;
   }
 }
 
