@@ -12,9 +12,11 @@
     <link rel="stylesheet" href="/Styles/styleProjects.css" />
     <link rel="stylesheet" href="/Styles/styleUniversal.css" />
     <link rel="stylesheet" href="/Styles/styleSmallProjectOverview.css">
+    <link rel="stylesheet" href="/Styles/styleCardDemo.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.4/lottie.min.js"></script>
   <script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
  
 </head> 
 
@@ -143,7 +145,7 @@
                 <img src="public/05-smallProjects/HerHack/Screens/MockupLabtop.png" alt="">
             </div>
         </div>
-        <div class="grid-item span2x3">
+        <div class="grid-item span2x2">
             
            <p>
             Beim HerHack 2024, organisiert von Digital Switzerland, war eines der Themen das Design einer Website, die Jugendlichen ermöglicht, die Lehrstellen der UBS auf spielerische Weise zu erkunden und herauszufinden, ob sie zu ihnen passen.
@@ -169,7 +171,55 @@ Die Webseite sollte verschiedene Elemente der Gamification sowie Interaktionspri
 
     <iframe class="figma" footer="false" src="https://embed.figma.com/proto/74brLPFeRuyNvJ8Bti82X4/%23HerHack-UBS-CareerMatchMaking?page-id=32%3A938&node-id=66-2725&node-type=frame&viewport=-2208%2C1381%2C0.51&scaling=scale-down&content-scaling=fixed&starting-point-node-id=62%3A2152&embed-host=share" allowfullscreen ></iframe>
 </div>
-    
+
+<div class="grid-container">
+    <div class="grid-item span2x3" style="background-color: aqua;"></div>
+    <div class="grid-item span3x3 flex3x3" style="background-color: antiquewhite;">
+
+        <div class="tinder">
+            <div class="tinder--status">
+              <i class="fa fa-remove"></i>
+              <i class="fa fa-heart"></i>
+            </div>
+          
+            <div class="tinder--cards">
+              <div class="tinder--card">
+                <img src="https://placeimg.com/600/300/people">
+                <h3>Demo card 1</h3>
+                <p>This is a demo for Tinder like swipe cards</p>
+              </div>
+              <div class="tinder--card">
+                <img src="https://placeimg.com/600/300/animals">
+                <h3>Demo card 2</h3>
+                <p>This is a demo for Tinder like swipe cards</p>
+              </div>
+              <div class="tinder--card">
+                <img src="https://placeimg.com/600/300/nature">
+                <h3>Demo card 3</h3>
+                <p>This is a demo for Tinder like swipe cards</p>
+              </div>
+              <div class="tinder--card">
+                <img src="https://placeimg.com/600/300/tech">
+                <h3>Demo card 4</h3>
+                <p>This is a demo for Tinder like swipe cards</p>
+              </div>
+              <div class="tinder--card">
+                <img src="https://placeimg.com/600/300/arch">
+                <h3>Demo card 5</h3>
+                <p>This is a demo for Tinder like swipe cards</p>
+              </div>
+            </div>
+          
+            <div class="tinder--buttons">
+              <button id="nope"><i class="fa fa-remove"></i></button>
+              <button id="love"><i class="fa fa-heart"></i></button>
+            </div>
+          </div>
+
+    </div>
+
+</div>
+
        
         
        
@@ -226,6 +276,7 @@ Die Webseite sollte verschiedene Elemente der Gamification sowie Interaktionspri
 
 <script type="module" src="script-LottieAnimation.js"></script>
 <script type="module" src="script-LandingPage.js"></script>
+<script type="module" src="Scripts/script-CardAnimation.js"></script>
 
 
 

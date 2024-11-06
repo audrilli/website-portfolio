@@ -104,6 +104,10 @@
       opacity: 1;
     }
 }
+
+.containerDemo{
+  height: 100vh;
+}
   
   /* Responsive behavior */
   @media (max-width: 940px) {
