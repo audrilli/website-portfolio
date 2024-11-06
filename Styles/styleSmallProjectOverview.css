@@ -86,6 +86,14 @@
     animation: slideUp 1s ease-out forwards;
   }
 
+  .figma{
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    width: 80%;
+    height: 800px;
+
+    margin:  var(--main-margin);
+  }
+
   @keyframes slideUp {
     0% {
       transform: translateY(20px); /* Start 50px from the bottom */
@@ -107,6 +115,10 @@
     }
     .copy{
       text-align: left;
+    }
+
+    .figma{
+      height: 400px;
     }
   }
   
