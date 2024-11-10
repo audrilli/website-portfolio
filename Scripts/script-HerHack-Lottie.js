@@ -4,5 +4,5 @@ const animation = lottie.loadAnimation({
     renderer: 'svg', // Render as SVG
     loop: true,      // Set to true if you want the animation to loop
     autoplay: true,  // Automatically start the animation
-    path: '../public/05-smallProjects/HerHack/Lottie/Compass_prepared.json' // URL to your animation JSON file
+    path: '../public/05-smallProjects/HerHack/Lottie/CompassBuild1.json' // URL to your animation JSON file
   });
