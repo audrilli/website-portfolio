@@ -142,7 +142,8 @@ align-items: center;
   gap: 50px;
   margin: var(--main-margin);
   width: calc(100vw - calc(--main-margin/2)); /* Full width minus the margins */
-  grid-auto-rows: minmax(auto, 15vh);
+  grid-auto-rows: minmax(min-content, max-content)
+
 }
 
 .grid-item {
@@ -261,10 +262,7 @@ flex-direction: column;
 
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: minmax(
-      auto,
-      19.5vh
-    ); /* Row height capped at 1/5th of the viewport height */
+    grid-auto-rows: minmax(min-content, max-content)
   }
 
   .grid-item-bottomAligned {
