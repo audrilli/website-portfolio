@@ -81,6 +81,19 @@
     z-index: 12;
   }
 
+  .copy{
+    margin: var(--main-margin);
+    animation: slideUp 1s ease-out forwards;
+  }
+
+  .figma{
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    width: 80%;
+    height: 800px;
+
+    margin:  var(--main-margin);
+  }
+
   @keyframes slideUp {
     0% {
       transform: translateY(20px); /* Start 50px from the bottom */
@@ -91,18 +104,32 @@
       opacity: 1;
     }
 }
+
+.containerDemo{
+  height: 100vh;
+}
   
   /* Responsive behavior */
-  @media (max-width: 840px) {
+  @media (max-width: 940px) {
     .small-projects-grid-container {
         display: flex;
         flex-direction: column;
       align-items: center;
       margin: var(--main-margin);
     }
+    .copy{
+      text-align: left;
+    }
+
+    .figma{
+      height: 400px;
+    }
   }
   
-  @media (max-width: 480px) {
+  @media (max-width: 600px) {
+    :root {
+      --main-margin: 20px;
+    }
     .small-projects-grid-container {
         display: flex;
       
