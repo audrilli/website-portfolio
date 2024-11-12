@@ -6,7 +6,7 @@ const lottieHover = lottie.loadAnimation({
     renderer: 'svg',
     loop: false, // Disable loop to manually control the animation
     autoplay: false, // Autoplay disabled for manual control
-    path: 'public/Lottie/AnimationPreparation-allLayers.json' 
+    path: '/media/Lottie/AnimationPreparation-allLayers.json' 
   });
   
   // Track hover state and animation direction
