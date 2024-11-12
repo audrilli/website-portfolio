@@ -6,7 +6,7 @@
       renderer: 'svg',
       loop: true, // Set to true for looping
       autoplay: false, // Start manually when in view
-      path: 'AnimationPreparationProjectDone-smallProjects.json'
+      path: '/media/Lottie/AnimationPreparationProjectDone 2.json'
     });
     
     // Set up the Intersection Observer to trigger when element is in view
