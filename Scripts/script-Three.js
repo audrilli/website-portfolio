@@ -48,7 +48,8 @@ container.appendChild(renderer.domElement);
 window.addEventListener('resize', () => {
     const newWidth = window.innerWidth;
     const newHeight = window.innerHeight;
+    renderer.setSize(newWidth, newHeight);
     camera.aspect = newWidth / newHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize(newWidth, newHeight);
+    renderer.render(scene, camera);
 });
