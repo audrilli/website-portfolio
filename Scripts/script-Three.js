@@ -33,7 +33,7 @@ loaderGLTF.load('media/AssetsStartSeite/VisionPro1.gltf', function (gltf) {
         if (child.isMesh) {
             child.material = new THREE.MeshStandardMaterial({
                 color: 0xffffff,
-                metalness: 0.01,
+                metalness: 0.01, //keep down
                 roughness: 0.5,
             });
         }
