@@ -1,40 +1,54 @@
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-const width = window.innerWidth, 
-height = window.innerHeight;
+let model;
+const width = window.innerWidth;
+const height = window.innerHeight;
 const container = document.getElementById("landing");
 
-// init
-
-const camera = new THREE.PerspectiveCamera(
-    75,
-    window.innerWidth / window.innerHeight,
-    0.5,
-    1000
-  );
-
-camera.position.z = 1;
+const camera = new THREE.PerspectiveCamera(75, width / height, 0.5, 1000);
+camera.position.set(0, 0, 1);
 
 const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
+scene.background = null;
 
-const geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
-const material = new THREE.MeshNormalMaterial();
+const ambientLight = new THREE.AmbientLight(0xffffff, 2);
+scene.add(ambientLight);
 
-const mesh = new THREE.Mesh( geometry, material );
-scene.add( mesh );
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+directionalLight.position.set(10, 5, 5);
+scene.add(directionalLight);
 
-const renderer = new THREE.WebGLRenderer( { antialias: true } );
-renderer.setSize( width, height );
-renderer.setAnimationLoop( animate );
+const loaderGLTF = new GLTFLoader();
+const modelScale = 10;
+
+loaderGLTF.load('media/Flower.gltf', function (gltf) {
+    model = gltf.scene;
+    model.scale.set(modelScale, modelScale, modelScale);
+
+    model.traverse((child) => {
+        if (child.isMesh) {
+            child.material = new THREE.MeshStandardMaterial({
+                color: 0xffffff,
+                metalness: 0.01,
+                roughness: 0.5,
+            });
+        }
+    });
+
+    scene.add(model);
+    renderer.render(scene, camera);
+});
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(width, height);
 container.appendChild(renderer.domElement);
 
-// animation
-
-function animate( time ) {
-
-    mesh.rotation.x = time / 2000;
-    mesh.rotation.y = time / 1000;
-
-    renderer.render( scene, camera );
-
-}
+window.addEventListener('resize', () => {
+    const newWidth = window.innerWidth;
+    const newHeight = window.innerHeight;
+    camera.aspect = newWidth / newHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(newWidth, newHeight);
+});
