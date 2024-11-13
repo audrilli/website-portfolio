@@ -13,10 +13,12 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.4/lottie.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
-
+    
+  
    
     
 </head>
+
 
 <body>
     <div class="headerContainer">
@@ -226,7 +228,16 @@
     <script type="module" src="script-Three_visualAbout.js"></script>
 <script type="module" src="script-Three_visualFront.js"></script> -->
 
+<script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@<version>/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@<version>/examples/jsm/"
+      }
+    }
+  </script>
 
+<script type="module" src="Scripts/script-Three.js"></script>
 <script type="module" src="Scripts/script-ContactPage.js"></script>
 <script type="module" src="Scripts/script-LandingPage.js"></script>
 <script type="module" src="Scripts/script-LottieAnimation-Hover.js"></script>
