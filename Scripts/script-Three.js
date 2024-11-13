@@ -24,7 +24,7 @@ scene.add(light);
 const loaderGLTF = new GLTFLoader();
 const modelScale = 1.5;
 
-loaderGLTF.load('media/VisionPro1.gltf', function (gltf) {
+loaderGLTF.load('media/AssetsStartSeite/VisionPro1.gltf', function (gltf) {
     model = gltf.scene;
     model.scale.set(modelScale, modelScale, modelScale);
     model.position.set(0,0.2,0);
