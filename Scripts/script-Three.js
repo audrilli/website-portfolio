@@ -17,9 +17,17 @@ const ambientLight = new THREE.AmbientLight(0xffffff, 2);
 scene.add(ambientLight);
 
 // Lights
-const light = new THREE.DirectionalLight(0xffffff, 1);
-light.position.set(0, 5, 5);
+const lightModel = new THREE.DirectionalLight(0xffffff, 1);
+lightModel.position.set(0, 5, 5);
+scene.add(lightModel);
+
+
+//light Interactive
+const light = new THREE.DirectionalLight(0xff00aa, 0.5);
+light.position.set(0,5,5);
 scene.add(light);
+
+
 
 const loaderGLTF = new GLTFLoader();
 const modelScale = 1.5;
