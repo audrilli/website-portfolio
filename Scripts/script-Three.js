@@ -23,8 +23,8 @@ scene.add(lightModel);
 
 
 //light Interactive
-const light = new THREE.DirectionalLight(0xff00aa, 0.5);
-light.position.set(0,5,5);
+const light = new THREE.PointLight(0xffffff, 10);
+light.position.set(0,0,0);
 scene.add(light);
 
 
