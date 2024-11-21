@@ -39,6 +39,7 @@ max-height: 100%;
 
 .videoContainer{
     position: relative;
+    display: flex;
     height: 100vh; /* Full screen height */
     display: flex;
     justify-content: center;
@@ -55,7 +56,7 @@ max-height: 100%;
 .itemImage img{
     width: 100%;
     height: 100%;
- object-fit: cover
+    object-fit: cover
 
 }
 .itemText{
@@ -63,17 +64,18 @@ max-height: 100%;
     flex-direction: column;
     background-color: aliceblue;  
     align-self: end;
-    padding: 20px 20px 20px 100px ;
+    
     gap: 20px;
 }
 
 
 
 .text h2 {
-    font-size: 12px;
+    font-size: 15px;
+    
 }
 .text p{
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .Buttons{
@@ -86,7 +88,54 @@ max-height: 100%;
     z-index: 2;
 }
 
+.overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: right;
+    color: white;
+}
 
+.overlay img {
+    max-width: 90%;
+    max-height: 80%;
+    margin-bottom: 20px;
+}
+
+.overlay p {
+    font-size: 1.2rem;
+    margin: 0;
+    padding: 0 20px;
+    
+    color: black;
+}
+
+.close-btn {
+    position: absolute;
+    top: calc(100vh/5);
+    left: calc(100vw* 0.15);
+   
+    font-size: 2rem;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.close-btn:hover {
+    color: #ff00aa;
+}
+
+/* Responsive Adjustments */
 
 
 @media (max-width: 1300px) {
@@ -107,10 +156,23 @@ max-height: 100%;
     
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
+    *{
+        background-color: aliceblue;
+    }
+
+    .gridcontainer{
+        margin: 20px;
+    }
     .gridcontainerOverview {
         display: flex;
         flex-direction: column;
-        gap: 5px; 
+        gap: 5px;
+        margin: 20px;
     }
+ .itemImage{
+    border: #ff00aa 10px;
+}
+   
+  
 }
