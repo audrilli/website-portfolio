@@ -1,30 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
     const video = document.getElementById("scroll-video");
-    const videoContainer = document.querySelector(".videoContainer");
 
-    // Ensure video is loaded and ready
     video.addEventListener("loadedmetadata", () => {
         const videoDuration = video.duration;
 
         window.addEventListener("scroll", () => {
-            const containerTop = videoContainer.getBoundingClientRect().top;
-            const containerHeight = videoContainer.offsetHeight;
-            const windowHeight = window.innerHeight;
+            // Get the current scroll position
+            const scrollTop = window.scrollY;
 
-            // Calculate how much of the container is in view
-            const startScroll = windowHeight;
-            const endScroll = containerHeight + windowHeight;
+            // Playback starts after the user scrolls 250px
+            const startScrollOffset = 300;
+            const scrollRange = 1000; // Range of scroll in pixels to complete playback
 
-            const scrollProgress = Math.min(
-                Math.max(
-                    (startScroll - containerTop) / (endScroll - startScroll),
-                    0
-                ),
-                1
-            );
+            if (scrollTop >= startScrollOffset) {
+                // Calculate the scroll progress relative to the range
+                const adjustedScroll = scrollTop - startScrollOffset;
+                const scrollProgress = Math.min(adjustedScroll / scrollRange, 1);
 
-            // Map scroll progress to video playback
-            video.currentTime = scrollProgress * videoDuration;
+                // Map scroll progress to the video's playback
+                video.currentTime = scrollProgress * videoDuration;
+            }
         });
     });
 });
