@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const scrollTop = window.scrollY;
 
             // Playback starts after the user scrolls 250px
-            const startScrollOffset = 500;
+            const startScrollOffset = window.innerHeight/2;
             const scrollRange = 1000; // Range of scroll in pixels to complete playback
 
             if (scrollTop >= startScrollOffset) {

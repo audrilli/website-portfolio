@@ -157,12 +157,11 @@ max-height: 100%;
 }
 
 @media (max-width: 500px) {
-    *{
-        background-color: aliceblue;
-    }
+    
 
     .gridcontainer{
         margin: 20px;
+        height: fit-content;
     }
     .gridcontainerOverview {
         display: flex;
@@ -172,7 +171,10 @@ max-height: 100%;
     }
  .itemImage{
     border: #ff00aa 10px;
+    height: 100vh;
 }
+
+
    
   
 }
