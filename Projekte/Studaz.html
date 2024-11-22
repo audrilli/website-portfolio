@@ -110,7 +110,7 @@
                 <p>Audrey Lohmann</p>
             </div>
             <div class="text">
-                <p>My contribution: Interface Design, Wireframing, UX Research, Prototyping</p>  
+                <p>Meine Mitarbeit: Interface Design, Wireframing, UX Research, Prototyping</p>  
             </div>
             
             <div class="text">
@@ -125,16 +125,16 @@
 
 
     <div class="videoContainer">
-        <video id="scroll-video" src="/media/06-STUDAZ/video/MoviePrototype.mp4" muted playsinline autoplay></video>
+        <video id="scroll-video" src="/media/06-STUDAZ/video/MoviePrototype.mp4" muted playsinline autoplay="false" ></video>
     </div>  
 
     </div>
 
     <div class="gridcontainerOverview">
-        <div class="gridcontainerOverviewItem" data-description="This is the image description">
+        <div class="gridcontainerOverviewItem" data-description="Verschiedene widget Grössen haben verschiedene Informations-Dichten">
             <img src="/media/06-STUDAZ/image/1920x1080_WidgetOverview.png" alt="">
         </div>
-        <div class="gridcontainerOverviewItem" data-description="This is the image description">
+        <div class="gridcontainerOverviewItem" data-description="Durch das Ändern von Widgets und dem Hintergrundbildes kann das Dashboard personalisiert werden. ">
             <img src="/media/06-STUDAZ/image/PhoneOverwiewRotato1.png" alt="">
         </div>
         <div class="gridcontainerOverviewItem" data-description="This is the image description">
@@ -156,12 +156,16 @@
 
     </div>
 
-         <!-- Fullscreen Overlay -->
+<!-- Fullscreen Overlay -->
          <div class="overlay" id="overlay">
             <button class="close-btn" id="close-btn">×</button>
             <img id="fullscreen-image" src="" alt="Fullscreen Image">
+            <div class="text">
             <p id="image-description"></p>
+            </div>
         </div>
+<!-- Fullscreen Overlay end -->
+
     
 
 
@@ -170,5 +174,6 @@
 </body>
 <script type="module" src="/Scripts/script-LandingPage.js">
 </script>
-<script type="module" src="/Scripts/script-videoControls.js"></script>
+<script type="module" src="/Scripts/script-videoControls.js">
+</script>
 </html>

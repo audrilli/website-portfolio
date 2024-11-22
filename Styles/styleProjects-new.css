@@ -17,7 +17,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    height: minmax(0, calc(100vh - 200px)); 
+    height: calc(100vh - 200xp); 
     margin:  0px 50px;
     gap: 10px;
 }
@@ -70,12 +70,13 @@ max-height: 100%;
 
 
 
+
 .text h2 {
-    font-size: 15px;
+    font-size: 1rem;
     
 }
 .text p{
-    font-size: 13px;
+    font-size: 0.8rem;
 }
 
 .Buttons{
@@ -111,7 +112,7 @@ max-height: 100%;
 }
 
 .overlay p {
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     margin: 0;
     padding: 0 20px;
     
