@@ -9,16 +9,17 @@
     position: relative;
     display: grid;
     grid-template-columns: 1fr 2fr;
-    height:calc(100vh - 300px);
-    margin: 0px 50px;
+    
+    margin: 50px;
+
 }
 
 .gridcontainerOverview{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    height: calc(100vh - 200xp); 
-    margin:  0px 50px;
+
+    margin: 50px;
     gap: 10px;
 }
 .gridcontainerOverviewItem{
@@ -40,23 +41,26 @@ max-height: 100%;
 .videoContainer{
     position: relative;
     display: flex;
-    height: 100vh; /* Full screen height */
+    height: 100vh; 
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-   
+
 }
 
 .itemImage{
-    position: relative;
-    overflow: hidden;
+    aspect-ratio: 16 / 9; 
+
+
+    
+   
 }
 
 .itemImage img{
     width: 100%;
-    height: 100%;
-    object-fit: cover
+    height: 100%
+ 
 
 }
 .itemText{
@@ -64,6 +68,7 @@ max-height: 100%;
     flex-direction: column;
     background-color: aliceblue;  
     align-self: end;
+    padding: 20px;
     
     gap: 20px;
 }
@@ -143,6 +148,7 @@ max-height: 100%;
     .gridcontainer {
         display: flex;
         flex-direction: column; 
+        
     }
 
     .itemImage{
@@ -150,6 +156,7 @@ max-height: 100%;
     }
     .itemText{
         flex-grow: 1;
+        padding: 10px;
     }
 
 
@@ -171,8 +178,7 @@ max-height: 100%;
         margin: 20px;
     }
  .itemImage{
-    border: #ff00aa 10px;
-    height: 100vh;
+   object-fit: cover;
 }
 
 
