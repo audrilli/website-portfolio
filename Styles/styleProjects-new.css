@@ -86,9 +86,6 @@ html{
 }
 
 .gridcontainerOverviewItem{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: rgb(208, 208, 208);
     cursor: pointer;
 }
@@ -193,33 +190,24 @@ html{
 
 /* Responsive Adjustments */
 
-
-@media (max-width: 1300px) {
-    .gridcontainer {
-        display: flex;
-        flex-direction: column; 
-        
-    }
-
-    .itemImage{
-        flex-grow: 5;
+/* Tablet: stack the intro, two image columns, show the whole video */
+@media (max-width: 940px) {
+    .gridcontainer{
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
     .itemText{
         align-self: stretch;
         padding: 10px;
     }
 
-
-
-    
-}
-
-@media (max-width: 500px) {
-    
-
-    .gridcontainer{
-        margin: 20px;
-        height: fit-content;
+    .videoContainer{
+        height: auto;
+        margin: var(--main-margin) 0;
+    }
+    .videoContainer video{
+        height: auto;
+        object-fit: contain;
     }
 
     .gridcontainerOverview{
