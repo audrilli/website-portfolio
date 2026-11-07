@@ -16,7 +16,6 @@ html{
 /* Keep section tops clear of the sticky header + nav when jumped to */
 #overview,
 #description,
-#wireframe,
 #product{
     scroll-margin-top: 180px;
 }
