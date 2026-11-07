@@ -1,8 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Menbere:wght@500;700&display=swap');
-
 :root{
     --nav-accent: #e943c2;
-    --nav-text-secondary: #5f5f5f;
 }
 
 *{
@@ -110,55 +107,37 @@ max-height: 100%;
     font-size: 0.8rem;
 }
 
-/* Project navigation (Figma: Container-Buttons / Button-Nav-basic) */
+/* Project navigation: buttons reuse the header's .buttonLinks / .buttonText styles */
 .ContainterNavigationButtons{
     position: sticky;
     top: 140px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 15px;
+    gap: 50px; /* same spacing as the header items */
     width: fit-content;
     margin: 0 50px;
     z-index: 13; /* above the sticky header (12) */
 }
 
-/* Secondary variant = inactive */
 .buttonNav{
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100px;
-    padding: 3px;
-    border: 1px solid var(--nav-accent);
-    /* Figma uses no fill; white keeps the label readable while the nav sticks over images */
+    /* White keeps the label readable while the nav sticks over images */
     background-color: var(--background-color, #fff);
-    color: var(--nav-text-secondary);
-    font-family: "Menbere", sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: normal;
     white-space: nowrap;
-    overflow: hidden;
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Header buttons are <button>s; these are links, so stop the global a:hover pink text */
 .buttonNav:hover{
-    background-color: #fdecf9; /* accent at ~10% over white */
-    color: var(--nav-text-secondary);
+    color: black;
 }
 
-/* Default variant = active section */
-.buttonNav.active,
-.buttonNav.active:hover{
-    background-color: var(--nav-accent);
-    color: #fff;
-    font-weight: 700;
+/* Active section = the header's hover fill, held in place */
+.buttonNav.active{
+    box-shadow: inset 400px 0 0 0 #ff00aa80;
 }
 
 .buttonNav:focus-visible{
-    outline: 2px solid var(--nav-accent);
+    outline: 2px solid #ff00aa;
     outline-offset: 2px;
 }
 
@@ -251,10 +230,7 @@ max-height: 100%;
 .ContainterNavigationButtons{
     top: 80px;
     margin: 0 20px;
-    gap: 8px;
-}
-.buttonNav{
-    width: 80px;
+    gap: 20px;
 }
 
 }
