@@ -84,8 +84,10 @@ max-height: 100%;
     font-size: 0.8rem;
 }
 
-.Buttons{
+.ContainterNavigationButtons{
     position: sticky;
+    display: flex;
+    flex-direction: column;
     top: 200px;
     height: calc(100% - 200px);
     background-color: azure;
@@ -158,6 +160,9 @@ max-height: 100%;
         flex-grow: 1;
         padding: 10px;
     }
+    .ContainterNavigationButtons{
+        flex-direction: row;
+    }
 
 
 
@@ -180,8 +185,8 @@ max-height: 100%;
  .itemImage{
    object-fit: cover;
 }
-
-
-   
-  
+.ContainterNavigationButtons{
+    flex-direction: row;
+}
+ 
 }
