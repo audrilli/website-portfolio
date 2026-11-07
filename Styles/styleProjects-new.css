@@ -33,6 +33,13 @@ html{
 
 }
 
+/* Placeholder until the description content exists */
+.descriptionPlaceholder{
+    height: 100vh;
+    margin: 50px;
+    background-color: var(--nav-accent);
+}
+
 .gridcontainerOverview{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
