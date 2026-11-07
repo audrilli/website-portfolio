@@ -20,90 +20,80 @@ html{
     scroll-margin-top: 180px;
 }
 
+/* Layout
+   Margins use --main-margin from styleUniversal.css (50px, 20px on phones)
+   so every section lines up with the header. Breakpoints (940px, 600px)
+   match the ones in styleUniversal.css. */
+
+/* Intro: text and image side by side, stacked on small screens */
 .gridcontainer{
-    position: relative;
     display: grid;
     grid-template-columns: 1fr 2fr;
-    
-    margin: 50px;
+    margin: var(--main-margin);
+}
 
+.itemText{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: aliceblue;
+    align-self: end; /* sits at the bottom of the image in the two-column layout */
+}
+
+.itemImage img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.text h2{
+    font-size: 1rem;
+}
+.text p{
+    font-size: 0.8rem;
+}
+
+/* Prototype video */
+.videoContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.videoContainer video{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* fills the screen on desktop, trims the edges */
 }
 
 /* Placeholder until the description content exists */
 .descriptionPlaceholder{
     height: 100vh;
-    margin: 50px;
+    margin: var(--main-margin);
     background-color: var(--nav-accent);
 }
 
+/* Product images */
 .gridcontainerOverview{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-
-    margin: 50px;
     gap: 10px;
+    margin: var(--main-margin);
 }
+
 .gridcontainerOverviewItem{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: rgb(208, 208, 208);
-    aspect-ratio: 16 / 9;
-   
+    cursor: pointer;
 }
 
 .gridcontainerOverviewItem img{
-   
-max-width: 100%;
-max-height: 100%;
-
-}
-
-.videoContainer{
-    position: relative;
-    display: flex;
-    height: 100vh; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-
-}
-
-.itemImage{
-    aspect-ratio: 16 / 9; 
-
-
-    
-   
-}
-
-.itemImage img{
+    display: block;
     width: 100%;
-    height: 100%
- 
-
-}
-.itemText{
-    display: flex;
-    flex-direction: column;
-    background-color: aliceblue;  
-    align-self: end;
-    padding: 20px;
-    
-    gap: 20px;
-}
-
-
-
-
-.text h2 {
-    font-size: 1rem;
-    
-}
-.text p{
-    font-size: 0.8rem;
+    height: auto;
 }
 
 /* Project navigation: buttons reuse the header's .buttonLinks / .buttonText styles */
@@ -115,7 +105,7 @@ max-height: 100%;
     align-items: center;
     gap: 50px; /* same spacing as the header items */
     width: fit-content;
-    margin: 0 50px;
+    margin: 0 var(--main-margin);
     z-index: 13; /* above the sticky header (12) */
 }
 
@@ -189,47 +179,39 @@ max-height: 100%;
 
 /* Responsive Adjustments */
 
-
-@media (max-width: 1300px) {
-    .gridcontainer {
-        display: flex;
-        flex-direction: column; 
-        
-    }
-
-    .itemImage{
-        flex-grow: 5;
+/* Tablet: stack the intro, two image columns, show the whole video */
+@media (max-width: 940px) {
+    .gridcontainer{
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
     .itemText{
-        flex-grow: 1;
+        align-self: stretch;
         padding: 10px;
     }
 
+    .videoContainer{
+        height: auto;
+        margin: var(--main-margin) 0;
+    }
+    .videoContainer video{
+        height: auto;
+        object-fit: contain;
+    }
 
-
-    
+    .gridcontainerOverview{
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-@media (max-width: 500px) {
-    
-
-    .gridcontainer{
-        margin: 20px;
-        height: fit-content;
-    }
-    .gridcontainerOverview {
-        display: flex;
-        flex-direction: column;
+/* Phone: one image column */
+@media (max-width: 600px) {
+    .gridcontainerOverview{
+        grid-template-columns: 1fr;
         gap: 5px;
-        margin: 20px;
     }
- .itemImage{
-   object-fit: cover;
-}
-.ContainterNavigationButtons{
-    top: 80px;
-    margin: 0 20px;
-    gap: 20px;
-}
-
+    .ContainterNavigationButtons{
+        top: 80px;
+        gap: 20px;
+    }
 }
