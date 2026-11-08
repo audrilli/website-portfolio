@@ -1,0 +1,8 @@
+# Dependencies (reinstalled with `npm install`)
+node_modules/
+
+# Vite build output (built by the deploy workflow)
+dist/
+
+# macOS Finder files
+.DS_Store
