@@ -95,10 +95,12 @@
     </div>
     <!-- Header finished -->
 
-    <div class="Buttons">
-        <p>Buttons</p>
-    </div>
-    <div class="gridcontainer"> 
+    <nav class="ContainterNavigationButtons" aria-label="Projekt Navigation">
+        <a class="buttonLinks buttonNav" href="#overview"><span class="buttonText">Overview</span></a>
+        <a class="buttonLinks buttonNav" href="#description"><span class="buttonText">Description</span></a>
+        <a class="buttonLinks buttonNav" href="#product"><span class="buttonText">Product Images</span></a>
+    </nav>
+    <div class="gridcontainer" id="overview">
         <div class="itemText">
             <div class="text">
                 <p>2024</p>
@@ -106,7 +108,7 @@
             </div>
             <div class="text">
                 <p>Lukman Ascic</p>
-                <p>Nanthatchaporn janthasom</p>
+                <p>Nanthatchaporn Janthasom</p>
                 <p>Audrey Lohmann</p>
             </div>
             <div class="text">
@@ -130,7 +132,25 @@
 
     </div>
 
-    <div class="gridcontainerOverview">
+    <!-- Description placeholder -->
+    <div class="descriptionPlaceholder" id="description">
+        Placeholder: project description goes here. Context, problem, research, process and outcome of STUDAZ.
+    </div>
+
+<!-- Fullscreen Overlay -->
+         <div class="overlay" id="overlay">
+            <button class="close-btn" id="close-btn">×</button>
+            <img id="fullscreen-image" src="" alt="Fullscreen Image">
+            <div class="text">
+            <p id="image-description"></p>
+            </div>
+        </div>
+<!-- Fullscreen Overlay end -->
+
+
+
+
+    <div class="gridcontainerOverview" id="product">
         <div class="gridcontainerOverviewItem" data-description="Verschiedene widget Grössen haben verschiedene Informations-Dichten">
             <img src="/media/06-STUDAZ/image/1920x1080_WidgetOverview.png" alt="">
         </div>
@@ -156,37 +176,21 @@
 
     </div>
 
-<!-- Fullscreen Overlay -->
-         <div class="overlay" id="overlay">
-            <button class="close-btn" id="close-btn">×</button>
-            <img id="fullscreen-image" src="" alt="Fullscreen Image">
-            <div class="text">
-            <p id="image-description"></p>
-            </div>
-        </div>
-<!-- Fullscreen Overlay end -->
 
-<div class="gridcontainer">
-    <div class="itemText">
-        <div class="text">
-            <h2>Wireframes</h2>
-            <p>Genaue Wireframes erlaubten es uns das Dashbaord an User zu testen und die Schwachstellen zu finden.</p>
-        </div>
+      <!-- Up to top Button -->
+      <div class="containerBtnUpTop" id="containerBtnUpTop">
+        <button class="buttonLinks" id="btnUpTop">
+            <p class="buttonText">Back to top</p>
+            <img class="btnIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAlElEQVR4nO2SawrEIAwG5xRt6RW3x136OE0WIYJbWpOq/ecHQUGYiSHwLIPWK5mAVSvcm2YEvoBoHcD8FlxaSiZgU2A80/tWM6608127jYIheSv6yRWcRECN5A5+FhRJcvArwSOJBb8TuCQeeE5gShbn2klGcF7rwPzLx7HTYgiiJLCKIg5BVaQLrEgfkRXpI6L1iH6AQmEr1dP7BwAAAABJRU5ErkJggg==">
+        </button> 
     </div>
-
-    <div class="itemImage">
-        <img src="/media/06-STUDAZ/image/ShowcaseWireframe.png" alt="Overview Wireframes" style="object-fit: cover;">
-    </div>
-</div>
-
-    
-
-
-
+        <!-- Up to top Button END -->
 
 </body>
 <script type="module" src="/Scripts/script-LandingPage.js">
 </script>
 <script type="module" src="/Scripts/script-videoControls.js">
+</script>
+<script type="module" src="/Scripts/script-ProjectNav.js">
 </script>
 </html>
