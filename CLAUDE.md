@@ -13,6 +13,7 @@ Audrey reviews every change in VS Code before it goes anywhere else.
 5. **No pull requests unless asked.**
 6. **Respect Audrey's edits.** If she changed something you wrote, keep her version. Don't revert it or "fix" it back. Ask if it conflicts with the task.
 7. **Report back briefly.** List the files changed, any decisions she might want to change, and anything you saw but left alone.
+8. **Typos: fix freely, but never touch names.** You may fix spelling mistakes in ordinary words (German or English) without asking, and list them in your report. Never change names of any kind: project names, people's names, company or school names, brand names. Their spelling and capitalisation stay exactly as written (e.g. `STUDAZ`, `Bepanda`, `ZHdK`).
 
 ## Project notes
 
