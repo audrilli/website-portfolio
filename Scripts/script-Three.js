@@ -36,11 +36,15 @@ const chromeMaterial = new THREE.MeshStandardMaterial({
 const MODEL_SIZE = 1.6;
 const pivot = new THREE.Group();
 scene.add(pivot);
+const meshes = [];
 
 new GLTFLoader().load(MODEL_URL, (gltf) => {
     const model = gltf.scene;
     model.traverse((child) => {
-        if (child.isMesh) child.material = chromeMaterial;
+        if (child.isMesh) {
+            child.material = chromeMaterial;
+            meshes.push(child);
+        }
     });
 
     const box = new THREE.Box3().setFromObject(model);
@@ -66,13 +70,49 @@ function resize() {
 new ResizeObserver(resize).observe(container);
 resize();
 
-// Rotation
+// Hover: test the pointer against the model's actual shape
+const raycaster = new THREE.Raycaster();
+const pointer = new THREE.Vector2();
+let pointerInside = false;
+let hovered = false;
+
+renderer.domElement.addEventListener('pointermove', (event) => {
+    const rect = renderer.domElement.getBoundingClientRect();
+    pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+    pointerInside = true;
+});
+renderer.domElement.addEventListener('pointerleave', () => {
+    pointerInside = false;
+});
+
+// Tested every frame, because the model keeps rotating under a still cursor.
+function updateHover() {
+    hovered = false;
+    if (pointerInside && meshes.length) {
+        raycaster.setFromCamera(pointer, camera);
+        hovered = raycaster.intersectObjects(meshes, false).length > 0;
+    }
+    renderer.domElement.style.cursor = hovered ? 'pointer' : '';
+}
+
+// Rotation: slows down while hovered so the interaction can be enjoyed
 const ROTATION_SPEED = 0.5; // radians per second
+const ROTATION_SPEED_HOVER = 0.08;
+const SPEED_EASING = 3; // higher = faster change between speeds
+let rotationSpeed = ROTATION_SPEED;
 const clock = new THREE.Clock();
+
+// Frame-rate independent easing of value towards target
+function damp(value, target, lambda, dt) {
+    return THREE.MathUtils.lerp(value, target, 1 - Math.exp(-lambda * dt));
+}
 
 function animate() {
     const dt = Math.min(clock.getDelta(), 0.1);
-    pivot.rotation.y += ROTATION_SPEED * dt;
+    updateHover();
+    rotationSpeed = damp(rotationSpeed, hovered ? ROTATION_SPEED_HOVER : ROTATION_SPEED, SPEED_EASING, dt);
+    pivot.rotation.y += rotationSpeed * dt;
     renderer.render(scene, camera);
 }
 
