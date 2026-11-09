@@ -1,90 +1,81 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
-let model;
-const width = window.innerWidth;
-const height = window.innerHeight;
-const container = document.getElementById("landing");
+// Landing page 3D visual: chrome star in the #landing container.
 
-const camera = new THREE.PerspectiveCamera(75, width / height, 0.5, 1000);
-camera.position.set(0, 0, 1.5);
+// new URL(...) lets Vite include the model in the production build.
+const MODEL_URL = new URL('../media/Star2.gltf', import.meta.url).href;
 
-const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xffffff);
-scene.background = null;
+const container = document.getElementById('landing');
 
-const ambientLight = new THREE.AmbientLight(0xffffff, 2);
-scene.add(ambientLight);
-
-// Lights
-const lightModel = new THREE.DirectionalLight(0xffffff, 1);
-lightModel.position.set(0, 5, 5);
-scene.add(lightModel);
-
-
-//light Interactive
-const light = new THREE.PointLight(0xffffff, 10);
-light.position.set(0,0,0);
-scene.add(light);
-
-
-
-const loaderGLTF = new GLTFLoader();
-const modelScale = 1.5;
-
-loaderGLTF.load('media/AssetsStartSeite/VisionPro1.gltf', function (gltf) {
-    model = gltf.scene;
-    model.scale.set(modelScale, modelScale, modelScale);
-    model.position.set(0,0.2,0);
-
-    model.traverse((child) => {
-        if (child.isMesh) {
-            child.material = new THREE.MeshStandardMaterial({
-                color: 0xffffff,
-                metalness: 0.01, //keep down
-                roughness: 0.5,
-            });
-        }
-    });
-
-    scene.add(model);
-    renderer.render(scene, camera);
-});
-
-// Update light position based on mouse movement
-function onMouseMove(event) {
-    // Convert mouse position to normalized device coordinates (-1 to 1)
-    const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-    const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-
-    // Update light position based on mouse coordinates
-    light.position.set(mouseX * 5, mouseY * 5, 5);
-
-    // Re-render the scene
-    renderer.render(scene, camera);
-}
-
-window.addEventListener('mousemove', onMouseMove);
-
+// Renderer (transparent, so the page background shows through)
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
 container.appendChild(renderer.domElement);
 
-function animate(time) {
-    if (model) {
-        model.rotation.y = time / 2000;
-       
-    }
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
+camera.position.set(0, 0, 4);
+
+// Chrome needs something to reflect: a neutral studio environment
+// (generated in code, so there is no image to download).
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+const chromeMaterial = new THREE.MeshStandardMaterial({
+    color: 0xffffff,
+    metalness: 1.0,
+    roughness: 0.12,
+});
+
+// The model is centered and scaled to a fixed world size, so its
+// on-screen size only depends on the camera and container.
+const MODEL_SIZE = 1.6;
+const pivot = new THREE.Group();
+scene.add(pivot);
+
+new GLTFLoader().load(MODEL_URL, (gltf) => {
+    const model = gltf.scene;
+    model.traverse((child) => {
+        if (child.isMesh) child.material = chromeMaterial;
+    });
+
+    const box = new THREE.Box3().setFromObject(model);
+    const size = box.getSize(new THREE.Vector3());
+    const center = box.getCenter(new THREE.Vector3());
+    model.position.sub(center);
+    pivot.scale.setScalar(MODEL_SIZE / Math.max(size.x, size.y));
+    pivot.add(model);
+});
+
+function resize() {
+    const { clientWidth: w, clientHeight: h } = container;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+}
+new ResizeObserver(resize).observe(container);
+resize();
+
+// Rotation
+const ROTATION_SPEED = 0.5; // radians per second
+const clock = new THREE.Clock();
+
+function animate() {
+    const dt = Math.min(clock.getDelta(), 0.1);
+    pivot.rotation.y += ROTATION_SPEED * dt;
     renderer.render(scene, camera);
 }
 
-renderer.setAnimationLoop(animate);
-
-window.addEventListener('resize', () => {
-    const newWidth = window.innerWidth;
-    const newHeight = window.innerHeight;
-    renderer.setSize(newWidth, newHeight);
-    camera.aspect = newWidth / newHeight;
-    camera.updateProjectionMatrix();
-    renderer.render(scene, camera);
-});
+// Only render while the visual is on screen.
+new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+        clock.getDelta(); // skip the time spent off screen
+        renderer.setAnimationLoop(animate);
+    } else {
+        renderer.setAnimationLoop(null);
+    }
+}).observe(container);
