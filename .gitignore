@@ -1,0 +1,12 @@
+# macOS Finder metadata (regenerated automatically, causes conflicts between devices)
+.DS_Store
+
+# Dependencies and build output (recreate with `npm install` / `npm run build`)
+node_modules/
+dist/
+
+# Editor / local settings
+.vscode/
+.idea/
+*.log
+.env
