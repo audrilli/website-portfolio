@@ -31,21 +31,79 @@ const chromeMaterial = new THREE.MeshStandardMaterial({
     roughness: 0.12,
 });
 
+// Wireframe reveal: a grey wireframe copy sits inside the chrome model.
+// Within a sphere around the hover point the chrome is cut away and the
+// wireframe shows; the sphere grows on hover and shrinks when leaving.
+const WIREFRAME_COLOR = 0x9a9a9a;
+const reveal = {
+    origin: { value: new THREE.Vector3() }, // in the model's own coordinates
+    radius: { value: 0 },
+    edge: { value: 0 }, // width of the soft wireframe edge, set on load
+};
+
+const wireframeMaterial = new THREE.MeshBasicMaterial({
+    color: WIREFRAME_COLOR,
+    wireframe: true,
+    transparent: true,
+    toneMapped: false, // keep the exact grey (tone mapping lightens it)
+});
+
+// Adds the reveal sphere test to a built-in three.js material.
+// keepInside: true keeps fragments inside the sphere (wireframe),
+// false keeps those outside (chrome).
+function addReveal(material, keepInside) {
+    material.onBeforeCompile = (shader) => {
+        shader.uniforms.uRevealOrigin = reveal.origin;
+        shader.uniforms.uRevealRadius = reveal.radius;
+        shader.uniforms.uRevealEdge = reveal.edge;
+        shader.vertexShader = shader.vertexShader
+            .replace('#include <common>', '#include <common>\nvarying vec3 vRevealPos;')
+            .replace('#include <begin_vertex>', '#include <begin_vertex>\nvRevealPos = position;');
+        shader.fragmentShader = shader.fragmentShader
+            .replace('#include <common>', `#include <common>
+                varying vec3 vRevealPos;
+                uniform vec3 uRevealOrigin;
+                uniform float uRevealRadius;
+                uniform float uRevealEdge;`)
+            .replace('#include <clipping_planes_fragment>', `#include <clipping_planes_fragment>
+                float revealDist = distance(vRevealPos, uRevealOrigin);
+                ${keepInside
+                    ? 'if (revealDist > uRevealRadius) discard;'
+                    : 'if (revealDist < uRevealRadius) discard;'}`)
+            .replace('#include <dithering_fragment>', `#include <dithering_fragment>
+                ${keepInside
+                    ? 'gl_FragColor.a *= smoothstep(uRevealRadius, uRevealRadius - uRevealEdge, revealDist);'
+                    : ''}`);
+    };
+}
+addReveal(chromeMaterial, false);
+addReveal(wireframeMaterial, true);
+
 // The model is centered and scaled to a fixed world size, so its
 // on-screen size only depends on the camera and container.
 const MODEL_SIZE = 1.6;
 const pivot = new THREE.Group();
 scene.add(pivot);
 const meshes = [];
+let revealMaxRadius = 0;
 
 new GLTFLoader().load(MODEL_URL, (gltf) => {
     const model = gltf.scene;
     model.traverse((child) => {
-        if (child.isMesh) {
-            child.material = chromeMaterial;
-            meshes.push(child);
-        }
+        if (child.isMesh) meshes.push(child);
     });
+    // Collected first: adding children while traversing would loop forever.
+    for (const mesh of meshes) {
+        mesh.material = chromeMaterial;
+        // Same geometry, so it lines up exactly with the chrome surface.
+        mesh.add(new THREE.Mesh(mesh.geometry, wireframeMaterial));
+
+        mesh.geometry.computeBoundingSphere();
+        const r = mesh.geometry.boundingSphere.radius;
+        // Large enough to cover the whole model from any starting point.
+        revealMaxRadius = Math.max(revealMaxRadius, 2 * r);
+        reveal.edge.value = 0.25 * r;
+    }
 
     const box = new THREE.Box3().setFromObject(model);
     const size = box.getSize(new THREE.Vector3());
@@ -75,23 +133,48 @@ const raycaster = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 let pointerInside = false;
 let hovered = false;
+let touchRevealed = false; // touch screens have no hover: tap toggles
 
-renderer.domElement.addEventListener('pointermove', (event) => {
+function hitTest() {
+    raycaster.setFromCamera(pointer, camera);
+    return raycaster.intersectObjects(meshes, false)[0];
+}
+
+function setPointer(event) {
     const rect = renderer.domElement.getBoundingClientRect();
     pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+}
+
+renderer.domElement.addEventListener('pointermove', (event) => {
+    if (event.pointerType === 'touch') return;
+    setPointer(event);
     pointerInside = true;
 });
 renderer.domElement.addEventListener('pointerleave', () => {
     pointerInside = false;
 });
+renderer.domElement.addEventListener('pointerdown', (event) => {
+    if (event.pointerType !== 'touch' || !meshes.length) return;
+    setPointer(event);
+    const hit = hitTest();
+    touchRevealed = Boolean(hit) && !touchRevealed;
+    if (touchRevealed) setRevealOrigin(hit);
+});
+
+function setRevealOrigin(hit) {
+    reveal.origin.value.copy(hit.object.worldToLocal(hit.point.clone()));
+}
 
 // Tested every frame, because the model keeps rotating under a still cursor.
 function updateHover() {
     hovered = false;
     if (pointerInside && meshes.length) {
-        raycaster.setFromCamera(pointer, camera);
-        hovered = raycaster.intersectObjects(meshes, false).length > 0;
+        const hit = hitTest();
+        hovered = Boolean(hit);
+        // Start the reveal where the cursor touches the model; follow the
+        // cursor while it is still growing.
+        if (hit && reveal.radius.value < revealMaxRadius * 0.9) setRevealOrigin(hit);
     }
     renderer.domElement.style.cursor = hovered ? 'pointer' : '';
 }
@@ -100,6 +183,7 @@ function updateHover() {
 const ROTATION_SPEED = 0.5; // radians per second
 const ROTATION_SPEED_HOVER = 0.08;
 const SPEED_EASING = 3; // higher = faster change between speeds
+const REVEAL_EASING = 2; // higher = faster reveal
 let rotationSpeed = ROTATION_SPEED;
 const clock = new THREE.Clock();
 
@@ -111,7 +195,9 @@ function damp(value, target, lambda, dt) {
 function animate() {
     const dt = Math.min(clock.getDelta(), 0.1);
     updateHover();
-    rotationSpeed = damp(rotationSpeed, hovered ? ROTATION_SPEED_HOVER : ROTATION_SPEED, SPEED_EASING, dt);
+    const active = hovered || touchRevealed;
+    rotationSpeed = damp(rotationSpeed, active ? ROTATION_SPEED_HOVER : ROTATION_SPEED, SPEED_EASING, dt);
+    reveal.radius.value = damp(reveal.radius.value, active ? revealMaxRadius : 0, REVEAL_EASING, dt);
     pivot.rotation.y += rotationSpeed * dt;
     renderer.render(scene, camera);
 }
