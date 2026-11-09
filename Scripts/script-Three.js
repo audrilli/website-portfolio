@@ -18,7 +18,7 @@ container.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
-camera.position.set(0, 0, 4);
+camera.position.set(0, 0, 4); // z is set in resize()
 
 // Chrome needs something to reflect: a neutral studio environment
 // (generated in code, so there is no image to download).
@@ -51,10 +51,16 @@ new GLTFLoader().load(MODEL_URL, (gltf) => {
     pivot.add(model);
 });
 
+// Share of the container the model fills (the Figma render fills its box).
+const FILL = 0.95;
+
 function resize() {
     const { clientWidth: w, clientHeight: h } = container;
     renderer.setSize(w, h);
     camera.aspect = w / h;
+    // Move the camera so the model fits the shorter side of the container.
+    const fitHeight = MODEL_SIZE / FILL / Math.min(1, camera.aspect);
+    camera.position.z = fitHeight / 2 / Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
     camera.updateProjectionMatrix();
 }
 new ResizeObserver(resize).observe(container);

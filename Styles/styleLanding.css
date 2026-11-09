@@ -1,0 +1,149 @@
+/* Landing page (index.html) — hero from Figma frame
+   "LandingPage-Initial View V1" (portfolio-website, node 2031:570).
+   Loaded after styleUniversal.css, so it only overrides the landing page. */
+
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap");
+
+:root {
+  --landing-text: #4c4c4c;      /* Figma: colors/darkgray-text-default */
+  --landing-btn-bg: #e1e1e1;
+  --landing-margin: 40px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Figma text styles */
+.copySubtitle {
+  font-family: "Instrument Serif", serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--landing-text);
+}
+
+.copyRegular {
+  /* Neue Haas Unica Pro is a licensed font that is not in the repo yet;
+     the fallbacks are visually close until it is added. */
+  font-family: "Neue Haas Unica Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--landing-text);
+}
+
+/* Header overlays the hero instead of pushing it down.
+   (It was sticky at the top of the page, so fixed looks the same.) */
+.headerContainer {
+  position: fixed;
+  background: linear-gradient(to bottom, #fff, rgba(255, 255, 255, 0));
+}
+
+/* Hero: full first screen, text left, 3D visual right */
+.landingHero {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  overflow: clip; /* the visual bleeds past the edges, like in Figma */
+}
+
+/* 3D canvas box. In Figma the visual is a 1479 x 1463 box centered at
+   67.4% / 54.2% of the 1920 x 1080 frame, so it scales with the height.
+   It never starts left of 554px (its Figma position), so on screens
+   narrower than 16:9 it moves right instead of covering the text. */
+.landingHero #landing {
+  position: absolute;
+  z-index: 1;
+  width: 135vh;
+  height: 135vh;
+  left: max(calc(67.4% - 67.5vh), 554px);
+  top: calc(54.2% - 67.5vh);
+}
+
+.landingIntro {
+  position: absolute;
+  z-index: 2;
+  left: var(--landing-margin);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 547px;
+  max-width: calc(100% - 2 * var(--landing-margin));
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+  pointer-events: none; /* let the pointer reach the 3D model behind the text box */
+}
+
+.landingIntro > * {
+  pointer-events: auto;
+}
+
+.landingDivider {
+  width: 100%;
+  border: none;
+  border-top: 1px solid var(--landing-text);
+}
+
+.landingIntroText {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Figma component "Btn-text" */
+.btnText {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 2px;
+  background-color: var(--landing-btn-bg);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.btnText:hover {
+  color: #ff00aa;
+}
+
+.btnTextIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.btnTextIconDown {
+  transform: rotate(180deg);
+}
+
+/* Keep the project list clear of the fixed header when jumping to it */
+#projects {
+  scroll-margin-top: 120px;
+}
+
+/* Narrow screens: visual on top, text below */
+@media (max-width: 900px) {
+  .landingHero {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .landingHero #landing {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    height: 70svh;
+    left: auto;
+    top: auto;
+  }
+
+  .landingIntro {
+    position: relative;
+    top: auto;
+    transform: none;
+    left: auto;
+    width: auto;
+    max-width: none;
+    margin: 0 16px 80px;
+  }
+}
