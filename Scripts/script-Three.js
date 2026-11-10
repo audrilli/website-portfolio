@@ -1,11 +1,11 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 // Landing page 3D visual: chrome star in the #landing container.
 
 // new URL(...) lets Vite include the model in the production build.
 const MODEL_URL = new URL('../media/Star2.gltf', import.meta.url).href;
+const ENV_URL = new URL('../media/kloppenheim_06_puresky_4k.jpg', import.meta.url).href;
 
 const container = document.getElementById('landing');
 
@@ -20,10 +20,15 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
 camera.position.set(0, 0, 4); // z is set in resize()
 
-// Chrome needs something to reflect: a neutral studio environment
-// (generated in code, so there is no image to download).
+// Chrome needs something to reflect: the sky panorama. It is only used
+// for reflections; the page background stays visible behind the model.
 const pmrem = new THREE.PMREMGenerator(renderer);
-scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+new THREE.TextureLoader().load(ENV_URL, (texture) => {
+    texture.mapping = THREE.EquirectangularReflectionMapping;
+    texture.colorSpace = THREE.SRGBColorSpace;
+    scene.environment = pmrem.fromEquirectangular(texture).texture;
+    texture.dispose();
+});
 
 const chromeMaterial = new THREE.MeshStandardMaterial({
     color: 0xffffff,
