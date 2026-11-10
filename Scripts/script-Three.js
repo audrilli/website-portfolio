@@ -33,7 +33,7 @@ new THREE.TextureLoader().load(ENV_URL, (texture) => {
 const chromeMaterial = new THREE.MeshStandardMaterial({
     color: 0xffffff,
     metalness: 1.0,
-    roughness: 0.12,
+    roughness: 0.01,
 });
 
 // Wireframe reveal: a grey wireframe copy sits inside the chrome model.
