@@ -88,6 +88,16 @@
   overflow: clip;
 }
 
+/* three.js canvas (Scripts/script-Three.js) fills the container */
+.container-three {
+  position: absolute;
+  inset: 0;
+}
+
+.container-three canvas {
+  display: block;
+}
+
 .Asset-6\@3x-1 {
   position: absolute;
   left: 50%;
