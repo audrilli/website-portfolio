@@ -20,6 +20,7 @@ transformScale = 1.1;
   petals.forEach(({ petal, path, transform }) => {
     const petalElement = document.querySelector(`.${petal}`);
     const pathElement = document.querySelector(`.${path}`);
+    if (!petalElement || !pathElement) return; // logo not on this page
   
     petalElement.addEventListener('mouseover', () => {
       pathElement.style.transition = 'all 0.8s';
@@ -63,7 +64,7 @@ transformScale = 1.1;
 
  //Scrollbehaviour ContactButton
 
- document.getElementById('btnContact').addEventListener('click',() => {
+ document.getElementById('btnContact')?.addEventListener('click',() => {
   document.getElementById('scrolltoContact').scrollIntoView({
     behavior:'smooth'});
     });
