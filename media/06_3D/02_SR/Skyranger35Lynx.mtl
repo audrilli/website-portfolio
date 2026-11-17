@@ -1,0 +1,35 @@
+newmtl TankCloth
+Ka 0 0 0
+Kd 0.3190 0.3190 0.3190
+Ks 0.2 0.2 0.2
+Ns 50
+d 1
+illum 2
+map_Kd textures/TankCloth_A.png
+map_d textures/TankCloth_A.png
+map_Bump -bm 1 textures/TankCloth_N.png
+map_Ks textures/TankCloth_MGC.png
+
+newmtl Skyranger35Lynx
+Ka 0 0 0
+Kd 1.0000 1.0000 1.0000
+Ks 0.2 0.2 0.2
+Ns 50
+d 1
+illum 2
+map_Kd textures/baked/Skyranger35Lynx_A_Default.png
+map_Bump -bm 1 textures/Skyranger35Lynx_N.png
+map_Ks textures/Skyranger35Lynx_MGC.png
+map_Ke textures/Skyranger35Lynx_EM.png
+
+newmtl Skyranger35Lynx_track
+Ka 0 0 0
+Kd 1.0000 1.0000 1.0000
+Ks 0.2 0.2 0.2
+Ns 50
+d 1
+illum 2
+map_Kd textures/Skyranger35Lynx_track_A.png
+map_Bump -bm 1 textures/Leopard2A4_track_N.png
+map_Ks textures/Leopard2A4_track_MGC.png
+
