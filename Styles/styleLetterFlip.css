@@ -1,4 +1,5 @@
 /* Title letters: each container-titleLetter is a card that flips on hover
+   (bottom edge swings up and over, around the horizontal axis)
    and reveals the image on its back. CSS only, no script needed.
    (Touch screens show the hover state on tap.) */
 
@@ -20,7 +21,7 @@
 /* The container itself stays put, so the hover area doesn't move
    while the card turns. */
 .container-titleLetter:hover .flip-card {
-  transform: rotateY(180deg);
+  transform: rotateX(-180deg); /* negative: bottom edge comes up first */
 }
 
 .flip-card-front,
@@ -32,7 +33,7 @@
 }
 
 .flip-card-back {
-  transform: rotateY(180deg);
+  transform: rotateX(180deg);
   overflow: clip;
 }
 
