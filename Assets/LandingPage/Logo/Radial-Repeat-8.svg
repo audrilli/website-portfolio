@@ -1,0 +1,14 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="16.2265" height="8.37014" viewBox="0 0 16.2265 8.37014" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="&#38;lt;Radial Repeat&#38;gt;">
+<g id="Vector">
+<use xlink:href="#stroke0_0_177" fill="black"/>
+<mask id="stroke1_0_177" fill="white">
+<use xlink:href="#stroke0_0_177"/>
+</mask>
+<path d="M13.1096 0.207117C10.1384 -0.316995 5.05683 0.254405 1.40972 0.804132C-0.184293 1.04451 -0.523191 2.96757 0.893488 3.73798C4.13471 5.50538 8.7197 7.78113 11.6831 8.30327C16.6779 9.18401 18.1242 1.08983 13.1116 0.207117H13.1096Z" stroke-width="2" stroke="black" mask="url(#stroke1_0_177)"/>
+</g>
+</g>
+<defs>
+<path id="stroke0_0_177" d="M13.1096 0.207117C10.1384 -0.316995 5.05683 0.254405 1.40972 0.804132C-0.184293 1.04451 -0.523191 2.96757 0.893488 3.73798C4.13471 5.50538 8.7197 7.78113 11.6831 8.30327C16.6779 9.18401 18.1242 1.08983 13.1116 0.207117H13.1096Z"/>
+</defs>
+</svg>
