@@ -1,0 +1,25 @@
+/* Logo interaction styling: the hovered petal turns pink and fans out.
+   Behaviour: Scripts/script-LogoInteraction.js (sets .is-active and the
+   outward direction --dx / --dy on the petal). */
+
+:root {
+  --logo-hover-color: #ff00aa; /* site hover accent */
+  --logo-hover-duration: 0.8s;
+}
+
+/* Let petals move past the logo's edge instead of being cut off */
+.Logo {
+  overflow: visible;
+}
+
+.Logo .Radial-Repeat {
+  transform-origin: center;
+  transition:
+    transform var(--logo-hover-duration),
+    background-color var(--logo-hover-duration);
+}
+
+.Logo .Radial-Repeat.is-active {
+  background-color: var(--logo-hover-color);
+  transform: translate(var(--dx, 0px), var(--dy, 0px)) scale(1.1);
+}

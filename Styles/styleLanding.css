@@ -179,12 +179,22 @@
   inset: 0;
 }
 
-.Logo img {
+.Logo .Radial-Repeat,
+.Logo .Group-center {
   position: absolute;
   top: var(--t);
   left: var(--l);
   width: calc(100% - var(--l) - var(--r));
   height: calc(100% - var(--t) - var(--b));
+}
+
+/* Petals use their Figma SVG as a mask over a color fill, so the color
+   can change (see styleLogoInteraction.css). */
+.Radial-Repeat {
+  display: block;
+  background-color: #000;
+  -webkit-mask: var(--src) center / 100% 100% no-repeat;
+  mask: var(--src) center / 100% 100% no-repeat;
 }
 
 .Radial-Repeat:nth-child(1) { --t: 59.06%; --r: 39.84%; --b: 0%;     --l: 39.84%; }
