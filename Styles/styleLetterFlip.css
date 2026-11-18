@@ -42,7 +42,7 @@
 
 .flip-card-back {
   transform: rotateX(180deg);
-transition-duration: 1s;
+
   overflow: clip;
 }
 
