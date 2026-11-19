@@ -1,12 +1,15 @@
 /* Title letters: each container-titleLetter is a card that flips on hover
    (bottom edge swings up and over, around the horizontal axis)
-   and reveals the image on its back. CSS only, no script needed.
-   (Touch screens show the hover state on tap.) */
+   and reveals the image on its back.
+   The motion is run by Scripts/script-LetterFlip.js, which reads the
+   timing below. Touch screens flip on tap. */
 
 :root {
   --letter-flip-duration: 1.9s;        /* flip to the image (hover) */
   --letter-flip-back-duration: 2.8s;   /* flip back to the letter, slower */
   --letter-flip-back-delay: 0.6s;      /* wait before flipping back */
+  --letter-flip-coast-duration: 0.5s;  /* cursor leaves mid-flip: card keeps
+                                          turning and slows down this long */
   /* Slow start and end, fast middle (ease-in-out, quart) */
   --letter-flip-easing: cubic-bezier(0.76, 0, 0.24, 1);
 }
@@ -19,17 +22,8 @@
   position: absolute;
   inset: 0;
   transform-style: preserve-3d;
-  /* Used when the cursor leaves: the flip back to the letter */
-  transition: transform var(--letter-flip-back-duration) var(--letter-flip-easing)
-    var(--letter-flip-back-delay);
-}
-
-/* The container itself stays put, so the hover area doesn't move
-   while the card turns. */
-.container-titleLetter:hover .flip-card {
-  transform: rotateX(-180deg); /* negative: bottom edge comes up first */
-  /* Used when the cursor enters: the flip to the image, no delay */
-  transition: transform var(--letter-flip-duration) var(--letter-flip-easing);
+  /* The container itself stays put (the script listens there), so the
+     hover area doesn't move while the card turns. */
 }
 
 .flip-card-front,
@@ -53,10 +47,4 @@
   height: 100%;
   object-fit: cover;
   transform: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .flip-card {
-    transition: none;
-  }
 }
